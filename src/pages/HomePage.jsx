@@ -11,7 +11,7 @@ function Hero() {
   ]
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
+    <section className="relative h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0 bg-body" />
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50"
