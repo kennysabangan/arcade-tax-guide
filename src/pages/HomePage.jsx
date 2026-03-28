@@ -139,9 +139,9 @@ function Overview() {
 
 // ─── Gallery ───
 const GALLERY = [
-  { src: '/images/arcade-closeup.svg', alt: 'Commercial arcade game machine close-up view showing touchscreen display and bill acceptor' },
-  { src: '/images/arcade-restaurant.svg', alt: 'Arcade game machines deployed in a restaurant business setting' },
-  { src: '/images/arcade-business.svg', alt: 'Arcade games in a commercial entertainment venue' },
+  { src: '/images/arcade-closeup.png', alt: 'Commercial arcade game machine close-up view showing touchscreen display and bill acceptor' },
+  { src: '/images/arcade-restaurant.png', alt: 'Arcade game machines deployed in a restaurant business setting' },
+  { src: '/images/arcade-business.png', alt: 'Arcade games in a commercial entertainment venue' },
 ]
 
 function Gallery() {
