@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="hidden sm:block text-cream-70 text-sm sm:text-base lg:text-lg max-w-xl sm:max-w-2xl mx-auto mb-7 leading-relaxed">
+        <p className="text-cream-70 text-xs sm:text-base lg:text-lg max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-7 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -56,7 +56,7 @@ function Hero() {
           <CTAButton href="#book-a-call" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Book a Call</CTAButton>
         </div>
 
-        <div className="hidden sm:flex items-center justify-center gap-6 sm:gap-10 border-t border-gold-20 pt-6 w-full max-w-sm">
+        <div className="flex items-center justify-center gap-4 sm:gap-10 border-t border-gold-20 pt-3 sm:pt-6 w-full max-w-xs sm:max-w-sm">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
