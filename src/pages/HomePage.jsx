@@ -11,7 +11,7 @@ function Hero() {
   ]
 
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden pt-16">
+    <section className="relative h-screen overflow-hidden pt-16">
       <div className="absolute inset-0 bg-body" />
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50"
@@ -25,7 +25,7 @@ function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(219,177,85,0.1) 0%, transparent 70%)' }}
       />
-      <div className="relative z-20 flex-1 min-h-0 flex flex-col items-center justify-start pt-[8vh] sm:justify-center sm:pt-0 text-center px-5 overflow-hidden">
+      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-5 pb-12">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-sm border border-gold-20 bg-gold-20/10 mb-3 sm:mb-5 neon-border-gold">
           <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(219,177,85,0.8)' }} />
           <span className="text-gold text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
@@ -70,7 +70,7 @@ function Hero() {
           ))}
         </div>
       </div>
-      <div className="relative z-20">
+      <div className="absolute bottom-0 left-0 right-0 z-20">
         <Ticker />
       </div>
     </section>
