@@ -26,7 +26,7 @@ function Hero() {
         style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(219,177,85,0.1) 0%, transparent 70%)' }}
       />
       <div className="h-16 md:h-24 flex-shrink-0" />
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-5 pb-16 md:pb-24">
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-5">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-sm border border-gold-20 bg-gold-20/10 mb-5 neon-border-gold">
           <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(219,177,85,0.8)' }} />
           <span className="text-gold text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
@@ -70,6 +70,9 @@ function Hero() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="relative z-20 flex-shrink-0">
+        <Ticker />
       </div>
     </section>
   )
@@ -500,7 +503,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Ticker />
       <Overview />
       <Gallery />
       <FAQ />
