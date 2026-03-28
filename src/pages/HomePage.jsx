@@ -14,7 +14,7 @@ function Hero() {
     <section className="relative min-h-[calc(100dvh-44px)] flex flex-col overflow-hidden">
       <div className="absolute inset-0 bg-body" />
       <div
-        className="absolute inset-0 bg-cover bg-center bg-fixed opacity-30"
+        className="absolute inset-0 bg-cover bg-center opacity-50"
         style={{ backgroundImage: 'url(/images/hero-bg.png)' }}
       />
       <div
