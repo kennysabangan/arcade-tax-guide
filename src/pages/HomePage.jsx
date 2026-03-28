@@ -26,14 +26,14 @@ function Hero() {
         style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(219,177,85,0.1) 0%, transparent 70%)' }}
       />
       <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-5">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-sm border border-gold-20 bg-gold-20/10 mb-5 neon-border-gold">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-sm border border-gold-20 bg-gold-20/10 mb-3 sm:mb-5 neon-border-gold">
           <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(219,177,85,0.8)' }} />
           <span className="text-gold text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
             IRC Section 168(k) Tax Strategy
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.12] mb-5" style={{ fontSize: 'clamp(1.75rem, 7.5vw, 5rem)' }}>
+        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5" style={{ fontSize: 'clamp(1.5rem, 7.5vw, 5rem)' }}>
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -44,19 +44,19 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-sm sm:text-base lg:text-lg max-w-xl sm:max-w-2xl mx-auto mb-7 leading-relaxed">
+        <p className="hidden sm:block text-cream-70 text-sm sm:text-base lg:text-lg max-w-xl sm:max-w-2xl mx-auto mb-7 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
           restored by the One Big Beautiful Bill Act.
         </p>
 
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <CTAButton to="/tax-guide" className="neon-border-gold">Explore the Guide</CTAButton>
-          <CTAButton href="#book-a-call" variant="outline">Book a Call</CTAButton>
+        <div className="flex items-center justify-center gap-3 mb-4 sm:mb-8">
+          <CTAButton to="/tax-guide" className="neon-border-gold text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Guide</CTAButton>
+          <CTAButton href="#book-a-call" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Book a Call</CTAButton>
         </div>
 
-        <div className="flex items-center justify-center gap-6 sm:gap-10 border-t border-gold-20 pt-6 w-full max-w-sm">
+        <div className="hidden sm:flex items-center justify-center gap-6 sm:gap-10 border-t border-gold-20 pt-6 w-full max-w-sm">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
