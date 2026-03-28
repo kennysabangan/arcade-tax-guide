@@ -13,7 +13,14 @@ function Hero() {
   return (
     <section className="relative min-h-[calc(100dvh-44px)] flex flex-col overflow-hidden">
       <div className="absolute inset-0 bg-body" />
-      <div className="absolute inset-0 arcade-grid opacity-40" />
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-30"
+        style={{ backgroundImage: 'url(/images/hero-bg.png)' }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.4) 100%)' }}
+      />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(219,177,85,0.1) 0%, transparent 70%)' }}
