@@ -70,7 +70,7 @@ function Hero() {
           ))}
         </div>
       </div>
-      <div className="relative z-20 flex-shrink-0">
+      <div className="relative z-20">
         <Ticker />
       </div>
     </section>
