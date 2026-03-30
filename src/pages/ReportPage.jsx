@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas-pro'
+import { pdf, Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer'
 import { Card } from '../components/Layout'
 
 // 2024 MFJ tax brackets
@@ -64,7 +63,222 @@ function computeReport(income) {
   }
 }
 
+// ─── PDF Styles ───
+const pdfStyles = StyleSheet.create({
+  page: {
+    backgroundColor: '#ffffff',
+    fontFamily: 'Helvetica',
+  },
+  header: {
+    backgroundColor: '#1a1a2e',
+    paddingVertical: 28,
+    paddingHorizontal: 40,
+  },
+  headerTitle: {
+    color: '#dbb155',
+    fontFamily: 'Helvetica-Bold',
+    fontSize: 20,
+    textAlign: 'center',
+  },
+  headerSub: {
+    color: '#cccccc',
+    fontSize: 11,
+    textAlign: 'center',
+    marginTop: 6,
+  },
+  headerDate: {
+    color: '#999999',
+    fontSize: 9,
+    textAlign: 'center',
+    marginTop: 3,
+  },
+  body: {
+    padding: 36,
+  },
+  section: {
+    marginBottom: 22,
+  },
+  sectionTitle: {
+    color: '#dbb155',
+    fontFamily: 'Helvetica-Bold',
+    fontSize: 13,
+    marginBottom: 10,
+    paddingBottom: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: '#dbb15533',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 6,
+  },
+  label: {
+    color: '#555555',
+    fontSize: 10,
+  },
+  value: {
+    color: '#1a1a2e',
+    fontFamily: 'Helvetica-Bold',
+    fontSize: 10,
+  },
+  valueGold: {
+    color: '#dbb155',
+    fontFamily: 'Helvetica-Bold',
+    fontSize: 10,
+  },
+  valueGreen: {
+    color: '#22c55e',
+    fontFamily: 'Helvetica-Bold',
+    fontSize: 10,
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderTopWidth: 1,
+    borderTopColor: '#dbb15533',
+    paddingTop: 6,
+    marginTop: 6,
+    marginBottom: 6,
+  },
+  highlightRow: {
+    backgroundColor: '#dbb15518',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    marginTop: 6,
+  },
+  listItem: {
+    color: '#1a1a2e',
+    fontSize: 10,
+    marginBottom: 4,
+  },
+  footer: {
+    textAlign: 'center',
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#dbb15533',
+    marginTop: 10,
+  },
+  footerText: {
+    color: '#999999',
+    fontSize: 8,
+    fontStyle: 'italic',
+  },
+  nolNote: {
+    color: '#666666',
+    fontSize: 9,
+    marginTop: 8,
+    lineHeight: 1.4,
+  },
+})
 
+// ─── PDF Document Component ───
+const ReportPDF = ({ data, name }) => (
+  <Document>
+    <Page size="A4" style={pdfStyles.page}>
+      {/* Header */}
+      <View style={pdfStyles.header}>
+        <Text style={pdfStyles.headerTitle}>Your Personalized Tax Savings Report</Text>
+        <Text style={pdfStyles.headerSub}>Prepared for: {name}</Text>
+        <Text style={pdfStyles.headerDate}>
+          {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </Text>
+      </View>
+
+      <View style={pdfStyles.body}>
+        {/* Section 1: Tax Profile */}
+        <View style={pdfStyles.section}>
+          <Text style={pdfStyles.sectionTitle}>1. Your Tax Profile</Text>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Anticipated Taxable Income</Text>
+            <Text style={pdfStyles.value}>{fmt(data.income)}</Text>
+          </View>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Marginal Tax Rate (MFJ 2024)</Text>
+            <Text style={pdfStyles.valueGold}>{(data.marginalRate * 100).toFixed(0)}%</Text>
+          </View>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Est. Federal Tax (No Strategy)</Text>
+            <Text style={pdfStyles.value}>{fmt(data.fedTaxNoStrategy)}</Text>
+          </View>
+        </View>
+
+        {/* Section 2: Depreciation Strategy */}
+        <View style={pdfStyles.section}>
+          <Text style={pdfStyles.sectionTitle}>2. Arcade Game Bonus Depreciation Strategy</Text>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Recommended Investment</Text>
+            <Text style={pdfStyles.value}>{fmt(data.purchasePrice)}</Text>
+          </View>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Bonus Depreciation (100%)</Text>
+            <Text style={pdfStyles.value}>{fmt(data.bonusDepreciation)}</Text>
+          </View>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Regular MACRS Year 1 (14.29% of remaining)</Text>
+            <Text style={pdfStyles.value}>{fmt(data.macrsYear1)}</Text>
+          </View>
+          <View style={pdfStyles.dividerRow}>
+            <Text style={[pdfStyles.value, { color: '#1a1a2e' }]}>Total First-Year Deduction</Text>
+            <Text style={pdfStyles.valueGold}>{fmt(data.totalDeduction)}</Text>
+          </View>
+          <View style={pdfStyles.row}>
+            <Text style={pdfStyles.label}>Tax Savings</Text>
+            <Text style={pdfStyles.valueGreen}>{fmt(data.taxSavings)}</Text>
+          </View>
+          <View style={pdfStyles.highlightRow}>
+            <Text style={pdfStyles.valueGold}>Effective Cost After Tax</Text>
+            <Text style={[pdfStyles.valueGold, { fontSize: 12 }]}>{fmt(data.effectiveCost)}</Text>
+          </View>
+        </View>
+
+        {/* Section 3: NOL Impact */}
+        <View style={pdfStyles.section}>
+          <Text style={pdfStyles.sectionTitle}>3. Net Operating Loss Impact</Text>
+          {data.nol > 0 ? (
+            <>
+              <View style={pdfStyles.row}>
+                <Text style={pdfStyles.label}>Net Operating Loss (NOL)</Text>
+                <Text style={pdfStyles.valueGold}>{fmt(data.nol)}</Text>
+              </View>
+              <View style={pdfStyles.row}>
+                <Text style={pdfStyles.label}>Future Income Offset Potential (80%)</Text>
+                <Text style={pdfStyles.valueGreen}>{fmt(data.nol * 0.8)}</Text>
+              </View>
+              <Text style={pdfStyles.nolNote}>
+                Your deduction exceeds your income, generating a Net Operating Loss that can offset up to 80% of future taxable income.
+              </Text>
+            </>
+          ) : (
+            <Text style={pdfStyles.label}>
+              Your deduction does not exceed your income, so no NOL is generated. Consider a larger investment to unlock NOL carryforward benefits.
+            </Text>
+          )}
+        </View>
+
+        {/* Section 4: Next Steps */}
+        <View style={pdfStyles.section}>
+          <Text style={pdfStyles.sectionTitle}>4. Next Steps</Text>
+          <Text style={pdfStyles.listItem}>1. Consult with your CPA about this strategy</Text>
+          <Text style={pdfStyles.listItem}>2. Identify qualifying arcade game assets</Text>
+          <Text style={pdfStyles.listItem}>3. Purchase and place in service before year-end</Text>
+          <Text style={pdfStyles.listItem}>4. File IRS Form 4562 with your tax return</Text>
+        </View>
+
+        {/* Footer */}
+        <View style={pdfStyles.footer}>
+          <Text style={pdfStyles.footerText}>
+            This report is for informational purposes only. Consult a qualified tax professional.
+          </Text>
+          <Text style={[pdfStyles.footerText, { marginTop: 3 }]}>
+            Generated by Arcade Tax Guide | arcade-tax-guide.vercel.app
+          </Text>
+        </View>
+      </View>
+    </Page>
+  </Document>
+)
 
 export default function ReportPage() {
   const [params] = useSearchParams()
@@ -76,14 +290,13 @@ export default function ReportPage() {
   const data = computeReport(income)
 
   const downloadPDF = async () => {
-    const element = reportRef.current
-    const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#0a0a0f' })
-    const imgData = canvas.toDataURL('image/png')
-    const pdf = new jsPDF('p', 'mm', 'a4')
-    const pdfWidth = pdf.internal.pageSize.getWidth()
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
-    pdf.save('Tax-Savings-Report.pdf')
+    const blob = await pdf(<ReportPDF data={data} name={name} />).toBlob()
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'Tax-Savings-Report.pdf'
+    a.click()
+    URL.revokeObjectURL(url)
   }
 
   return (
