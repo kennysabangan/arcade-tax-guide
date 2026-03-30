@@ -468,24 +468,17 @@ function BookCall() {
 
   const inputClasses = 'w-full bg-body border border-card-border rounded-md px-4 py-2.5 text-cream placeholder-cream-40 focus:border-gold focus:outline-none transition-colors'
 
-  const valueProps = [
-    'Personalized tax strategy overview',
-    'Review of your business eligibility',
-    'Estimated deduction calculations',
-    'Documentation guidance',
-    'Free 30-minute consultation',
+  const offerStack = [
+    { item: 'Custom Tax Savings Report', desc: 'personalized to your income bracket', value: '$500' },
+    { item: 'Bonus Depreciation Calculator Walkthrough', desc: 'see your exact first-year deduction', value: '$250' },
+    { item: 'Business Structure Review', desc: 'ensure you qualify under IRC § 168(k)', value: '$300' },
+    { item: 'Documentation Checklist', desc: 'everything your CPA needs', value: '$150' },
+    { item: 'Complete Implementation Roadmap', desc: 'step-by-step from purchase to filing', value: '$400' },
   ]
 
   return (
     <SectionWrapper id="book-a-call">
-      <div className="text-center mb-12">
-        <SectionLabel>Get Started</SectionLabel>
-        <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Book a Discovery Call</h2>
-        <p className="text-cream-70 text-lg max-w-2xl mx-auto">
-          Ready to explore how arcade game bonus depreciation can benefit your business? Fill out the form below and we'll reach out.
-        </p>
-      </div>
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         {submitted ? (
           <div className="bg-card-bg border border-card-border rounded-lg p-8 text-center">
             <div className="w-16 h-16 mx-auto bg-gold-20/20 rounded-full flex items-center justify-center mb-4">
@@ -496,51 +489,125 @@ function BookCall() {
             <p className="text-cream font-heading font-bold text-xl">Thank you! We'll be in touch shortly.</p>
           </div>
         ) : (
-          <div className="ring-1 ring-gold-20/30 rounded-lg" style={{ boxShadow: '0 0 40px rgba(219,177,85,0.08), 0 0 80px rgba(219,177,85,0.04)' }}>
           <Card>
-            <div className="space-y-4 mb-8">
-              {valueProps.map((prop, i) => (
-                <div key={i} className="flex items-center justify-center gap-3">
-                  <span className="text-gold text-lg flex-shrink-0" style={{ textShadow: '0 0 6px rgba(219,177,85,0.6)' }}>✓</span>
-                  <span className="text-cream text-base">{prop}</span>
+            <div
+              className="rounded-lg ring-1 ring-gold-20/30 p-6 sm:p-10"
+              style={{ boxShadow: '0 0 60px rgba(219,177,85,0.08), 0 0 120px rgba(219,177,85,0.04)' }}
+            >
+              {/* Urgency badge */}
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gold bg-gold/10">
+                  <span
+                    className="w-2 h-2 rounded-full bg-gold flex-shrink-0 animate-pulse"
+                    style={{ boxShadow: '0 0 8px rgba(219,177,85,0.9)' }}
+                  />
+                  <span className="text-gold text-xs font-bold uppercase tracking-[0.15em] font-nav">
+                    Limited Availability — Apply Now
+                  </span>
                 </div>
-              ))}
+              </div>
+
+              {/* Headline */}
+              <h2 className="font-heading font-bold text-center leading-tight mb-3" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
+                <span className="text-cream-warm">Get Your Free </span>
+                <span className="text-gold neon-gold">Arcade Tax Strategy Blueprint</span>
+              </h2>
+
+              {/* Subheadline */}
+              <p className="text-cream-70 text-center text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-8">
+                In this free 30-minute consultation, we'll walk you through exactly how much you could save with arcade game bonus depreciation — personalized to your income and business structure.
+              </p>
+
+              {/* Offer stack */}
+              <div className="bg-body/60 border border-card-border rounded-lg p-5 sm:p-8 mb-8">
+                <p className="text-cream-50 text-xs font-nav uppercase tracking-widest text-center mb-5">Here's Everything You Get — Absolutely Free</p>
+                <div className="space-y-4">
+                  {offerStack.map((o, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span
+                        className="text-gold text-lg mt-0.5 flex-shrink-0"
+                        style={{ textShadow: '0 0 8px rgba(219,177,85,0.7)' }}
+                      >
+                        ✓
+                      </span>
+                      <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5">
+                        <span className="text-cream text-sm sm:text-base">
+                          <span className="font-semibold">{o.item}</span>{' '}
+                          <span className="text-cream-60">— {o.desc}</span>
+                        </span>
+                        <span className="text-gold font-mono font-bold text-sm whitespace-nowrap">(Value: {o.value})</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Total value */}
+                <div className="mt-6 pt-5 border-t border-gold-20/40 text-center">
+                  <p className="font-heading font-bold text-xl sm:text-2xl">
+                    <span className="text-cream-50">Total Value: </span>
+                    <span
+                      className="text-gold"
+                      style={{ textShadow: '0 0 12px rgba(219,177,85,0.6)' }}
+                    >
+                      $1,600
+                    </span>
+                    <span className="text-cream-warm"> — Yours FREE</span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Risk reversal */}
+              <div className="flex items-start gap-3 bg-gold/5 border border-gold-20/30 rounded-lg p-4 mb-8">
+                <span className="text-gold text-xl flex-shrink-0 mt-0.5">🛡️</span>
+                <p className="text-cream-70 text-sm sm:text-base leading-relaxed">
+                  <span className="text-cream font-semibold">Our Guarantee:</span> If we can't show you at least <span className="text-gold font-bold">$50,000</span> in potential tax savings, we'll give you the documentation checklist for free anyway. You risk nothing.
+                </p>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-card-border my-6" />
+
+              {/* Form */}
+              <p className="text-cream-50 text-xs font-nav uppercase tracking-widest text-center mb-5">Claim Your Free Blueprint</p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Name <span className="text-gold">*</span></label>
+                  <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Smith" className={inputClasses} />
+                </div>
+                <div>
+                  <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Email <span className="text-gold">*</span></label>
+                  <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className={inputClasses} />
+                </div>
+                <div>
+                  <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Phone <span className="text-gold">*</span></label>
+                  <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(555) 123-4567" className={inputClasses} />
+                </div>
+                <div>
+                  <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Anticipated Taxable Income <span className="text-gold">*</span></label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-cream-50">$</span>
+                    <input type="number" required value={income} onChange={(e) => setIncome(e.target.value)} placeholder="500,000" className={`pl-8 ${inputClasses}`} />
+                  </div>
+                </div>
+                {error && <p className="text-red-400 text-sm">{error}</p>}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm text-lg bg-gold text-dark font-bold hover:bg-gold/90 hover:shadow-[0_0_24px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {loading ? 'Submitting...' : 'Claim My Free Blueprint →'}
+                </button>
+                <p className="text-cream-40 text-xs text-center">Your information is kept private and secure.</p>
+              </form>
+
+              {/* Scarcity */}
+              <div className="mt-6 pt-5 border-t border-card-border text-center">
+                <p className="text-cream-50 text-xs sm:text-sm font-nav uppercase tracking-wider">
+                  ⚡ We only accept <span className="text-gold font-bold">10 new clients per month</span> to ensure quality of service
+                </p>
+              </div>
             </div>
-
-            <div className="border-t border-card-border my-6" />
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Name <span className="text-gold">*</span></label>
-                <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Smith" className={inputClasses} />
-              </div>
-              <div>
-                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Email <span className="text-gold">*</span></label>
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className={inputClasses} />
-              </div>
-              <div>
-                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Phone <span className="text-gold">*</span></label>
-                <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(555) 123-4567" className={inputClasses} />
-              </div>
-              <div>
-                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Anticipated Taxable Income <span className="text-gold">*</span></label>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-cream-50">$</span>
-                  <input type="number" required value={income} onChange={(e) => setIncome(e.target.value)} placeholder="500,000" className={`pl-8 ${inputClasses}`} />
-                </div>
-              </div>
-              {error && <p className="text-red-400 text-sm">{error}</p>}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm text-base bg-gold text-dark font-semibold hover:bg-gold/90 hover:shadow-[0_0_18px_rgba(219,177,85,0.55)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Submitting...' : 'Get Started'}
-              </button>
-              <p className="text-cream-40 text-xs text-center">Your information is kept private and secure.</p>
-            </form>
-            </Card>
-          </div>
+          </Card>
         )}
       </div>
     </SectionWrapper>
