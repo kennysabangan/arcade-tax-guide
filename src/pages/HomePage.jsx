@@ -447,6 +447,7 @@ function BookCall() {
           email,
           phone,
           locationId: 'Mp6SVlSkhbup63EKVSvb',
+          tags: ['arcade-tax-lead'],
           customFields: [
             { id: 'anticipated_taxable_income', value: income },
           ],
