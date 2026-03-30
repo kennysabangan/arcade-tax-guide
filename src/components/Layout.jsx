@@ -57,12 +57,12 @@ export function Navbar() {
               {item.label}
             </NavLink>
           ))}
-          <Link
-            to="/#book-a-call"
+          <a
+            href="/#book-a-call"
             className="ml-3 px-4 py-1.5 text-sm bg-gold text-dark font-semibold rounded-md hover:bg-gold/90 hover:shadow-[0_0_14px_rgba(219,177,85,0.4)] transition-all duration-200 cursor-pointer"
           >
             Book a Call
-          </Link>
+          </a>
         </div>
 
         <button
@@ -82,13 +82,13 @@ export function Navbar() {
                 {item.label}
               </NavLink>
             ))}
-            <Link
-              to="/#book-a-call"
+            <a
+              href="/#book-a-call"
               onClick={close}
               className="mt-2 px-4 py-2.5 text-sm bg-gold text-dark font-semibold rounded-md text-center hover:bg-gold/90 transition-colors duration-200 cursor-pointer"
             >
               Book a Call
-            </Link>
+            </a>
           </div>
         </div>
       )}
@@ -112,7 +112,7 @@ export function Footer() {
             <Link to="/calculator" className="hover:text-gold transition-colors">Calculator</Link>
             <Link to="/financials" className="hover:text-gold transition-colors">Financials</Link>
             <Link to="/scenarios" className="hover:text-gold transition-colors">Scenarios</Link>
-            <a href="#book-a-call" className="hover:text-gold transition-colors">Book a Call</a>
+            <a href="/#book-a-call" className="hover:text-gold transition-colors">Book a Call</a>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gold-20 text-center text-cream-40 text-xs">
@@ -138,7 +138,7 @@ export function FloatingCTA() {
 
   return (
     <a
-      href="#book-a-call"
+      href="/#book-a-call"
       className={`fixed bottom-6 right-6 z-40 px-5 py-3 bg-gold text-dark font-semibold text-sm rounded-full shadow-lg cursor-pointer hover:bg-gold/90 hover:shadow-[0_0_20px_rgba(219,177,85,0.5)] active:scale-95 transition-all duration-200 ${
         show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
