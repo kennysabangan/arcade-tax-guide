@@ -332,7 +332,7 @@ export default function ReportPage() {
   const [params] = useSearchParams()
   const name = params.get('name') || 'Valued Client'
   const email = params.get('email') || ''
-  const income = Number(params.get('income')) || 0
+  const income = Number(params.get('income')) || 150000
   const reportRef = useRef(null)
 
   const data = computeReport(income)
