@@ -424,6 +424,13 @@ function BookCall() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
+  const GHL_HEADERS = {
+    'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
+    'Version': '2021-07-28',
+    'Content-Type': 'application/json',
+  }
+  const GHL_LOCATION_ID = 'Mp6SVlSkhbup63EKVSvb'
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -433,30 +440,58 @@ function BookCall() {
     const firstName = nameParts[0] || ''
     const lastName = nameParts.slice(1).join(' ') || ''
 
+    const contactBody = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      locationId: GHL_LOCATION_ID,
+      tags: ['arcade-tax-lead'],
+      customFields: [
+        { id: 'anticipated_taxable_income', value: income },
+      ],
+    }
+
     try {
       const res = await fetch('https://services.leadconnectorhq.com/contacts/', {
         method: 'POST',
-        headers: {
-          'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
-          'Version': '2021-07-28',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          phone,
-          locationId: 'Mp6SVlSkhbup63EKVSvb',
-          tags: ['arcade-tax-lead'],
-          customFields: [
-            { id: 'anticipated_taxable_income', value: income },
-          ],
-        }),
+        headers: GHL_HEADERS,
+        body: JSON.stringify(contactBody),
       })
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
-        throw new Error(data.message || 'Something went wrong. Please try again.')
+        const msg = (data.message || '').toLowerCase()
+
+        if (msg.includes('duplicate')) {
+          // Search for existing contact by email
+          const searchRes = await fetch(
+            `https://services.leadconnectorhq.com/contacts/?locationId=${GHL_LOCATION_ID}&query=${encodeURIComponent(email)}`,
+            { method: 'GET', headers: { 'Authorization': GHL_HEADERS.Authorization, 'Version': GHL_HEADERS.Version } }
+          )
+          const searchData = await searchRes.json().catch(() => ({}))
+          const existing = searchData.contacts?.find(
+            (c) => c.email?.toLowerCase() === email.toLowerCase()
+          )
+
+          if (existing?.id) {
+            // Update existing contact
+            const updateRes = await fetch(
+              `https://services.leadconnectorhq.com/contacts/${existing.id}`,
+              {
+                method: 'PUT',
+                headers: GHL_HEADERS,
+                body: JSON.stringify(contactBody),
+              }
+            )
+            if (!updateRes.ok) throw new Error('Something went wrong. Please try again.')
+          }
+          // Treat as success regardless
+          setSubmitted(true)
+          return
+        }
+
+        throw new Error('Something went wrong. Please try again.')
       }
 
       setSubmitted(true)
