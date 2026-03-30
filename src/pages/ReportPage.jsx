@@ -71,7 +71,7 @@ const pdfStyles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#1a1a2e',
-    paddingVertical: 28,
+    paddingVertical: 24,
     paddingHorizontal: 40,
   },
   headerTitle: {
@@ -83,38 +83,68 @@ const pdfStyles = StyleSheet.create({
   headerSub: {
     color: '#cccccc',
     fontSize: 11,
+    fontFamily: 'Helvetica',
     textAlign: 'center',
     marginTop: 6,
   },
   headerDate: {
     color: '#999999',
     fontSize: 9,
+    fontFamily: 'Helvetica',
     textAlign: 'center',
     marginTop: 3,
+  },
+  headerLine: {
+    height: 1,
+    backgroundColor: '#dbb155',
+    marginTop: 12,
   },
   body: {
     padding: 36,
   },
   section: {
-    marginBottom: 22,
+    marginBottom: 16,
+  },
+  sectionTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  sectionBadgeWrap: {
+    backgroundColor: '#dbb155',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 8,
+  },
+  sectionBadge: {
+    color: '#1a1a2e',
+    fontFamily: 'Helvetica-Bold',
+    fontSize: 10,
+    textAlign: 'center',
   },
   sectionTitle: {
     color: '#dbb155',
     fontFamily: 'Helvetica-Bold',
     fontSize: 13,
+  },
+  sectionUnderline: {
+    height: 2,
+    backgroundColor: '#dbb155',
     marginBottom: 10,
-    paddingBottom: 6,
-    borderBottomWidth: 1,
-    borderBottomColor: '#dbb15533',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    paddingVertical: 6,
+    marginBottom: 2,
   },
   label: {
-    color: '#555555',
+    color: '#444444',
     fontSize: 10,
+    fontFamily: 'Helvetica',
   },
   value: {
     color: '#1a1a2e',
@@ -122,12 +152,12 @@ const pdfStyles = StyleSheet.create({
     fontSize: 10,
   },
   valueGold: {
-    color: '#dbb155',
+    color: '#b8942e',
     fontFamily: 'Helvetica-Bold',
     fontSize: 10,
   },
   valueGreen: {
-    color: '#22c55e',
+    color: '#16a34a',
     fontFamily: 'Helvetica-Bold',
     fontSize: 10,
   },
@@ -135,10 +165,11 @@ const pdfStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderTopWidth: 1,
-    borderTopColor: '#dbb15533',
+    borderTopColor: '#dbb15566',
     paddingTop: 6,
     marginTop: 6,
     marginBottom: 6,
+    paddingVertical: 6,
   },
   highlightRow: {
     backgroundColor: '#dbb15518',
@@ -151,6 +182,7 @@ const pdfStyles = StyleSheet.create({
   listItem: {
     color: '#1a1a2e',
     fontSize: 10,
+    fontFamily: 'Helvetica',
     marginBottom: 4,
   },
   footer: {
@@ -163,15 +195,30 @@ const pdfStyles = StyleSheet.create({
   footerText: {
     color: '#999999',
     fontSize: 8,
+    fontFamily: 'Helvetica',
     fontStyle: 'italic',
   },
   nolNote: {
     color: '#666666',
     fontSize: 9,
+    fontFamily: 'Helvetica',
     marginTop: 8,
     lineHeight: 1.4,
   },
 })
+
+// ─── Section Title Helper ───
+const SectionTitle = ({ num, title }) => (
+  <>
+    <View style={pdfStyles.sectionTitleRow}>
+      <View style={pdfStyles.sectionBadgeWrap}>
+        <Text style={pdfStyles.sectionBadge}>{num}</Text>
+      </View>
+      <Text style={pdfStyles.sectionTitle}>{title}</Text>
+    </View>
+    <View style={pdfStyles.sectionUnderline} />
+  </>
+)
 
 // ─── PDF Document Component ───
 const ReportPDF = ({ data, name }) => (
@@ -184,12 +231,13 @@ const ReportPDF = ({ data, name }) => (
         <Text style={pdfStyles.headerDate}>
           {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </Text>
+        <View style={pdfStyles.headerLine} />
       </View>
 
       <View style={pdfStyles.body}>
         {/* Section 1: Tax Profile */}
         <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>1. Your Tax Profile</Text>
+          <SectionTitle num="1" title="Your Tax Profile" />
           <View style={pdfStyles.row}>
             <Text style={pdfStyles.label}>Anticipated Taxable Income</Text>
             <Text style={pdfStyles.value}>{fmt(data.income)}</Text>
@@ -206,7 +254,7 @@ const ReportPDF = ({ data, name }) => (
 
         {/* Section 2: Depreciation Strategy */}
         <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>2. Arcade Game Bonus Depreciation Strategy</Text>
+          <SectionTitle num="2" title="Arcade Game Bonus Depreciation Strategy" />
           <View style={pdfStyles.row}>
             <Text style={pdfStyles.label}>Recommended Investment</Text>
             <Text style={pdfStyles.value}>{fmt(data.purchasePrice)}</Text>
@@ -235,7 +283,7 @@ const ReportPDF = ({ data, name }) => (
 
         {/* Section 3: NOL Impact */}
         <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>3. Net Operating Loss Impact</Text>
+          <SectionTitle num="3" title="Net Operating Loss Impact" />
           {data.nol > 0 ? (
             <>
               <View style={pdfStyles.row}>
@@ -259,7 +307,7 @@ const ReportPDF = ({ data, name }) => (
 
         {/* Section 4: Next Steps */}
         <View style={pdfStyles.section}>
-          <Text style={pdfStyles.sectionTitle}>4. Next Steps</Text>
+          <SectionTitle num="4" title="Next Steps" />
           <Text style={pdfStyles.listItem}>1. Consult with your CPA about this strategy</Text>
           <Text style={pdfStyles.listItem}>2. Identify qualifying arcade game assets</Text>
           <Text style={pdfStyles.listItem}>3. Purchase and place in service before year-end</Text>
