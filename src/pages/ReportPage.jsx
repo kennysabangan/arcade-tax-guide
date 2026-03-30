@@ -340,6 +340,9 @@ const inlineInputStyle = {
   outline: 'none',
   padding: '0 2px',
   transition: 'border-color 0.2s',
+  overflow: 'visible',
+  textOverflow: 'unset',
+  minWidth: 0,
 }
 
 export default function ReportPage() {
@@ -374,13 +377,15 @@ export default function ReportPage() {
           Prepared for:{' '}
           <input
             type="text"
+            size={20}
             value={name}
             onChange={(e) => setName(e.target.value)}
             onFocus={(e) => { e.target.style.borderBottomColor = '#dbb155' }}
             onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(219,177,85,0.3)' }}
             style={{
               ...inlineInputStyle,
-              width: `${Math.max(name.length, 8)}ch`,
+              width: 'auto',
+              minWidth: `${Math.max(name.length, 8)}ch`,
               fontSize: '1.125rem',
               fontWeight: '600',
               color: '#f5f0e0',
@@ -418,6 +423,7 @@ export default function ReportPage() {
                 <input
                   type="text"
                   inputMode="numeric"
+                  size={12}
                   value={income === 0 ? '' : Number(income).toLocaleString('en-US')}
                   onChange={(e) => {
                     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -427,7 +433,8 @@ export default function ReportPage() {
                   onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(219,177,85,0.3)' }}
                   style={{
                     ...inlineInputStyle,
-                    width: `${Math.max(String(Number(income).toLocaleString('en-US')).length + 1, 7)}ch`,
+                    width: 'auto',
+                    minWidth: `${Math.max(String(Number(income).toLocaleString('en-US')).length + 1, 7)}ch`,
                     color: '#dbb155',
                   }}
                   placeholder="150,000"
