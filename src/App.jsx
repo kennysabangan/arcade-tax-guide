@@ -5,6 +5,7 @@ import TaxGuidePage from './pages/TaxGuidePage'
 import CalculatorPage from './pages/CalculatorPage'
 import FinancialsPage from './pages/FinancialsPage'
 import ScenariosPage from './pages/ScenariosPage'
+import ReportPage from './pages/ReportPage'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="calculator" element={<CalculatorPage />} />
           <Route path="financials" element={<FinancialsPage />} />
           <Route path="scenarios" element={<ScenariosPage />} />
+          <Route path="report" element={<ReportPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
