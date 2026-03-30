@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
+import { useState, useCallback, useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { pdf, Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer'
 import { Card } from '../components/Layout'
 
@@ -37,10 +37,10 @@ function fmt(n) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
 }
 
-function computeReport(income) {
+function computeReport(income, purchasePriceOverride) {
   const marginalRate = getMarginalRate(income)
   const fedTaxNoStrategy = calcFederalTax(income)
-  const purchasePrice = Math.max(income * 0.5, 100000)
+  const purchasePrice = purchasePriceOverride > 0 ? purchasePriceOverride : Math.max(income * 0.5, 100000)
   const bonusDepreciation = purchasePrice // 100% year 1
   const macrsRemaining = 0 // bonus covers full purchase
   const macrsYear1 = 0
@@ -328,16 +328,78 @@ const ReportPDF = ({ data, name }) => (
   </Document>
 )
 
+// ─── Editable Input Styles ───
+const inputBase = {
+  width: '100%',
+  padding: '10px 12px',
+  backgroundColor: '#0d0d1a',
+  border: '1px solid rgba(219,177,85,0.25)',
+  borderRadius: '6px',
+  color: '#f5f0e0',
+  fontSize: '16px',
+  fontFamily: 'inherit',
+  outline: 'none',
+  transition: 'border-color 0.2s, box-shadow 0.2s',
+}
+
+function MoneyInput({ value, onChange, ...rest }) {
+  const handleFocus = (e) => {
+    e.target.style.borderColor = '#dbb155'
+    e.target.style.boxShadow = '0 0 0 2px rgba(219,177,85,0.3)'
+  }
+  const handleBlur = (e) => {
+    e.target.style.borderColor = 'rgba(219,177,85,0.25)'
+    e.target.style.boxShadow = 'none'
+  }
+  return (
+    <div style={{ position: 'relative' }}>
+      <span
+        style={{
+          position: 'absolute',
+          left: '12px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          color: 'rgba(219,177,85,0.6)',
+          fontSize: '16px',
+          pointerEvents: 'none',
+        }}
+      >
+        $
+      </span>
+      <input
+        type="text"
+        inputMode="numeric"
+        value={value === 0 ? '' : Number(value).toLocaleString('en-US')}
+        onChange={(e) => {
+          const raw = e.target.value.replace(/[^0-9]/g, '')
+          onChange(raw ? Number(raw) : 0)
+        }}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        style={{ ...inputBase, paddingLeft: '28px' }}
+        {...rest}
+      />
+    </div>
+  )
+}
+
 export default function ReportPage() {
   const [params] = useSearchParams()
-  const name = params.get('name') || 'Valued Client'
-  const email = params.get('email') || ''
-  const income = Number(params.get('income')) || 150000
-  const reportRef = useRef(null)
 
-  const data = computeReport(income)
+  const defaultPurchasePrice = useMemo(() => {
+    const inc = Number(params.get('income')) || 0
+    return inc > 0 ? Math.max(inc * 0.5, 100000) : 0
+  }, [params])
 
-  const downloadPDF = async () => {
+  const [name, setName] = useState(params.get('name') || 'Valued Client')
+  const [income, setIncome] = useState(Number(params.get('income')) || 0)
+  const [purchasePrice, setPurchasePrice] = useState(
+    Number(params.get('purchasePrice')) || defaultPurchasePrice
+  )
+
+  const data = useMemo(() => computeReport(income, purchasePrice), [income, purchasePrice])
+
+  const downloadPDF = useCallback(async () => {
     const blob = await pdf(<ReportPDF data={data} name={name} />).toBlob()
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -345,10 +407,10 @@ export default function ReportPage() {
     a.download = 'Tax-Savings-Report.pdf'
     a.click()
     URL.revokeObjectURL(url)
-  }
+  }, [data, name])
 
   return (
-    <div ref={reportRef} className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto" style={{ backgroundColor: '#0a0a0f' }}>
+    <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto" style={{ backgroundColor: '#0a0a0f' }}>
       {/* Header */}
       <div className="text-center mb-10">
         <h1
@@ -363,11 +425,55 @@ export default function ReportPage() {
         </p>
       </div>
 
+      {/* Customize Your Report Card */}
+      <Card className="mb-10">
+        <h2 className="font-heading text-xl font-bold text-gold mb-6 pb-3 border-b border-gold-20">
+          Customize Your Report
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div>
+            <label className="block text-cream-70 text-sm font-medium mb-2">Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              onFocus={(e) => {
+                e.target.style.borderColor = '#dbb155'
+                e.target.style.boxShadow = '0 0 0 2px rgba(219,177,85,0.3)'
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(219,177,85,0.25)'
+                e.target.style.boxShadow = 'none'
+              }}
+              style={inputBase}
+              placeholder="Your name"
+            />
+          </div>
+          <div>
+            <label className="block text-cream-70 text-sm font-medium mb-2">Income</label>
+            <MoneyInput
+              value={income}
+              onChange={setIncome}
+              placeholder="150000"
+            />
+          </div>
+          <div>
+            <label className="block text-cream-70 text-sm font-medium mb-2">Purchase Price</label>
+            <MoneyInput
+              value={purchasePrice}
+              onChange={setPurchasePrice}
+              placeholder="Auto-calculated"
+            />
+          </div>
+        </div>
+      </Card>
+
       {/* Download Button */}
       <div className="flex justify-center mb-10">
         <button
           onClick={downloadPDF}
-          className="px-8 py-3 bg-gold text-dark font-semibold rounded-sm text-sm hover:bg-gold/90 hover:shadow-[0_0_20px_rgba(219,177,85,0.5)] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+          disabled={!income}
+          className="px-8 py-3 bg-gold text-dark font-semibold rounded-sm text-sm hover:bg-gold/90 hover:shadow-[0_0_20px_rgba(219,177,85,0.5)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Download PDF
         </button>
@@ -375,8 +481,7 @@ export default function ReportPage() {
 
       {!income ? (
         <Card className="text-center py-12">
-          <p className="text-cream-70 text-lg">Missing income parameter. Please access this page with a valid link.</p>
-          <p className="text-cream-50 text-sm mt-2">Example: /report?name=Kenneth&email=k@example.com&income=150000</p>
+          <p className="text-cream-70 text-lg">Enter an income value above to see your personalized tax savings report.</p>
         </Card>
       ) : (
         <div className="space-y-8">
