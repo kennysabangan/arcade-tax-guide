@@ -37,10 +37,10 @@ function fmt(n) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
 }
 
-function computeReport(income, purchasePriceOverride) {
+function computeReport(income) {
   const marginalRate = getMarginalRate(income)
   const fedTaxNoStrategy = calcFederalTax(income)
-  const purchasePrice = purchasePriceOverride > 0 ? purchasePriceOverride : Math.max(income * 0.5, 100000)
+  const purchasePrice = Math.max(income * 0.5, 100000)
   const bonusDepreciation = purchasePrice // 100% year 1
   const macrsRemaining = 0 // bonus covers full purchase
   const macrsYear1 = 0
@@ -328,76 +328,27 @@ const ReportPDF = ({ data, name }) => (
   </Document>
 )
 
-// ─── Editable Input Styles ───
-const inputBase = {
-  width: '100%',
-  padding: '10px 12px',
-  backgroundColor: '#0d0d1a',
-  border: '1px solid rgba(219,177,85,0.25)',
-  borderRadius: '6px',
-  color: '#f5f0e0',
-  fontSize: '16px',
-  fontFamily: 'inherit',
+// ─── Inline Editable Styles ───
+const inlineInputStyle = {
+  background: 'transparent',
+  border: 'none',
+  borderBottom: '1px solid rgba(219,177,85,0.3)',
+  color: '#dbb155',
+  fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace',
+  fontWeight: '700',
+  fontSize: 'inherit',
   outline: 'none',
-  transition: 'border-color 0.2s, box-shadow 0.2s',
-}
-
-function MoneyInput({ value, onChange, ...rest }) {
-  const handleFocus = (e) => {
-    e.target.style.borderColor = '#dbb155'
-    e.target.style.boxShadow = '0 0 0 2px rgba(219,177,85,0.3)'
-  }
-  const handleBlur = (e) => {
-    e.target.style.borderColor = 'rgba(219,177,85,0.25)'
-    e.target.style.boxShadow = 'none'
-  }
-  return (
-    <div style={{ position: 'relative' }}>
-      <span
-        style={{
-          position: 'absolute',
-          left: '12px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          color: 'rgba(219,177,85,0.6)',
-          fontSize: '16px',
-          pointerEvents: 'none',
-        }}
-      >
-        $
-      </span>
-      <input
-        type="text"
-        inputMode="numeric"
-        value={value === 0 ? '' : Number(value).toLocaleString('en-US')}
-        onChange={(e) => {
-          const raw = e.target.value.replace(/[^0-9]/g, '')
-          onChange(raw ? Number(raw) : 0)
-        }}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        style={{ ...inputBase, paddingLeft: '28px' }}
-        {...rest}
-      />
-    </div>
-  )
+  padding: '0 2px',
+  transition: 'border-color 0.2s',
 }
 
 export default function ReportPage() {
   const [params] = useSearchParams()
 
-  const defaultPurchasePrice = useMemo(() => {
-    const inc = Number(params.get('income')) || 0
-    return inc > 0 ? Math.max(inc * 0.5, 100000) : 0
-  }, [params])
+  const [name, setName] = useState(params.get('name') || 'Your Name')
+  const [income, setIncome] = useState(Number(params.get('income')) || 150000)
 
-  const [name, setName] = useState(params.get('name') || 'Valued Client')
-  const [income, setIncome] = useState(Number(params.get('income')) || 0)
-  const [purchasePrice, setPurchasePrice] = useState(
-    Number(params.get('purchasePrice')) || defaultPurchasePrice
-  )
-
-  const data = useMemo(() => computeReport(income, purchasePrice), [income, purchasePrice])
+  const data = useMemo(() => computeReport(income), [income])
 
   const downloadPDF = useCallback(async () => {
     const blob = await pdf(<ReportPDF data={data} name={name} />).toBlob()
@@ -419,54 +370,28 @@ export default function ReportPage() {
         >
           Your Personalized Tax Savings Report
         </h1>
-        <p className="text-cream-70 text-lg">Prepared for: <span className="text-cream font-semibold">{name}</span></p>
+        <p className="text-cream-70 text-lg">
+          Prepared for:{' '}
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            onFocus={(e) => { e.target.style.borderBottomColor = '#dbb155' }}
+            onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(219,177,85,0.3)' }}
+            style={{
+              ...inlineInputStyle,
+              width: `${Math.max(name.length, 8)}ch`,
+              fontSize: '1.125rem',
+              fontWeight: '600',
+              color: '#f5f0e0',
+            }}
+            placeholder="Your Name"
+          />
+        </p>
         <p className="text-cream-50 text-sm mt-1">
           Date: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
       </div>
-
-      {/* Customize Your Report Card */}
-      <Card className="mb-10">
-        <h2 className="font-heading text-xl font-bold text-gold mb-6 pb-3 border-b border-gold-20">
-          Customize Your Report
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          <div>
-            <label className="block text-cream-70 text-sm font-medium mb-2">Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#dbb155'
-                e.target.style.boxShadow = '0 0 0 2px rgba(219,177,85,0.3)'
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(219,177,85,0.25)'
-                e.target.style.boxShadow = 'none'
-              }}
-              style={inputBase}
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <label className="block text-cream-70 text-sm font-medium mb-2">Income</label>
-            <MoneyInput
-              value={income}
-              onChange={setIncome}
-              placeholder="150000"
-            />
-          </div>
-          <div>
-            <label className="block text-cream-70 text-sm font-medium mb-2">Purchase Price</label>
-            <MoneyInput
-              value={purchasePrice}
-              onChange={setPurchasePrice}
-              placeholder="Auto-calculated"
-            />
-          </div>
-        </div>
-      </Card>
 
       {/* Download Button */}
       <div className="flex justify-center mb-10">
@@ -479,116 +404,129 @@ export default function ReportPage() {
         </button>
       </div>
 
-      {!income ? (
-        <Card className="text-center py-12">
-          <p className="text-cream-70 text-lg">Enter an income value above to see your personalized tax savings report.</p>
-        </Card>
-      ) : (
-        <div className="space-y-8">
-          {/* Section 1 */}
-          <Card>
-            <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
-              1. Your Tax Profile
-            </h2>
-            <div className="space-y-3">
-              <div className="flex justify-between">
-                <span className="text-cream-70">Anticipated Taxable Income</span>
-                <span className="text-cream font-mono font-bold">{fmt(data.income)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-cream-70">Marginal Tax Rate (MFJ 2024)</span>
-                <span className="text-gold font-mono font-bold">{(data.marginalRate * 100).toFixed(0)}%</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-cream-70">Est. Federal Tax (No Strategy)</span>
-                <span className="text-cream font-mono font-bold">{fmt(data.fedTaxNoStrategy)}</span>
-              </div>
+      <div className="space-y-8">
+        {/* Section 1 */}
+        <Card>
+          <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
+            1. Your Tax Profile
+          </h2>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-cream-70">Anticipated Taxable Income</span>
+              <span className="text-gold font-mono font-bold">
+                $
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={income === 0 ? '' : Number(income).toLocaleString('en-US')}
+                  onChange={(e) => {
+                    const raw = e.target.value.replace(/[^0-9]/g, '')
+                    setIncome(raw ? Number(raw) : 0)
+                  }}
+                  onFocus={(e) => { e.target.style.borderBottomColor = '#dbb155' }}
+                  onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(219,177,85,0.3)' }}
+                  style={{
+                    ...inlineInputStyle,
+                    width: `${Math.max(String(Number(income).toLocaleString('en-US')).length + 1, 7)}ch`,
+                    color: '#dbb155',
+                  }}
+                  placeholder="150,000"
+                />
+              </span>
             </div>
-          </Card>
-
-          {/* Section 2 */}
-          <Card>
-            <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
-              2. Arcade Game Bonus Depreciation Strategy
-            </h2>
-            <div className="space-y-3">
-              <div className="flex justify-between">
-                <span className="text-cream-70">Recommended Investment</span>
-                <span className="text-cream font-mono font-bold">{fmt(data.purchasePrice)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-cream-70">Bonus Depreciation (100%)</span>
-                <span className="text-cream font-mono font-bold">{fmt(data.bonusDepreciation)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-cream-70">Regular MACRS Year 1 (14.29% of remaining)</span>
-                <span className="text-cream font-mono font-bold">{fmt(data.macrsYear1)}</span>
-              </div>
-              <div className="flex justify-between border-t border-gold-20 pt-3">
-                <span className="text-cream font-semibold">Total First-Year Deduction</span>
-                <span className="text-gold font-mono font-bold text-lg">{fmt(data.totalDeduction)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-cream-70">Tax Savings</span>
-                <span className="text-green-400 font-mono font-bold text-lg">{fmt(data.taxSavings)}</span>
-              </div>
-              <div className="flex justify-between bg-gold/10 -mx-6 px-6 py-3 rounded-b-lg">
-                <span className="text-gold font-semibold">Effective Cost After Tax</span>
-                <span className="text-gold font-mono font-bold text-lg">{fmt(data.effectiveCost)}</span>
-              </div>
+            <div className="flex justify-between">
+              <span className="text-cream-70">Marginal Tax Rate (MFJ 2024)</span>
+              <span className="text-gold font-mono font-bold">{(data.marginalRate * 100).toFixed(0)}%</span>
             </div>
-          </Card>
-
-          {/* Section 3 */}
-          <Card>
-            <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
-              3. Net Operating Loss Impact
-            </h2>
-            {data.nol > 0 ? (
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-cream-70">Net Operating Loss (NOL)</span>
-                  <span className="text-gold font-mono font-bold">{fmt(data.nol)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-cream-70">Future Income Offset Potential (80%)</span>
-                  <span className="text-green-400 font-mono font-bold">{fmt(data.nol * 0.8)}</span>
-                </div>
-                <p className="text-cream-50 text-sm pt-2">
-                  Your deduction exceeds your income, generating a Net Operating Loss that can offset up to 80% of future taxable income.
-                </p>
-              </div>
-            ) : (
-              <p className="text-cream-70">
-                Your deduction does not exceed your income, so no NOL is generated. Consider a larger investment to unlock NOL carryforward benefits.
-              </p>
-            )}
-          </Card>
-
-          {/* Section 4 */}
-          <Card>
-            <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
-              4. Next Steps
-            </h2>
-            <ol className="space-y-3 list-decimal list-inside">
-              <li className="text-cream">Consult with your CPA about this strategy</li>
-              <li className="text-cream">Identify qualifying arcade game assets</li>
-              <li className="text-cream">Purchase and place in service before year-end</li>
-              <li className="text-cream">File IRS Form 4562 with your tax return</li>
-            </ol>
-          </Card>
-
-          {/* Footer */}
-          <div className="text-center pt-8 border-t border-gold-20">
-            <p className="text-cream-40 text-xs italic">
-              This report is for informational purposes only. Consult a qualified tax professional.
-            </p>
-            <p className="text-cream-40 text-xs mt-1">
-              Generated by Arcade Tax Guide | arcade-tax-guide.vercel.app
-            </p>
+            <div className="flex justify-between">
+              <span className="text-cream-70">Est. Federal Tax (No Strategy)</span>
+              <span className="text-cream font-mono font-bold">{fmt(data.fedTaxNoStrategy)}</span>
+            </div>
           </div>
+        </Card>
+
+        {/* Section 2 */}
+        <Card>
+          <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
+            2. Arcade Game Bonus Depreciation Strategy
+          </h2>
+          <div className="space-y-3">
+            <div className="flex justify-between">
+              <span className="text-cream-70">Recommended Investment</span>
+              <span className="text-cream font-mono font-bold">{fmt(data.purchasePrice)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-cream-70">Bonus Depreciation (100%)</span>
+              <span className="text-cream font-mono font-bold">{fmt(data.bonusDepreciation)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-cream-70">Regular MACRS Year 1 (14.29% of remaining)</span>
+              <span className="text-cream font-mono font-bold">{fmt(data.macrsYear1)}</span>
+            </div>
+            <div className="flex justify-between border-t border-gold-20 pt-3">
+              <span className="text-cream font-semibold">Total First-Year Deduction</span>
+              <span className="text-gold font-mono font-bold text-lg">{fmt(data.totalDeduction)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-cream-70">Tax Savings</span>
+              <span className="text-green-400 font-mono font-bold text-lg">{fmt(data.taxSavings)}</span>
+            </div>
+            <div className="flex justify-between bg-gold/10 -mx-6 px-6 py-3 rounded-b-lg">
+              <span className="text-gold font-semibold">Effective Cost After Tax</span>
+              <span className="text-gold font-mono font-bold text-lg">{fmt(data.effectiveCost)}</span>
+            </div>
+          </div>
+        </Card>
+
+        {/* Section 3 */}
+        <Card>
+          <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
+            3. Net Operating Loss Impact
+          </h2>
+          {data.nol > 0 ? (
+            <div className="space-y-3">
+              <div className="flex justify-between">
+                <span className="text-cream-70">Net Operating Loss (NOL)</span>
+                <span className="text-gold font-mono font-bold">{fmt(data.nol)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-cream-70">Future Income Offset Potential (80%)</span>
+                <span className="text-green-400 font-mono font-bold">{fmt(data.nol * 0.8)}</span>
+              </div>
+              <p className="text-cream-50 text-sm pt-2">
+                Your deduction exceeds your income, generating a Net Operating Loss that can offset up to 80% of future taxable income.
+              </p>
+            </div>
+          ) : (
+            <p className="text-cream-70">
+              Your deduction does not exceed your income, so no NOL is generated. Consider a larger investment to unlock NOL carryforward benefits.
+            </p>
+          )}
+        </Card>
+
+        {/* Section 4 */}
+        <Card>
+          <h2 className="font-heading text-xl font-bold text-gold mb-4 pb-3 border-b border-gold-20">
+            4. Next Steps
+          </h2>
+          <ol className="space-y-3 list-decimal list-inside">
+            <li className="text-cream">Consult with your CPA about this strategy</li>
+            <li className="text-cream">Identify qualifying arcade game assets</li>
+            <li className="text-cream">Purchase and place in service before year-end</li>
+            <li className="text-cream">File IRS Form 4562 with your tax return</li>
+          </ol>
+        </Card>
+
+        {/* Footer */}
+        <div className="text-center pt-8 border-t border-gold-20">
+          <p className="text-cream-40 text-xs italic">
+            This report is for informational purposes only. Consult a qualified tax professional.
+          </p>
+          <p className="text-cream-40 text-xs mt-1">
+            Generated by Arcade Tax Guide | arcade-tax-guide.vercel.app
+          </p>
         </div>
-      )}
+      </div>
     </div>
   )
 }
