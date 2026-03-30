@@ -416,41 +416,109 @@ ${name || '[Your Name]'}`
 
 // ─── Book a Call ───
 function BookCall() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [income, setIncome] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    const nameParts = name.trim().split(/\s+/)
+    const firstName = nameParts[0] || ''
+    const lastName = nameParts.slice(1).join(' ') || ''
+
+    try {
+      const res = await fetch('https://services.leadconnectorhq.com/contacts/', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
+          'Version': '2021-07-28',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          locationId: 'Mp6SVlSkhbup63EKVSvb',
+          customFields: [
+            { id: 'anticipated_taxable_income', value: income },
+          ],
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.message || 'Something went wrong. Please try again.')
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const inputClasses = 'w-full bg-body border border-card-border rounded-md px-4 py-2.5 text-cream placeholder-cream-40 focus:border-gold focus:outline-none transition-colors'
+
   return (
     <SectionWrapper id="book-a-call">
       <div className="text-center mb-12">
         <SectionLabel>Get Started</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Book a Discovery Call</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
-          Ready to explore how arcade game bonus depreciation can benefit your business? Schedule a free consultation to discuss your specific situation.
+          Ready to explore how arcade game bonus depreciation can benefit your business? Fill out the form below and we'll reach out.
         </p>
       </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-card-bg border border-card-border rounded-lg p-8 text-center">
-          <div className="mb-6">
+      <div className="max-w-lg mx-auto">
+        {submitted ? (
+          <div className="bg-card-bg border border-card-border rounded-lg p-8 text-center">
             <div className="w-16 h-16 mx-auto bg-gold-20/20 rounded-full flex items-center justify-center mb-4">
               <svg className="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-cream font-heading font-bold text-xl mb-2">Free 30-Minute Consultation</h3>
-            <p className="text-cream-60 text-sm leading-relaxed">
-              Discuss your business situation, tax goals, and how arcade game investments can provide significant first-year deductions. No obligation, completely confidential.
-            </p>
+            <p className="text-cream font-heading font-bold text-xl">Thank you! We'll be in touch shortly.</p>
           </div>
-          <div className="space-y-3 text-center text-sm text-cream-70 mb-8 max-w-sm mx-auto">
-            {['Personalized tax strategy overview', 'Review of your business eligibility', 'Estimated deduction calculations', 'Documentation guidance'].map((item, i) => (
-              <div key={i} className="flex items-center justify-center gap-3">
-                <span className="text-gold">✓</span>
-                {item}
+        ) : (
+          <form onSubmit={handleSubmit} className="bg-card-bg border border-card-border rounded-lg p-8 space-y-5">
+            <div>
+              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Name <span className="text-gold">*</span></label>
+              <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Smith" className={inputClasses} />
+            </div>
+            <div>
+              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Email <span className="text-gold">*</span></label>
+              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className={inputClasses} />
+            </div>
+            <div>
+              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Phone <span className="text-gold">*</span></label>
+              <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(555) 123-4567" className={inputClasses} />
+            </div>
+            <div>
+              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Anticipated Taxable Income <span className="text-gold">*</span></label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-cream-50">$</span>
+                <input type="number" required value={income} onChange={(e) => setIncome(e.target.value)} placeholder="500,000" className={`pl-8 ${inputClasses}`} />
               </div>
-            ))}
-          </div>
-          <CTAButton href="mailto:info@example.com?subject=Discovery Call Request" className="text-base px-8 py-3.5">
-            Schedule Your Call
-          </CTAButton>
-          <p className="text-cream-40 text-xs mt-4">Your information is kept private and secure.</p>
-        </div>
+            </div>
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm text-base bg-gold text-dark font-semibold hover:bg-gold/90 hover:shadow-[0_0_18px_rgba(219,177,85,0.55)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Submitting...' : 'Get Started'}
+            </button>
+            <p className="text-cream-40 text-xs text-center">Your information is kept private and secure.</p>
+          </form>
+        )}
       </div>
     </SectionWrapper>
   )
