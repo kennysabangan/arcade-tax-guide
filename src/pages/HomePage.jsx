@@ -468,6 +468,14 @@ function BookCall() {
 
   const inputClasses = 'w-full bg-body border border-card-border rounded-md px-4 py-2.5 text-cream placeholder-cream-40 focus:border-gold focus:outline-none transition-colors'
 
+  const valueProps = [
+    'Personalized tax strategy overview',
+    'Review of your business eligibility',
+    'Estimated deduction calculations',
+    'Documentation guidance',
+    'Free 30-minute consultation',
+  ]
+
   return (
     <SectionWrapper id="book-a-call">
       <div className="text-center mb-12">
@@ -477,7 +485,7 @@ function BookCall() {
           Ready to explore how arcade game bonus depreciation can benefit your business? Fill out the form below and we'll reach out.
         </p>
       </div>
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-2xl mx-auto">
         {submitted ? (
           <div className="bg-card-bg border border-card-border rounded-lg p-8 text-center">
             <div className="w-16 h-16 mx-auto bg-gold-20/20 rounded-full flex items-center justify-center mb-4">
@@ -488,36 +496,51 @@ function BookCall() {
             <p className="text-cream font-heading font-bold text-xl">Thank you! We'll be in touch shortly.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="bg-card-bg border border-card-border rounded-lg p-8 space-y-5">
-            <div>
-              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Name <span className="text-gold">*</span></label>
-              <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Smith" className={inputClasses} />
+          <div className="ring-1 ring-gold-20/30 rounded-lg" style={{ boxShadow: '0 0 40px rgba(219,177,85,0.08), 0 0 80px rgba(219,177,85,0.04)' }}>
+          <Card>
+            <div className="space-y-4 mb-8">
+              {valueProps.map((prop, i) => (
+                <div key={i} className="flex items-center justify-center gap-3">
+                  <span className="text-gold text-lg flex-shrink-0" style={{ textShadow: '0 0 6px rgba(219,177,85,0.6)' }}>✓</span>
+                  <span className="text-cream text-base">{prop}</span>
+                </div>
+              ))}
             </div>
-            <div>
-              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Email <span className="text-gold">*</span></label>
-              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className={inputClasses} />
-            </div>
-            <div>
-              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Phone <span className="text-gold">*</span></label>
-              <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(555) 123-4567" className={inputClasses} />
-            </div>
-            <div>
-              <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Anticipated Taxable Income <span className="text-gold">*</span></label>
-              <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-cream-50">$</span>
-                <input type="number" required value={income} onChange={(e) => setIncome(e.target.value)} placeholder="500,000" className={`pl-8 ${inputClasses}`} />
+
+            <div className="border-t border-card-border my-6" />
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Name <span className="text-gold">*</span></label>
+                <input type="text" required value={name} onChange={(e) => setName(e.target.value)} placeholder="John Smith" className={inputClasses} />
               </div>
-            </div>
-            {error && <p className="text-red-400 text-sm">{error}</p>}
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm text-base bg-gold text-dark font-semibold hover:bg-gold/90 hover:shadow-[0_0_18px_rgba(219,177,85,0.55)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Submitting...' : 'Get Started'}
-            </button>
-            <p className="text-cream-40 text-xs text-center">Your information is kept private and secure.</p>
-          </form>
+              <div>
+                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Email <span className="text-gold">*</span></label>
+                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" className={inputClasses} />
+              </div>
+              <div>
+                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Phone <span className="text-gold">*</span></label>
+                <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(555) 123-4567" className={inputClasses} />
+              </div>
+              <div>
+                <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Anticipated Taxable Income <span className="text-gold">*</span></label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-cream-50">$</span>
+                  <input type="number" required value={income} onChange={(e) => setIncome(e.target.value)} placeholder="500,000" className={`pl-8 ${inputClasses}`} />
+                </div>
+              </div>
+              {error && <p className="text-red-400 text-sm">{error}</p>}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm text-base bg-gold text-dark font-semibold hover:bg-gold/90 hover:shadow-[0_0_18px_rgba(219,177,85,0.55)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Submitting...' : 'Get Started'}
+              </button>
+              <p className="text-cream-40 text-xs text-center">Your information is kept private and secure.</p>
+            </form>
+            </Card>
+          </div>
         )}
       </div>
     </SectionWrapper>
