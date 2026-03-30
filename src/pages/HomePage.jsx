@@ -438,9 +438,9 @@ function BookCall() {
               Discuss your business situation, tax goals, and how arcade game investments can provide significant first-year deductions. No obligation, completely confidential.
             </p>
           </div>
-          <div className="space-y-3 text-left text-sm text-cream-70 mb-8 max-w-sm mx-auto">
+          <div className="space-y-3 text-center text-sm text-cream-70 mb-8 max-w-sm mx-auto">
             {['Personalized tax strategy overview', 'Review of your business eligibility', 'Estimated deduction calculations', 'Documentation guidance'].map((item, i) => (
-              <div key={i} className="flex items-center gap-3">
+              <div key={i} className="flex items-center justify-center gap-3">
                 <span className="text-gold">✓</span>
                 {item}
               </div>
