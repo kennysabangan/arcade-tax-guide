@@ -58,12 +58,18 @@ export default async function handler(req, res) {
       );
 
       if (existing?.id) {
+        const updateBody = {
+          firstName,
+          lastName,
+          phone,
+          customFields,
+        };
         const updateRes = await fetch(
           `https://services.leadconnectorhq.com/contacts/${existing.id}`,
           {
             method: 'PUT',
             headers: GHL_HEADERS,
-            body: JSON.stringify(contactBody),
+            body: JSON.stringify(updateBody),
           }
         );
         if (!updateRes.ok) {
@@ -71,6 +77,17 @@ export default async function handler(req, res) {
           return res.status(500).json({ error: 'Failed to update existing contact', details: updateErr });
         }
         const updateData = await updateRes.json();
+
+        // Re-add tag after update
+        await fetch(
+          `https://services.leadconnectorhq.com/contacts/${existing.id}/tags`,
+          {
+            method: 'POST',
+            headers: GHL_HEADERS,
+            body: JSON.stringify({ tags: ['arcade-tax-lead'] }),
+          }
+        ).catch(() => {});
+
         return res.status(200).json({ success: true, updated: true, contact: updateData });
       }
 
