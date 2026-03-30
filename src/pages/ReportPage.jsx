@@ -66,8 +66,8 @@ function generatePDF(data, name) {
   const doc = new jsPDF({ unit: 'pt', format: 'letter' })
   const w = doc.internal.pageSize.getWidth()
   const gold = [219, 177, 85]
-  const dark = [26, 26, 26]
-  const lightGray = [200, 200, 200]
+  const dark = [26, 26, 46] // #1a1a2e
+  const mediumGray = [100, 100, 110]
   const margin = 50
   let y = 60
 
@@ -77,11 +77,11 @@ function generatePDF(data, name) {
     doc.line(margin, yy, w - margin, yy)
   }
 
-  // Header background
+  // Header — dark banner with gold accent line
   doc.setFillColor(...dark)
   doc.rect(0, 0, w, 110, 'F')
   doc.setFillColor(...gold)
-  doc.rect(0, 110, w, 2, 'F')
+  doc.rect(0, 110, w, 3, 'F')
 
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(22)
@@ -90,34 +90,45 @@ function generatePDF(data, name) {
 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(12)
-  doc.setTextColor(...lightGray)
+  doc.setTextColor(220, 220, 220)
   doc.text(`Prepared for: ${name}`, w / 2, 75, { align: 'center' })
   doc.text(`Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, w / 2, 93, { align: 'center' })
 
-  y = 140
+  y = 145
 
-  // Section helper
+  // Section helper — gold title, gold underline, no dark background
   const sectionTitle = (title) => {
-    doc.setFillColor(...dark)
-    doc.rect(margin - 5, y - 14, w - 2 * margin + 10, 24, 'F')
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(14)
     doc.setTextColor(...gold)
     doc.text(title, margin, y)
-    y += 20
+    y += 6
     drawGoldLine(y)
-    y += 18
+    y += 20
   }
 
   const row = (label, value) => {
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(11)
-    doc.setTextColor(...lightGray)
+    doc.setTextColor(...mediumGray)
     doc.text(label, margin, y)
     doc.setFont('helvetica', 'bold')
-    doc.setTextColor(255, 255, 255)
+    doc.setTextColor(...dark)
     doc.text(String(value), w - margin, y, { align: 'right' })
-    y += 20
+    y += 22
+  }
+
+  const highlightRow = (label, value) => {
+    // Light gold background strip
+    doc.setFillColor(251, 243, 219) // very light gold
+    doc.rect(margin - 5, y - 13, w - 2 * margin + 10, 22, 'F')
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(11)
+    doc.setTextColor(...gold)
+    doc.text(label, margin, y)
+    doc.setTextColor(...dark)
+    doc.text(String(value), w - margin, y, { align: 'right' })
+    y += 22
   }
 
   // Section 1
@@ -134,7 +145,7 @@ function generatePDF(data, name) {
   row('Regular MACRS Year 1 (14.29%):', fmt(data.macrsYear1))
   row('Total First-Year Deduction:', fmt(data.totalDeduction))
   row('Tax Savings:', fmt(data.taxSavings))
-  row('Effective Cost After Tax:', fmt(data.effectiveCost))
+  highlightRow('Effective Cost After Tax:', fmt(data.effectiveCost))
   y += 10
 
   // Section 3
@@ -142,10 +153,15 @@ function generatePDF(data, name) {
   if (data.nol > 0) {
     row('Net Operating Loss (NOL):', fmt(data.nol))
     row('Future Offset Potential (80%):', fmt(data.nol * 0.8))
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(10)
+    doc.setTextColor(...mediumGray)
+    doc.text('Your deduction exceeds your income, generating an NOL that can offset up to 80% of future taxable income.', margin, y)
+    y += 20
   } else {
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(11)
-    doc.setTextColor(...lightGray)
+    doc.setTextColor(...mediumGray)
     doc.text('Your deduction does not exceed your income — no NOL generated.', margin, y)
     y += 20
     doc.text('Consider a larger investment to create an NOL carryforward.', margin, y)
@@ -164,9 +180,9 @@ function generatePDF(data, name) {
   steps.forEach((s, i) => {
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(11)
-    doc.setTextColor(...lightGray)
+    doc.setTextColor(...dark)
     doc.text(`${i + 1}. ${s}`, margin, y)
-    y += 20
+    y += 22
   })
 
   // Footer
