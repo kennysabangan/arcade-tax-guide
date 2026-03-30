@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas'
+import html2canvas from 'html2canvas-pro'
 import { Card } from '../components/Layout'
 
 // 2024 MFJ tax brackets
