@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { pdf, Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer'
 import { Card } from '../components/Layout'
@@ -40,7 +40,7 @@ function fmt(n) {
 function computeReport(income) {
   const marginalRate = getMarginalRate(income)
   const fedTaxNoStrategy = calcFederalTax(income)
-  const purchasePrice = Math.max(income * 0.5, 100000)
+  const purchasePrice = Math.min(income, 2000000)
   const bonusDepreciation = purchasePrice // 100% year 1
   const macrsRemaining = 0 // bonus covers full purchase
   const macrsYear1 = 0
@@ -328,6 +328,33 @@ const ReportPDF = ({ data, name }) => (
   </Document>
 )
 
+// ─── Auto-Width Input Component ───
+const InputAutoWidth = ({ value, onChange, style = {}, ...rest }) => {
+  const spanRef = useRef(null)
+  const [width, setWidth] = useState(100)
+  useEffect(() => {
+    if (spanRef.current) {
+      setWidth(spanRef.current.offsetWidth + 16)
+    }
+  }, [value])
+  return (
+    <span style={{ position: 'relative', display: 'inline-block' }}>
+      <span
+        ref={spanRef}
+        style={{
+          position: 'absolute',
+          visibility: 'hidden',
+          whiteSpace: 'pre',
+          ...style,
+        }}
+      >
+        {value || ' '}
+      </span>
+      <input type="text" value={value} onChange={onChange} style={{ width, ...style }} {...rest} />
+    </span>
+  )
+}
+
 // ─── Inline Editable Styles ───
 const inlineInputStyle = {
   background: 'transparent',
@@ -375,17 +402,13 @@ export default function ReportPage() {
         </h1>
         <p className="text-cream-70 text-lg">
           Prepared for:{' '}
-          <input
-            type="text"
-            size={20}
+          <InputAutoWidth
             value={name}
             onChange={(e) => setName(e.target.value)}
             onFocus={(e) => { e.target.style.borderBottomColor = '#dbb155' }}
             onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(219,177,85,0.3)' }}
             style={{
               ...inlineInputStyle,
-              width: 'auto',
-              minWidth: `${Math.max(name.length, 8)}ch`,
               fontSize: '1.125rem',
               fontWeight: '600',
               color: '#f5f0e0',
@@ -420,10 +443,8 @@ export default function ReportPage() {
               <span className="text-cream-70">Anticipated Taxable Income</span>
               <span className="text-gold font-mono font-bold">
                 $
-                <input
-                  type="text"
+                <InputAutoWidth
                   inputMode="numeric"
-                  size={12}
                   value={income === 0 ? '' : Number(income).toLocaleString('en-US')}
                   onChange={(e) => {
                     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -433,8 +454,6 @@ export default function ReportPage() {
                   onBlur={(e) => { e.target.style.borderBottomColor = 'rgba(219,177,85,0.3)' }}
                   style={{
                     ...inlineInputStyle,
-                    width: 'auto',
-                    minWidth: `${Math.max(String(Number(income).toLocaleString('en-US')).length + 1, 7)}ch`,
                     color: '#dbb155',
                   }}
                   placeholder="150,000"
