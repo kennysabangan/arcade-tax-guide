@@ -2,11 +2,11 @@ import { SectionLabel, SectionWrapper, CTAButton } from '../components/Layout'
 import { useState, useMemo, useEffect } from 'react'
 
 const SERVICE_PERIODS = [
-  { label: 'After Jan 19, 2025 (OBBBA — 100%)', value: 1 },
-  { label: 'Jan 1, 2025 – Jan 19, 2025 (40%)', value: 0.4 },
-  { label: '2024 (60%)', value: 0.6 },
-  { label: '2023 (80%)', value: 0.8 },
-  { label: '2022 or earlier (100%)', value: 1 },
+  { label: 'After Jan 19, 2025 (OBBBA — 100%)', value: 1, id: 'obbba' },
+  { label: 'Jan 1, 2025 – Jan 19, 2025 (40%)', value: 0.4, id: 'jan2025' },
+  { label: '2024 (60%)', value: 0.6, id: 'y2024' },
+  { label: '2023 (80%)', value: 0.8, id: 'y2023' },
+  { label: '2022 or earlier (100%)', value: 1, id: 'y2022' },
 ]
 
 const TAX_RATES = [
@@ -115,10 +115,12 @@ function Checklist() {
 // ─── Calculator ───
 function Calculator() {
   const [price, setPrice] = useState(200000)
-  const [bonusRate, setBonusRate] = useState(1)
+  const [servicePeriod, setServicePeriod] = useState('obbba')
   const [bizUse, setBizUse] = useState(100)
   const [taxRate, setTaxRate] = useState(0.37)
   const [calculated, setCalculated] = useState(false)
+
+  const bonusRate = SERVICE_PERIODS.find(sp => sp.id === servicePeriod)?.value || 1
 
   const results = useMemo(() => {
     if (!calculated) return null
@@ -128,7 +130,7 @@ function Calculator() {
     const total = bonus + regular
     const savings = total * taxRate
     return { basis, bonus, regular, total, savings, effectiveCost: price - savings }
-  }, [price, bonusRate, bizUse, taxRate, calculated])
+  }, [price, servicePeriod, bizUse, taxRate, calculated])
 
   const qualifies = bizUse > 50
 
@@ -158,8 +160,8 @@ function Calculator() {
             <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-2">Placed in Service Period</label>
             <div className="space-y-2">
               {SERVICE_PERIODS.map((sp) => (
-                <label key={sp.label} className={`flex items-center gap-3 p-3 rounded-md border cursor-pointer transition-colors ${bonusRate === sp.value ? 'border-gold bg-gold-20/20' : 'border-card-border hover:border-gold-dim'}`}>
-                  <input type="radio" name="servicePeriod" checked={bonusRate === sp.value} onChange={() => setBonusRate(sp.value)} className="accent-gold" />
+                <label key={sp.id} className={`flex items-center gap-3 p-3 rounded-md border cursor-pointer transition-colors ${servicePeriod === sp.id ? 'border-gold bg-gold-20/20' : 'border-card-border hover:border-gold-dim'}`}>
+                  <input type="radio" name="servicePeriod" checked={servicePeriod === sp.id} onChange={() => setServicePeriod(sp.id)} className="accent-gold" />
                   <span className="text-cream-70 text-sm">{sp.label}</span>
                 </label>
               ))}
