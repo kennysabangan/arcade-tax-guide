@@ -558,7 +558,7 @@ function BookCall() {
               <div className="flex items-start gap-3 bg-gold/5 border border-gold-20/30 rounded-lg p-4 mb-8">
                 <span className="text-gold text-xl flex-shrink-0 mt-0.5">🛡️</span>
                 <p className="text-cream-70 text-sm sm:text-base leading-relaxed">
-                  <span className="text-cream font-semibold">Our Guarantee:</span> If we can't show you at least <span className="text-gold font-bold">$25,000</span> in potential tax savings, we'll give you the documentation checklist for free anyway. You risk nothing.
+                  <span className="text-cream font-semibold">Our Guarantee:</span> If we can't show you at least <span className="text-gold font-bold">$27,500</span> in potential tax savings, we'll give you the documentation checklist for free anyway. You risk nothing.
                 </p>
               </div>
 
