@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { Layout } from './components/Layout'
 import HomePage from './pages/HomePage'
 import TaxGuidePage from './pages/TaxGuidePage'
@@ -22,6 +23,7 @@ export default function App() {
         </Route>
         <Route path="analytics" element={<AnalyticsPage />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   )
 }
