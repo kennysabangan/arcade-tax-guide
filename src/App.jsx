@@ -6,6 +6,7 @@ import CalculatorPage from './pages/CalculatorPage'
 import FinancialsPage from './pages/FinancialsPage'
 import RetirementPage from './pages/RetirementPage'
 import ReportPage from './pages/ReportPage'
+import AnalyticsPage from './pages/AnalyticsPage'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="retirement" element={<RetirementPage />} />
           <Route path="report" element={<ReportPage />} />
         </Route>
+        <Route path="analytics" element={<AnalyticsPage />} />
       </Routes>
     </BrowserRouter>
   )
