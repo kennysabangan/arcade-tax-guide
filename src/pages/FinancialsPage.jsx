@@ -1,4 +1,4 @@
-import { SectionLabel, SectionWrapper, StatBox } from '../components/Layout'
+import { SectionLabel, SectionWrapper, Card } from '../components/Layout'
 
 function Placeholder({ title, description }) {
   return (
@@ -12,20 +12,114 @@ function Placeholder({ title, description }) {
   )
 }
 
+const scenarios = [
+  {
+    name: 'Conservative',
+    income: 5000,
+    payout: 1500,
+    venue: 525,
+    software: 1050,
+    debt10: 1830,
+    debt15: 1350,
+    total10: 4905,
+    total15: 4425,
+    net10: 95,
+    net15: 575,
+  },
+  {
+    name: 'Higher Volume',
+    income: 14600,
+    payout: 4380,
+    venue: 1533,
+    software: 3066,
+    debt10: 1830,
+    debt15: 1350,
+    total10: 10809,
+    total15: 10329,
+    net10: 3791,
+    net15: 4271,
+  },
+]
+
+function fmt(n) {
+  return '$' + n.toLocaleString()
+}
+
+function RevenueTable({ scenario }) {
+  const rows = [
+    ['Gross Income', scenario.income, scenario.income],
+    ['Payout to Customers (30%)*', scenario.payout, scenario.payout],
+    ['Venue Operator / Host (15%)*', scenario.venue, scenario.venue],
+    ['Software / Tech / Maint / Repairs (30%)*', scenario.software, scenario.software],
+    ['Debt Service ($175K Loan)#', scenario.debt10, scenario.debt15],
+  ]
+  const totalRow = ['Total Expenses', scenario.total10, scenario.total15]
+  const netRow = ['Net Operating Income', scenario.net10, scenario.net15]
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-gold-20">
+            <th className="text-left text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">Item</th>
+            <th className="text-right text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">10-Year Note</th>
+            <th className="text-right text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">15-Year Note</th>
+          </tr>
+        </thead>
+        <tbody className="text-cream-70">
+          {rows.map(([label, v10, v15], i) => (
+            <tr key={i} className="border-b border-card-border">
+              <td className="py-2 px-4">{label}</td>
+              <td className="text-right py-2 px-4 font-mono">{fmt(v10)}</td>
+              <td className="text-right py-2 px-4 font-mono">{fmt(v15)}</td>
+            </tr>
+          ))}
+          {/* Divider before totals */}
+          <tr className="border-b border-card-border">
+            <td colSpan={3} className="py-1" />
+          </tr>
+          <tr className="border-b border-card-border">
+            <td className="py-2 px-4">{totalRow[0]}</td>
+            <td className="text-right py-2 px-4 font-mono">{fmt(totalRow[1])}</td>
+            <td className="text-right py-2 px-4 font-mono">{fmt(totalRow[2])}</td>
+          </tr>
+          <tr className="border-b border-card-border">
+            <td className="py-2.5 px-4 text-gold font-semibold">{netRow[0]}</td>
+            <td className="text-right py-2.5 px-4 font-mono text-gold font-bold">{fmt(netRow[1])}</td>
+            <td className="text-right py-2.5 px-4 font-mono text-gold font-bold">{fmt(netRow[2])}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function RevenueModel() {
   return (
     <SectionWrapper>
       <div className="text-center mb-12">
         <SectionLabel>Revenue Projections</SectionLabel>
-        <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Revenue Model</h2>
+        <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Monthly Revenue Model Per Machine</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
-          Revenue projections based on per-machine monthly revenue.
+          Side-by-side comparison of conservative and higher-volume projections across two financing terms.
         </p>
       </div>
-      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatBox label="Avg Revenue/Machine/Month" value="See Spreadsheet" sublabel="Per machine" />
-        <StatBox label="Payback Period" value="See Spreadsheet" sublabel="Varies" />
-        <StatBox label="5-Year ROI" value="See Spreadsheet" sublabel="See Spreadsheet" />
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {scenarios.map((s) => (
+          <Card key={s.name} className="overflow-hidden">
+            <div className="text-center mb-4">
+              <div className="text-xs uppercase tracking-widest font-nav text-cream-60 mb-1">
+                {s.name} Scenario
+              </div>
+              <div className="text-gold font-heading text-xl font-bold">{fmt(s.income)}/mo gross</div>
+            </div>
+            <RevenueTable scenario={s} />
+          </Card>
+        ))}
+      </div>
+      <div className="max-w-5xl mx-auto mt-6 text-cream-50 text-xs space-y-1 px-4">
+        <p>* Percentage is applied after "Payout to Customer"</p>
+        <p># May vary depending on interest rate at time of loan</p>
       </div>
     </SectionWrapper>
   )

@@ -46,26 +46,115 @@ function StrategyDetails() {
   )
 }
 
+const scenarios = [
+  {
+    name: 'Conservative',
+    income: 5000,
+    payout: 1500,
+    venue: 525,
+    software: 1050,
+    debt10: 1830,
+    debt15: 1350,
+    total10: 4905,
+    total15: 4425,
+    net10: 95,
+    net15: 575,
+  },
+  {
+    name: 'Higher Volume',
+    income: 14600,
+    payout: 4380,
+    venue: 1533,
+    software: 3066,
+    debt10: 1830,
+    debt15: 1350,
+    total10: 10809,
+    total15: 10329,
+    net10: 3791,
+    net15: 4271,
+  },
+]
+
+function fmt(n) {
+  return '$' + n.toLocaleString()
+}
+
+function RetirementTable({ scenario }) {
+  const rows = [
+    ['Gross Income', scenario.income, scenario.income],
+    ['Payout to Customers (30%)*', scenario.payout, scenario.payout],
+    ['Venue Operator / Host (15%)*', scenario.venue, scenario.venue],
+    ['Software / Tech / Maint / Repairs (30%)*', scenario.software, scenario.software],
+    ['Debt Service ($175K Loan)#', scenario.debt10, scenario.debt15],
+  ]
+  const totalRow = ['Total Expenses', scenario.total10, scenario.total15]
+  const netRow = ['Net Operating Income', scenario.net10, scenario.net15]
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-gold-20">
+            <th className="text-left text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">Item</th>
+            <th className="text-right text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">10-Year Note</th>
+            <th className="text-right text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">15-Year Note</th>
+          </tr>
+        </thead>
+        <tbody className="text-cream-70">
+          {rows.map(([label, v10, v15], i) => (
+            <tr key={i} className="border-b border-card-border">
+              <td className="py-2 px-4">{label}</td>
+              <td className="text-right py-2 px-4 font-mono">{fmt(v10)}</td>
+              <td className="text-right py-2 px-4 font-mono">{fmt(v15)}</td>
+            </tr>
+          ))}
+          <tr className="border-b border-card-border">
+            <td colSpan={3} className="py-1" />
+          </tr>
+          <tr className="border-b border-card-border">
+            <td className="py-2 px-4">{totalRow[0]}</td>
+            <td className="text-right py-2 px-4 font-mono">{fmt(totalRow[1])}</td>
+            <td className="text-right py-2 px-4 font-mono">{fmt(totalRow[2])}</td>
+          </tr>
+          <tr className="border-b border-card-border">
+            <td className="py-2.5 px-4 text-gold font-semibold">{netRow[0]}</td>
+            <td className="text-right py-2.5 px-4 font-mono text-gold font-bold">{fmt(netRow[1])}</td>
+            <td className="text-right py-2.5 px-4 font-mono text-gold font-bold">{fmt(netRow[2])}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 function AfterDebtService() {
   return (
     <SectionWrapper>
       <div className="text-center mb-12">
-        <SectionLabel>Projections</SectionLabel>
+        <SectionLabel>After Debt Service Cash Flow</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">
-          After Debt Service
+          Your Monthly Retirement Income
         </h2>
-        <p className="text-cream-70 text-lg max-w-2xl mx-auto">
-          Projected monthly cash flow once financing is fully paid off.
+        <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">
+          Income shown is after <strong className="text-cream">all expenses and debt service</strong> — pure passive income to you, the game owner.
         </p>
       </div>
-      <div className="max-w-3xl mx-auto">
-        <Card className="text-center">
-          <div className="text-cream-60 text-xs uppercase tracking-wider font-nav mb-2">Retirement Income Projections</div>
-          <div className="text-gold font-heading text-3xl font-bold mb-2">Spreadsheet data coming soon</div>
-          <p className="text-cream-70 text-sm leading-relaxed max-w-lg mx-auto">
-            Detailed projections showing monthly passive income from arcade game assets after debt service is complete.
-          </p>
-        </Card>
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {scenarios.map((s) => (
+          <Card key={s.name} className="overflow-hidden">
+            <div className="text-center mb-4">
+              <div className="text-xs uppercase tracking-widest font-nav text-cream-60 mb-1">
+                {s.name} Scenario
+              </div>
+              <div className="text-gold font-heading text-xl font-bold">{fmt(s.income)}/mo gross</div>
+            </div>
+            <RetirementTable scenario={s} />
+          </Card>
+        ))}
+      </div>
+      <div className="max-w-5xl mx-auto mt-6 text-cream-50 text-xs space-y-1 px-4">
+        <p>* Percentage is applied after "Payout to Customer"</p>
+        <p># May vary depending on interest rate at time of loan</p>
       </div>
     </SectionWrapper>
   )
