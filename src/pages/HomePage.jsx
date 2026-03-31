@@ -13,13 +13,15 @@ function Hero() {
   return (
     <section className="relative h-[90vh] flex flex-col overflow-hidden pt-16">
       {/* Announcement Bar */}
-      <div className="relative z-30 w-full text-center py-3 sm:py-4" style={{ background: '#1a1a2e', borderBottom: '2px solid #dbb155' }}>
-        <p className="font-heading font-bold text-sm sm:text-lg md:text-xl" style={{ color: '#dbb155' }}>
-          UNCLE SAM WANTS YOU TO USE YOUR TAX DOLLARS TO OWN A BUSINESS!
-        </p>
-        <p className="text-xs sm:text-sm mt-1" style={{ color: '#dbb155' }}>
-          Eliminate/Minimize Your Taxes By Investing In A Revenue Producing Business — After Tax Savings, The Business Is Owned For Net Zero Cash
-        </p>
+      <div className="relative z-30 w-full py-3 sm:py-4" style={{ background: '#1a1a2e', borderBottom: '2px solid #dbb155' }}>
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="font-heading font-bold text-sm sm:text-lg md:text-xl" style={{ color: '#dbb155' }}>
+            UNCLE SAM WANTS YOU TO USE YOUR TAX DOLLARS TO OWN A BUSINESS!
+          </p>
+          <p className="text-xs sm:text-sm mt-1" style={{ color: '#dbb155' }}>
+            Eliminate/Minimize Your Taxes By Investing In A Revenue Producing Business — After Tax Savings, The Business Is Owned For Net Zero Cash
+          </p>
+        </div>
       </div>
       <div className="absolute inset-0 bg-body" />
       <div
