@@ -3,7 +3,7 @@ import { SectionLabel, SectionWrapper, Card, StatBox } from '../components/Layou
 // ─── Bonus Depreciation ───
 const QUALIFICATION = [
   { title: 'Property Type', description: 'Must be MACRS property with a recovery period of 20 years or less, MACRS water utility property, qualified computer software, or qualified film/television/live theatrical production property.' },
-  { title: 'Acquisition Date', description: 'The property must have been acquired by the taxpayer after September 27, 2017. There was no requirement that there be no binding written contract in effect before that date.' },
+  { title: 'Acquisition Date', description: 'For the restored 100% bonus depreciation, the property must be acquired after January 19, 2025, the date the OBBBA was introduced.' },
   { title: 'Placed in Service', description: 'The property must be placed in service by the taxpayer during the applicable tax year. "Placed in service" means the property is in a condition or state of readiness and availability for its specific use.' },
   { title: 'Original or Used Property', description: 'Both new and used property qualify, provided the used property was not previously used by the taxpayer or a related party. This was a significant expansion from the original bonus depreciation rules.' },
 ]

@@ -114,7 +114,7 @@ function Checklist() {
 
 // ─── Calculator ───
 function Calculator() {
-  const [price, setPrice] = useState(100000)
+  const [price, setPrice] = useState(200000)
   const [bonusRate, setBonusRate] = useState(1)
   const [bizUse, setBizUse] = useState(100)
   const [taxRate, setTaxRate] = useState(0.37)

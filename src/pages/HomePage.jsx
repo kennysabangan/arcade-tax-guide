@@ -6,12 +6,21 @@ import { Link, useLocation } from 'react-router-dom'
 function Hero() {
   const stats = [
     { label: 'Bonus Depr.', value: '100%' },
-    { label: 'Down Payment', value: '10%' },
-    { label: 'Interest Rate', value: '0%' },
+    { label: 'Leverage', value: '8x' },
+    { label: 'Initial Investment', value: '$25k' },
   ]
 
   return (
     <section className="relative h-[90vh] flex flex-col overflow-hidden pt-16">
+      {/* Announcement Bar */}
+      <div className="relative z-30 w-full text-center py-3 sm:py-4" style={{ background: '#1a1a2e', borderBottom: '2px solid #dbb155' }}>
+        <p className="font-heading font-bold text-sm sm:text-lg md:text-xl" style={{ color: '#dbb155' }}>
+          UNCLE SAM WANTS YOU — USE YOUR TAX DOLLARS TO OWN A BUSINESS!
+        </p>
+        <p className="text-xs sm:text-sm mt-1" style={{ color: '#dbb155' }}>
+          Eliminate/Minimize Your Taxes By Investing In A Revenue Producing Business — After Tax Savings, The Business Is Owned For Net Zero Cash
+        </p>
+      </div>
       <div className="absolute inset-0 bg-body" />
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50"
@@ -51,9 +60,10 @@ function Hero() {
           restored by the One Big Beautiful Bill Act.
         </p>
 
-        <div className="flex items-center justify-center gap-3 mb-4 sm:mb-8">
+        <div className="flex items-center justify-center gap-3 mb-4 sm:mb-8 flex-wrap">
           <CTAButton to="/tax-guide" className="neon-border-gold text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Guide</CTAButton>
           <CTAButton href="#book-a-call" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Book a Call</CTAButton>
+          <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
         </div>
 
         <div className="flex items-center justify-center gap-4 sm:gap-10 border-t border-gold-20 pt-3 sm:pt-6 w-full max-w-xs sm:max-w-sm">
@@ -123,7 +133,7 @@ function Overview() {
       <div className="text-center mb-12">
         <SectionLabel>Overview</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Turning Play into Tax Strategy</h2>
-        <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">
+        <p className="text-cream-70 text-base max-w-3xl mx-auto leading-relaxed">
           The Internal Revenue Code offers several incentives to encourage business investment, one of the most significant
           being the additional first-year depreciation deduction, commonly known as bonus depreciation, codified under
           Section 168(k). This provision allows businesses to immediately deduct a substantial percentage of the cost of
@@ -328,7 +338,7 @@ function CPAEmail() {
   const [name, setName] = useState('')
   const [cpaName, setCpaName] = useState('')
   const [bizName, setBizName] = useState('')
-  const [price, setPrice] = useState('100,000')
+  const [price, setPrice] = useState('200,000')
   const [copied, setCopied] = useState(false)
 
   const email = `Dear ${cpaName || '[CPA Name]'},
@@ -593,7 +603,7 @@ function BookCall() {
                   disabled={loading}
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm text-lg bg-gold text-dark font-bold hover:bg-gold/90 hover:shadow-[0_0_24px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? 'Submitting...' : 'Claim My Free Blueprint →'}
+                  {loading ? 'Submitting...' : 'Claim My Free Blueprint and Book My Call'}
                 </button>
                 <p className="text-cream-40 text-xs text-center">Your information is kept private and secure.</p>
               </form>

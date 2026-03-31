@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { label: 'Tax Guide', to: '/tax-guide' },
   { label: 'Calculator', to: '/calculator' },
   { label: 'Financials', to: '/financials' },
-  { label: 'Scenarios', to: '/scenarios' },
+  { label: 'Retirement Planning', to: '/retirement' },
 ]
 
 export function Navbar() {
@@ -111,7 +111,7 @@ export function Footer() {
             <Link to="/tax-guide" className="hover:text-gold transition-colors">Tax Guide</Link>
             <Link to="/calculator" className="hover:text-gold transition-colors">Calculator</Link>
             <Link to="/financials" className="hover:text-gold transition-colors">Financials</Link>
-            <Link to="/scenarios" className="hover:text-gold transition-colors">Scenarios</Link>
+            <Link to="/retirement" className="hover:text-gold transition-colors">Retirement</Link>
             <a href="/#book-a-call" className="hover:text-gold transition-colors">Book a Call</a>
           </div>
         </div>
