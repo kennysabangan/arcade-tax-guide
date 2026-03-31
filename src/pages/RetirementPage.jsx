@@ -129,7 +129,7 @@ function AfterDebtService() {
       <div className="text-center mb-12">
         <SectionLabel>After Debt Service — Loan Paid Off</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">
-          Your Monthly Retirement Income
+          Your Retirement Income
         </h2>
         <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">
           Once the loan is fully paid off, <strong className="text-cream">debt service drops to $0</strong> — all net income becomes pure passive retirement cash flow to you, the game owner.

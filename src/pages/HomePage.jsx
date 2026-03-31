@@ -15,7 +15,7 @@ function Hero() {
       {/* Announcement Bar */}
       <div className="relative z-30 w-full text-center py-3 sm:py-4" style={{ background: '#1a1a2e', borderBottom: '2px solid #dbb155' }}>
         <p className="font-heading font-bold text-sm sm:text-lg md:text-xl" style={{ color: '#dbb155' }}>
-          UNCLE SAM WANTS YOU — USE YOUR TAX DOLLARS TO OWN A BUSINESS!
+          UNCLE SAM WANTS YOU TO USE YOUR TAX DOLLARS TO OWN A BUSINESS!
         </p>
         <p className="text-xs sm:text-sm mt-1" style={{ color: '#dbb155' }}>
           Eliminate/Minimize Your Taxes By Investing In A Revenue Producing Business — After Tax Savings, The Business Is Owned For Net Zero Cash
@@ -158,9 +158,9 @@ function Overview() {
 
 // ─── Gallery ───
 const GALLERY = [
-  { src: '/images/arcade-closeup.png', alt: 'Commercial arcade game machine close-up view showing touchscreen display and bill acceptor' },
-  { src: '/images/arcade-restaurant.png', alt: 'Arcade game machines deployed in a restaurant business setting' },
-  { src: '/images/arcade-business.png', alt: 'Arcade games in a commercial entertainment venue' },
+  { src: '/images/arcade-machine.jpg', alt: 'Commercial arcade game machine close-up view showing touchscreen display and bill acceptor' },
+  { src: '/images/arcade-machine.jpg', alt: 'Arcade game machines deployed in a restaurant business setting' },
+  { src: '/images/arcade-machine.jpg', alt: 'Arcade games in a commercial entertainment venue' },
 ]
 
 function Gallery() {
