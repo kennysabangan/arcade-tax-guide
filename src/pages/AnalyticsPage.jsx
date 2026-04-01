@@ -135,24 +135,12 @@ export default function AnalyticsPage() {
 
         {!loading && !error && (
           <div className="space-y-16">
-            {/* Website Traffic */}
-            <div>
-              <h2 className="text-cream font-heading text-xl font-semibold mb-6">Website Traffic</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-3">
-                <StatBox label="Total Visitors This Week" value="---" />
-                <StatBox label="Page Views This Week" value="---" />
-                <StatBox label="Avg Session Duration" value="---" />
-              </div>
-              <p className="text-cream-40 text-xs italic">Connect Vercel Analytics API to populate these metrics</p>
-            </div>
-
             {/* Lead Generation */}
             <div>
-              <h2 className="text-cream font-heading text-xl font-semibold mb-6">Lead Generation</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <h2 className="text-cream font-heading text-2xl font-semibold mb-6">Lead Generation</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <StatBox label="Total Leads" value={data?.totalLeads ?? '---'} />
                 <StatBox label="Leads This Week" value={data?.thisWeekLeads ?? '---'} />
-                <StatBox label="Conversion Rate" value="---" sublabel="Needs Vercel data" />
               </div>
             </div>
 
