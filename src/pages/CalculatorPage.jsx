@@ -237,7 +237,7 @@ function Calculator() {
 
 export default function CalculatorPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       <Calculator />
       <Checklist />
     </div>

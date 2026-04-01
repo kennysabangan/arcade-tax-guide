@@ -168,7 +168,7 @@ function Amortization() {
 
 export default function FinancialsPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       <RevenueModel />
       <Amortization />
     </div>

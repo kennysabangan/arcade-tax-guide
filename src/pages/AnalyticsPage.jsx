@@ -123,7 +123,7 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-body text-cream pt-20 pb-16">
+    <div className="min-h-screen bg-body text-cream pt-16 pb-16">
       <SectionWrapper>
         <div className="mb-10">
           <SectionLabel>Analytics</SectionLabel>

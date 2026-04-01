@@ -391,7 +391,7 @@ export default function ReportPage() {
   }, [data, name])
 
   return (
-    <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto" style={{ backgroundColor: '#0a0a0f' }}>
+    <div className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto" style={{ backgroundColor: '#0a0a0f' }}>
       {/* Header */}
       <div className="text-center mb-10">
         <h1

@@ -158,7 +158,7 @@ function AfterDebtService() {
 
 export default function RetirementPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       <RetirementHero />
       <StrategyDetails />
       <AfterDebtService />

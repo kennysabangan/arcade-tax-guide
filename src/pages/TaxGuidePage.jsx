@@ -244,7 +244,7 @@ function ListedProperty() {
 
 export default function TaxGuidePage() {
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       <BonusDepreciation />
       <MACRSProperty />
       <BusinessUse />
