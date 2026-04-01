@@ -1,7 +1,6 @@
 import { SectionLabel, SectionWrapper, Card, CTAButton, StatBox, Accordion } from '../components/Layout'
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import ServiceFeatures from '../components/ServiceFeatures'
 
 // ─── Hero ───
 function Hero() {
@@ -672,7 +671,6 @@ export default function HomePage() {
     <>
       <Hero />
       <Overview />
-      <ServiceFeatures />
       <Gallery />
       <FAQ />
       <Glossary />
