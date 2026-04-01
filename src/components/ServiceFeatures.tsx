@@ -38,7 +38,7 @@ function ServiceCard({ icon, title, description, action, actionColor }) {
       <h3 className="text-gold font-heading font-bold text-xl mb-3">{title}</h3>
       <p className="text-cream-70 text-sm leading-relaxed flex-grow">{description}</p>
       <div className="mt-4 pt-4 border-t border-card-border">
-        <CTAButton to="/#book-a-call" variant="outline" className="w-full text-sm">
+        <CTAButton href="/#book-a-call" variant="outline" className="w-full text-sm">
           {action}
         </CTAButton>
       </div>
