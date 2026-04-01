@@ -15,7 +15,7 @@ function PageTracker() {
   
   useEffect(() => {
     if (typeof window.gtag === 'function') {
-      window.gtag('config', 'G-G6VD432JZL', {
+      window.gtag('config', 'G-504947541', {
         page_path: location.pathname + location.search,
       })
     }
