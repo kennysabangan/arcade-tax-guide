@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 
 const NAV_ITEMS = [
@@ -269,5 +269,3 @@ export function StatBox({ icon, label, value, sublabel }) {
     </div>
   )
 }
-
-import { useRef } from 'react'
