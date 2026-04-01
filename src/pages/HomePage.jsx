@@ -178,11 +178,15 @@ function Gallery() {
             <img
               src={img.src}
               alt={img.alt}
-              className="w-full h-80 sm:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-[28rem] sm:h-[32rem] object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-body/80 to-transparent" />
-            <p className="absolute bottom-4 left-4 right-4 text-cream-70 text-sm">{img.alt}</p>
+            <p className="absolute bottom-4 left-4 right-4 text-cream-70 text-sm">{[
+              "Premium touchscreen units with integrated bill acceptors",
+              "Deployed in high-traffic restaurant locations",
+              "Generating consistent revenue in entertainment venues",
+            ][i]}</p>
           </div>
         ))}
       </div>
