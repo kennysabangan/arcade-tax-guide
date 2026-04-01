@@ -178,7 +178,7 @@ function Gallery() {
             <img
               src={img.src}
               alt={img.alt}
-              className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-80 sm:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-body/80 to-transparent" />
