@@ -72,7 +72,7 @@ function Hero() {
         </div>
 
         <div className="flex items-center justify-center gap-3 mb-4 sm:mb-8 flex-wrap">
-          <CTAButton to="/tax-guide" className="neon-border-gold text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Guide</CTAButton>
+          <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Guide</CTAButton>
           <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
         </div>
 
