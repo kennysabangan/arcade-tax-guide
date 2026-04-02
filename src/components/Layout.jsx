@@ -51,7 +51,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.to} to={item.to} className={linkClass} end={item.to === '/'}>
               {item.label}
@@ -67,7 +67,7 @@ export function Navbar() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-cream p-2 cursor-pointer hover:text-gold transition-colors duration-200 rounded-md hover:bg-white/5"
+          className="lg:hidden text-cream p-2 cursor-pointer hover:text-gold transition-colors duration-200 rounded-md hover:bg-white/5"
           aria-label="Toggle menu"
         >
           {open ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
@@ -75,7 +75,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-body/98 backdrop-blur-md border-t border-gold-20 max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden bg-body/98 backdrop-blur-md border-t border-gold-20 max-h-[80vh] overflow-y-auto">
           <div className="px-4 py-4 flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <NavLink key={item.to} to={item.to} onClick={close} className={linkClass} end={item.to === '/'}>
