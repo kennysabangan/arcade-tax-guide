@@ -90,7 +90,7 @@ function Hero() {
           ))}
         </div>
       </div>
-      <div className="relative z-20">
+      <div className="relative z-20 mt-6 sm:mt-10">
         <Ticker />
       </div>
     </section>
