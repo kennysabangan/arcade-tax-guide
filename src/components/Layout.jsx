@@ -23,7 +23,7 @@ export function Navbar() {
   const close = () => setOpen(false)
 
   const linkClass = ({ isActive }) =>
-    `px-3 py-1.5 text-sm rounded-md transition-colors cursor-pointer ${
+    `px-3 py-1.5 text-sm landscape:px-2 landscape:py-1 landscape:text-xs rounded-md transition-colors cursor-pointer ${
       isActive
         ? 'text-gold bg-gold-20'
         : 'text-cream-70 hover:text-cream hover:bg-white/5'
@@ -35,7 +35,7 @@ export function Navbar() {
         scrolled ? 'bg-body/95 backdrop-blur-md border-gold-20' : 'bg-transparent border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16 landscape:h-12">
         <Link to="/" className="flex items-center gap-2 group">
           <span
             className="text-gold text-lg leading-none"
@@ -44,7 +44,7 @@ export function Navbar() {
             ◈
           </span>
           <span
-            className="font-heading font-bold text-lg tracking-wide text-gold transition-all duration-200 group-hover:opacity-80"
+            className="font-heading font-bold text-lg landscape:text-base tracking-wide text-gold transition-all duration-200 group-hover:opacity-80"
             style={{ textShadow: '0 0 10px rgba(219,177,85,0.4)' }}
           >
             Arcade Tax Guide
@@ -76,7 +76,7 @@ export function Navbar() {
 
       {open && (
         <div className="md:hidden bg-body/98 backdrop-blur-md border-t border-gold-20 max-h-[80vh] overflow-y-auto">
-          <div className="px-4 py-4 flex flex-col gap-1">
+          <div className="px-4 py-4 flex flex-col gap-1 landscape:py-2 landscape:gap-0.5">
             {NAV_ITEMS.map((item) => (
               <NavLink key={item.to} to={item.to} onClick={close} className={linkClass} end={item.to === '/'}>
                 {item.label}
@@ -85,7 +85,7 @@ export function Navbar() {
             <a
               href="/#book-a-call"
               onClick={close}
-              className="mt-2 px-4 py-2.5 text-sm bg-gold text-dark font-semibold rounded-md text-center hover:bg-gold/90 transition-colors duration-200 cursor-pointer"
+              className="mt-2 px-4 py-2.5 text-sm landscape:mt-1 landscape:py-1.5 landscape:text-xs bg-gold text-dark font-semibold rounded-md text-center hover:bg-gold/90 transition-colors duration-200 cursor-pointer"
             >
               Book a Call
             </a>
