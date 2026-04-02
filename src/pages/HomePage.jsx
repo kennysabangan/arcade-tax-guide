@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2 landscape:text-2xl" style={{ fontSize: 'clamp(1.75rem, 7vw, 5rem)' }}>
+        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2 text-[clamp(1.25rem,5vw,5rem)] sm:text-[clamp(1.75rem,7vw,5rem)]">
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-xs sm:text-base lg:text-lg landscape:text-xs max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-6 landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-xs sm:text-base lg:text-lg landscape:text-sm max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-6 landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
