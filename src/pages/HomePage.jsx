@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2 text-[clamp(1.25rem,5vw,5rem)] sm:text-[clamp(1.75rem,7vw,5rem)]">
+        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2 landscape:!text-[clamp(1.25rem,4vw,3rem)]" style={{ fontSize: 'clamp(1.75rem, 7vw, 5rem)' }}>
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
