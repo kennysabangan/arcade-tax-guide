@@ -15,10 +15,10 @@ function Hero() {
       {/* Announcement Bar */}
       <div className="relative z-30 w-full py-3 sm:py-4" style={{ background: '#1a1a2e', borderBottom: '2px solid #dbb155' }}>
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="font-heading font-bold text-sm sm:text-lg md:text-xl" style={{ color: '#dbb155' }}>
+          <p className="font-heading font-bold text-base sm:text-xl md:text-xl" style={{ color: '#dbb155' }}>
             UNCLE SAM WANTS YOU TO USE YOUR TAX DOLLARS TO OWN A BUSINESS!
           </p>
-          <p className="text-xs sm:text-sm mt-1" style={{ color: '#dbb155' }}>
+          <p className="text-sm sm:text-sm mt-1" style={{ color: '#dbb155' }}>
             Eliminate/Minimize Your Taxes By Investing In A Revenue Producing Business — After Tax Savings, The Business Is Owned For Net Zero Cash
           </p>
         </div>
@@ -72,7 +72,7 @@ function Hero() {
         </div>
 
         <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-8 landscape:mb-2">
-          <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Guide</CTAButton>
+          <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Tax Guide</CTAButton>
           <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
         </div>
 
