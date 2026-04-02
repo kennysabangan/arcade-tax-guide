@@ -55,16 +55,24 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-xs sm:text-base lg:text-lg max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-7 leading-relaxed">
+        <p className="text-cream-70 text-xs sm:text-base lg:text-lg max-w-xs sm:max-w-2xl mx-auto mb-4 sm:mb-6 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
           restored by the One Big Beautiful Bill Act.
         </p>
 
+        <div className="mb-4 sm:mb-6">
+          <CTAButton
+            href="#book-a-call"
+            className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+          >
+            Book My Discovery Call Now
+          </CTAButton>
+        </div>
+
         <div className="flex items-center justify-center gap-3 mb-4 sm:mb-8 flex-wrap">
           <CTAButton to="/tax-guide" className="neon-border-gold text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Guide</CTAButton>
-          <CTAButton href="#book-a-call" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Book a Call</CTAButton>
           <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
         </div>
 
