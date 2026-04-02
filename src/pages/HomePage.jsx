@@ -37,14 +37,14 @@ function Hero() {
         style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(219,177,85,0.1) 0%, transparent 70%)' }}
       />
       <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-5 py-4 sm:py-6 landscape:py-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-sm border border-gold-20 bg-gold-20/10 mt-4 mb-8 sm:mb-10 neon-border-gold">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 landscape:px-2 landscape:py-0.5 rounded-sm border border-gold-20 bg-gold-20/10 mt-4 mb-8 sm:mb-10 landscape:mb-4 neon-border-gold">
           <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(219,177,85,0.8)' }} />
-          <span className="text-gold text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
+          <span className="text-gold text-[10px] sm:text-xs landscape:text-[9px] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
             IRC Section 168(k) Tax Strategy
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2" style={{ fontSize: 'clamp(1.75rem, 7vw, 5rem)' }}>
+        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2 landscape:text-2xl" style={{ fontSize: 'clamp(1.75rem, 7vw, 5rem)' }}>
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-xs sm:text-base lg:text-lg max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-6 landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-xs sm:text-base lg:text-lg landscape:text-xs max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-6 landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -65,22 +65,22 @@ function Hero() {
         <div className="mb-3 sm:mb-6 landscape:mb-2">
           <CTAButton
             href="#book-a-call"
-            className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
           >
             Book My Discovery Call Now
           </CTAButton>
         </div>
 
         <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-8 landscape:mb-2">
-          <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Explore the Tax Guide</CTAButton>
-          <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
+          <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base landscape:text-xs landscape:px-2 landscape:py-1.5 px-4 sm:px-6 py-2 sm:py-3">Explore the Tax Guide</CTAButton>
+          <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base landscape:text-xs landscape:px-2 landscape:py-1.5 px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
         </div>
 
         <div className="flex items-center justify-center gap-4 sm:gap-10 border-t border-gold-20 pt-3 sm:pt-6 w-full max-w-xs sm:max-w-sm">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
-                className="font-bold text-lg sm:text-xl leading-none mb-1"
+                className="font-bold text-lg sm:text-xl landscape:text-sm leading-none mb-1"
                 style={{ color: '#dbb155', textShadow: '0 0 10px rgba(219,177,85,0.5)' }}
               >
                 {s.value}
