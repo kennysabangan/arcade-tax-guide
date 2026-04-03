@@ -181,7 +181,7 @@ function SavingsCTA() {
             See Savings Example
           </CTAButton>
           <CTAButton href="#book-a-call" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
-            Book My Discovery Call Now
+            Book Discovery Call Now
           </CTAButton>
         </div>
       </div>
