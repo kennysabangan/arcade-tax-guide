@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
+        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-base sm:text-xl lg:text-4xl xl:text-5xl 2xl:text-6xl landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-5xl 2xl:max-w-6xl mx-auto landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-base sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-5xl 2xl:max-w-6xl mx-auto landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}

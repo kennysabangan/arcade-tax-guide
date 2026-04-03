@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant landscape (@media (orientation: landscape) and (max-width: 1023px));
+@custom-variant landscape (@media (orientation: landscape) and (max-width: 767px));
 
 @theme {
   --color-body: #0a0a0f;
