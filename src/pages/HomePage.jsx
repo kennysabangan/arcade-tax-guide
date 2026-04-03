@@ -170,8 +170,10 @@ function Overview() {
 function SavingsCTA() {
   return (
     <SectionWrapper>
-      <div className="text-center max-w-3xl mx-auto">
-        <p className="text-cream-70 text-base sm:text-lg leading-relaxed">
+      <div className="text-center mb-6">
+        <SectionLabel>Real Numbers</SectionLabel>
+        <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">See What This Looks Like In Practice</h2>
+        <p className="text-cream-70 text-base max-w-3xl mx-auto leading-relaxed">
           A taxpayer earning $215,000 of W-2 income may owe approximately $40,334 as a single filer or $29,640 married filing jointly. By acquiring a qualified arcade business asset with only a $25,000 down payment, the strategy can generate a $200,000 first-year bonus depreciation deduction that may reduce federal tax liability to zero. In many cases, the tax savings alone exceed the initial cash investment, allowing the client to own a real income-producing business while creating immediate positive cash flow.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
