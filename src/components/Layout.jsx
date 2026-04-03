@@ -273,10 +273,17 @@ export function StatBox({ icon, label, value, sublabel }) {
 export function BookCallCTA() {
   return (
     <SectionWrapper>
-      <div className="text-center">
+      <div className="max-w-2xl mx-auto text-center">
+        <p className="text-gold font-heading text-2xl sm:text-3xl font-bold mb-4">
+          You now understand the strategy. The numbers work. The tax code is on your side.
+        </p>
+        <p className="text-cream-70 text-base sm:text-lg leading-relaxed mb-8">
+          Most people overpay in taxes because nobody showed them what's possible. You've seen the math — a $25K investment that can eliminate six figures in tax liability and put a real business in your name. The only question left is whether you want to be the one who took action or the one who wished they had.
+        </p>
         <a href="/#book-a-call" className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
           Book My Discovery Call Now
         </a>
+        <p className="text-cream-50 text-sm mt-4">No commitment. Just a conversation about your situation.</p>
       </div>
     </SectionWrapper>
   )
