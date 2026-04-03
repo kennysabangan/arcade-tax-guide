@@ -11,7 +11,7 @@ function Hero() {
   ]
 
   return (
-    <section className="relative flex flex-col overflow-x-hidden pt-16">
+    <section className="relative flex flex-col overflow-x-hidden pt-16 min-h-[90vh] sm:min-h-screen">
       {/* Announcement Bar */}
       <div className="relative z-30 w-full py-3 sm:py-4" style={{ background: '#1a1a2e', borderBottom: '2px solid #dbb155' }}>
         <div className="max-w-7xl mx-auto px-4 text-center">
