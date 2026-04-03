@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:!text-[clamp(1.25rem,4vw,3rem)]" style={{ fontSize: 'clamp(2rem, 6vw, 7rem)' }}>
+        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:!text-[clamp(1.25rem,4vw,3rem)]" style={{ fontSize: 'clamp(1.5rem, 4vw, 5rem)' }}>
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-sm sm:text-lg lg:text-[2.8rem] xl:text-[3.2rem] 2xl:text-[3.6rem] landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-3xl mx-auto landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-sm sm:text-base lg:text-[1.6rem] xl:text-[1.8rem] 2xl:text-[2rem] landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-3xl mx-auto landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -65,7 +65,7 @@ function Hero() {
         <div className="mb-2 sm:mb-4 lg:mb-6 landscape:mb-2">
           <CTAButton
             href="#book-a-call"
-            className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 xl:px-24 2xl:px-28 py-3 sm:py-3 lg:py-5 xl:py-6 2xl:py-7 text-xl sm:text-xl lg:text-[1.6rem] xl:text-[1.8rem] 2xl:text-[2rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-16 xl:px-20 2xl:px-24 py-3 sm:py-3 lg:py-4 xl:py-5 2xl:py-6 text-xl sm:text-xl lg:text-[1.2rem] xl:text-[1.3rem] 2xl:text-[1.4rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
           >
             Book Discovery Call Now
           </CTAButton>
