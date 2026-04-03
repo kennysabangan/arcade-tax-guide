@@ -23,6 +23,18 @@ function Hero() {
           </p>
         </div>
       </div>
+      <div className="relative z-30 w-full py-6 sm:py-8 px-5">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-cream-70 text-base sm:text-lg leading-relaxed">
+            A taxpayer earning $215,000 of W-2 income may owe approximately $40,334 as a single filer or $29,640 married filing jointly. By acquiring a qualified arcade business asset with only a $25,000 down payment, the strategy can generate a $200,000 first-year bonus depreciation deduction that may reduce federal tax liability to zero. In many cases, the tax savings alone exceed the initial cash investment, allowing the client to own a real income-producing business while creating immediate positive cash flow.
+          </p>
+          <div className="mt-6">
+            <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+              See Savings Example
+            </CTAButton>
+          </div>
+        </div>
+      </div>
       <div className="absolute inset-0 bg-body" />
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50"
@@ -133,24 +145,6 @@ function Ticker() {
         ))}
       </div>
     </div>
-  )
-}
-
-// ─── Savings Intro ───
-function SavingsIntro() {
-  return (
-    <SectionWrapper>
-      <div className="text-center max-w-3xl mx-auto">
-        <p className="text-cream-70 text-base sm:text-lg leading-relaxed">
-          With just a $25,000 initial investment, you can acquire a qualified arcade business asset that may generate a $200,000 first-year tax deduction. The result is immediate tax reduction, new recurring business income, and the ability to own an asset where the tax savings can exceed your cash outlay from day one. Instead of simply spending money on taxes, this strategy helps convert tax dollars into a revenue-producing business.
-        </p>
-        <div className="mt-8">
-          <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
-            See Savings Example
-          </CTAButton>
-        </div>
-      </div>
-    </SectionWrapper>
   )
 }
 
@@ -700,7 +694,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <SavingsIntro />
       <Overview />
       <Gallery />
       <FAQ />
