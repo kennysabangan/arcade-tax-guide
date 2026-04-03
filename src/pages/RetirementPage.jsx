@@ -3,7 +3,7 @@ import { SectionLabel, SectionWrapper, Card, BookCallCTA } from '../components/L
 function RetirementHero() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Retirement Strategy</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">
           Let the IRS Help Fund Your Retirement
@@ -29,7 +29,7 @@ function StrategyDetails() {
 
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>The Strategy</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">
           Transform Tax Dollars Into Retirement Income
@@ -126,7 +126,7 @@ function RetirementTable({ scenario }) {
 function AfterDebtService() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>After Debt Service — Loan Paid Off</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">
           Your Retirement Income

@@ -140,7 +140,7 @@ function Ticker() {
 function Overview() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Overview</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Turning Play into Tax Strategy</h2>
         <p className="text-cream-70 text-base max-w-3xl mx-auto leading-relaxed">
@@ -248,7 +248,7 @@ function FAQ() {
 
   return (
     <SectionWrapper id="faq">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Common Questions</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Frequently Asked Questions</h2>
       </div>
@@ -323,7 +323,7 @@ function Glossary() {
 
   return (
     <SectionWrapper id="glossary">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Reference</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Glossary of Terms</h2>
       </div>
@@ -405,7 +405,7 @@ ${name || '[Your Name]'}`
 
   return (
     <SectionWrapper id="cpa-email">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Take Action</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Email Your CPA</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
@@ -679,7 +679,7 @@ const REFERENCES = [
 function References() {
   return (
     <SectionWrapper id="references">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Sources</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">References</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">Primary authorities and resources cited throughout this guide.</p>

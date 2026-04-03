@@ -176,7 +176,7 @@ export function SectionLabel({ children }) {
 
 export function SectionWrapper({ children, id, className = '' }) {
   return (
-    <section id={id} className={`py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ${className}`}>
+    <section id={id} className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ${className}`}>
       {children}
     </section>
   )

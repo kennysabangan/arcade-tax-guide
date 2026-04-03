@@ -20,7 +20,7 @@ const PHASE_DOWN = [
 function BonusDepreciation() {
   return (
     <SectionWrapper id="bonus-depreciation">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Section 168(k)</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Understanding Bonus Depreciation</h2>
         <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -86,7 +86,7 @@ function BonusDepreciation() {
 function MACRSProperty() {
   return (
     <SectionWrapper id="macrs-property">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Asset Classification</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Arcade Games as Qualified MACRS Property</h2>
         <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -147,7 +147,7 @@ const USE_CASES = [
 function BusinessUse() {
   return (
     <SectionWrapper id="business-use">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Trade or Business</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">The "Used in a Trade or Business" Requirement</h2>
         <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -188,7 +188,7 @@ function BusinessUse() {
 function ListedProperty() {
   return (
     <SectionWrapper id="listed-property">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>IRC § 280F</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Listed Property Requirements</h2>
         <p className="text-cream-70 text-lg max-w-3xl mx-auto leading-relaxed">

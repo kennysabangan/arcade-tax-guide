@@ -3,7 +3,7 @@ import { SectionLabel, SectionWrapper, Card, CTAButton, BookCallCTA } from '../c
 function Placeholder({ title, description }) {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Coming Soon</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">{title}</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">{description}</p>
@@ -97,7 +97,7 @@ function RevenueTable({ scenario }) {
 function RevenueModel() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Revenue Projections</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Monthly Revenue Model Per Machine</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
@@ -128,7 +128,7 @@ function RevenueModel() {
 function Amortization() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Loan Schedule</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Amortization Schedule</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
@@ -169,7 +169,7 @@ function Amortization() {
 function TaxSavingsExample() {
   return (
     <SectionWrapper>
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Tax Savings</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Example of Tax Savings</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">

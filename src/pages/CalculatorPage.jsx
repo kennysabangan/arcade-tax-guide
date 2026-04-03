@@ -72,7 +72,7 @@ function Checklist() {
 
   return (
     <SectionWrapper id="checklist">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>IRC § 274(D)</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Record-Keeping Checklist</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
@@ -136,7 +136,7 @@ function Calculator() {
 
   return (
     <SectionWrapper id="calculator">
-      <div className="text-center mb-12">
+      <div className="text-center mb-6">
         <SectionLabel>Interactive Tool</SectionLabel>
         <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Depreciation Calculator</h2>
         <p className="text-cream-70 text-lg max-w-2xl mx-auto">
