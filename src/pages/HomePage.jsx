@@ -136,6 +136,24 @@ function Ticker() {
   )
 }
 
+// ─── Savings Intro ───
+function SavingsIntro() {
+  return (
+    <SectionWrapper>
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="text-cream-70 text-base sm:text-lg leading-relaxed">
+          With just a $25,000 initial investment, you can acquire a qualified arcade business asset that may generate a $200,000 first-year tax deduction. The result is immediate tax reduction, new recurring business income, and the ability to own an asset where the tax savings can exceed your cash outlay from day one. Instead of simply spending money on taxes, this strategy helps convert tax dollars into a revenue-producing business.
+        </p>
+        <div className="mt-8">
+          <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+            See Savings Example
+          </CTAButton>
+        </div>
+      </div>
+    </SectionWrapper>
+  )
+}
+
 // ─── Overview ───
 function Overview() {
   return (
@@ -682,6 +700,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <SavingsIntro />
       <Overview />
       <Gallery />
       <FAQ />

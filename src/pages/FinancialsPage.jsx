@@ -166,9 +166,25 @@ function Amortization() {
   )
 }
 
+function TaxSavingsExample() {
+  return (
+    <SectionWrapper>
+      <div className="text-center mb-12">
+        <SectionLabel>Tax Savings</SectionLabel>
+        <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-4">Example of Tax Savings</h2>
+        <p className="text-cream-70 text-lg max-w-2xl mx-auto">
+          Below is a sample of a single and a married taxpayer earning $215K on a W2, using the standard deduction. The tax savings is more than the initial investment.
+        </p>
+      </div>
+      {/* Worksheet placeholder — awaiting data from Kenny */}
+    </SectionWrapper>
+  )
+}
+
 export default function FinancialsPage() {
   return (
     <div className="pt-16">
+      <TaxSavingsExample />
       <RevenueModel />
       <Amortization />
     </div>
