@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 landscape:mb-2 landscape:!text-[clamp(1.25rem,4vw,3rem)]" style={{ fontSize: 'clamp(1.75rem, 7vw, 5rem)' }}>
+        <h1 className="font-heading font-bold leading-[1.12] mb-3 sm:mb-5 lg:mb-6 landscape:mb-2 landscape:!text-[clamp(1.25rem,4vw,3rem)]" style={{ fontSize: 'clamp(1.75rem, 5vw, 4.5rem)' }}>
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,17 +55,17 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-xs sm:text-base lg:text-lg landscape:text-sm max-w-xs sm:max-w-2xl mx-auto mb-3 sm:mb-6 landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-xs sm:text-base lg:text-xl landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-3xl mx-auto mb-3 sm:mb-6 lg:mb-8 landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
           restored by the One Big Beautiful Bill Act.
         </p>
 
-        <div className="mb-3 sm:mb-6 landscape:mb-2">
+        <div className="mb-3 sm:mb-6 lg:mb-8 landscape:mb-2">
           <CTAButton
             href="#book-a-call"
-            className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center px-8 sm:px-12 lg:px-16 py-3.5 sm:py-5 lg:py-6 text-lg sm:text-2xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
           >
             Book My Discovery Call Now
           </CTAButton>
@@ -76,16 +76,16 @@ function Hero() {
           <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base landscape:text-xs landscape:px-2 landscape:py-1.5 px-4 sm:px-6 py-2 sm:py-3">Retire with Arcade Games</CTAButton>
         </div>
 
-        <div className="flex items-center justify-center gap-4 sm:gap-10 border-t border-gold-20 pt-3 sm:pt-6 w-full max-w-xs sm:max-w-sm">
+        <div className="flex items-center justify-center gap-4 sm:gap-10 lg:gap-14 border-t border-gold-20 pt-3 sm:pt-6 lg:pt-8 w-full max-w-xs sm:max-w-sm lg:max-w-md">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
-                className="font-bold text-lg sm:text-xl landscape:text-sm leading-none mb-1"
+                className="font-bold text-lg sm:text-xl lg:text-3xl landscape:text-sm leading-none mb-1"
                 style={{ color: '#dbb155', textShadow: '0 0 10px rgba(219,177,85,0.5)' }}
               >
                 {s.value}
               </div>
-              <div className="text-cream-50 text-[9px] sm:text-[10px] uppercase tracking-wider font-nav">{s.label}</div>
+              <div className="text-cream-50 text-[9px] sm:text-[10px] lg:text-xs uppercase tracking-wider font-nav">{s.label}</div>
             </div>
           ))}
         </div>
