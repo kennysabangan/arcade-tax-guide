@@ -80,12 +80,12 @@ function Hero() {
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
-                className="font-bold text-xl sm:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl landscape:text-sm leading-none mb-1"
+                className="font-bold text-xl sm:text-2xl lg:text-4xl xl:text-4xl 2xl:text-5xl landscape:text-sm leading-none mb-1"
                 style={{ color: '#dbb155', textShadow: '0 0 10px rgba(219,177,85,0.5)' }}
               >
                 {s.value}
               </div>
-              <div className="text-cream-50 text-[10px] sm:text-xs lg:text-xs xl:text-sm 2xl:text-base uppercase tracking-wider font-nav">{s.label}</div>
+              <div className="text-cream-50 text-[10px] sm:text-xs lg:text-xs xl:text-xs 2xl:text-sm uppercase tracking-wider font-nav">{s.label}</div>
             </div>
           ))}
         </div>
