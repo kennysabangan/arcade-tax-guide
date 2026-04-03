@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:!text-[clamp(1.25rem,4vw,3rem)] text-2xl sm:text-4xl lg:text-5xl xl:text-6xl">
+        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-2xl sm:text-4xl lg:text-5xl xl:text-6xl">
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,26 +55,26 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-lg max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
           restored by the One Big Beautiful Bill Act.
         </p>
 
-        <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-4 landscape:mb-4">
+        <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-6 landscape:mb-6">
           <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
             <CTAButton
               href="#book-a-call"
-              className="inline-flex items-center justify-center px-10 sm:px-14 lg:px-22 xl:px-26 2xl:px-30 py-3 sm:py-4 lg:py-6 xl:py-7 2xl:py-8 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center px-10 sm:px-14 lg:px-22 xl:px-26 2xl:px-30 py-3 sm:py-4 lg:py-6 xl:py-7 2xl:py-8 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
             >
               Book Discovery Call Now
             </CTAButton>
           </div>
 
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4">
-            <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base lg:text-lg xl:text-xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-3 sm:px-5 lg:px-12 xl:px-14 2xl:px-16 py-2 sm:py-3 lg:py-5 xl:py-6 2xl:py-7">Explore the Tax Guide</CTAButton>
-            <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base lg:text-lg xl:text-xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-3 sm:px-5 lg:px-12 xl:px-14 2xl:px-16 py-2 sm:py-3 lg:py-5 xl:py-6 2xl:py-7">Retire with Arcade Games</CTAButton>
+            <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base lg:text-lg xl:text-xl landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-12 xl:px-14 2xl:px-16 py-2 sm:py-3 lg:py-5 xl:py-6 2xl:py-7">Explore the Tax Guide</CTAButton>
+            <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base lg:text-lg xl:text-xl landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-12 xl:px-14 2xl:px-16 py-2 sm:py-3 lg:py-5 xl:py-6 2xl:py-7">Retire with Arcade Games</CTAButton>
           </div>
         </div>
 
