@@ -10,6 +10,28 @@ import RetirementPage from './pages/RetirementPage'
 import ReportPage from './pages/ReportPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 
+function ScrollToHash() {
+  const location = useLocation()
+  useEffect(() => {
+    if (location.hash) {
+      // Small delay to let the page render
+      const id = location.hash.replace('#', '')
+      const tryScroll = () => {
+        const el = document.getElementById(id)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          setTimeout(tryScroll, 100)
+        }
+      }
+      setTimeout(tryScroll, 150)
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [location])
+  return null
+}
+
 function PageTracker() {
   const location = useLocation()
   
@@ -28,6 +50,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <PageTracker />
+      <ScrollToHash />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
