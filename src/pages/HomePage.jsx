@@ -701,17 +701,25 @@ function References() {
 }
 
 // ─── Home Page ───
+const ALT_BG = { background: 'linear-gradient(180deg, rgba(219,177,85,0.03) 0%, rgba(15,15,25,0.5) 100%)' }
+
 export default function HomePage() {
   return (
     <>
       <Hero />
       <Overview />
-      <SavingsCTA />
+      <div style={ALT_BG}>
+        <SavingsCTA />
+      </div>
       <Gallery />
       <FAQ />
-      <Glossary />
+      <div style={ALT_BG}>
+        <Glossary />
+      </div>
       <CPAEmail />
-      <BookCall />
+      <div style={ALT_BG}>
+        <BookCall />
+      </div>
       <References />
     </>
   )
