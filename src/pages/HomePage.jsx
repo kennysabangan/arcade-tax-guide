@@ -76,7 +76,7 @@ function Hero() {
           <CTAButton to="/retirement" variant="outline" className="text-xs sm:text-base lg:text-xl xl:text-2xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-6 lg:px-10 xl:px-12 py-1.5 sm:py-3 lg:py-5 xl:py-6">Retire with Arcade Games</CTAButton>
         </div>
 
-        <div className="flex items-center justify-center gap-6 sm:gap-10 lg:gap-16 border-t border-gold-20 pt-4 sm:pt-6 lg:pt-8 w-full max-w-xs sm:max-w-sm lg:max-w-lg">
+        <div className="flex items-center justify-center gap-6 sm:gap-10 lg:gap-16 border-t border-gold-20 pt-2 sm:pt-3 lg:pt-4 w-full max-w-xs sm:max-w-sm lg:max-w-lg">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
