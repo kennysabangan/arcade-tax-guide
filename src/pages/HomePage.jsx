@@ -65,9 +65,9 @@ function Hero() {
         <div className="mb-4 sm:mb-8 lg:mb-14 lg:mt-6 landscape:mb-2">
           <CTAButton
             href="#book-a-call"
-            className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 xl:px-24 2xl:px-28 py-4 sm:py-4 lg:py-6 xl:py-7 2xl:py-8 text-xl sm:text-xl lg:text-[1.6rem] xl:text-[1.8rem] 2xl:text-[2rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 xl:px-24 2xl:px-28 py-3 sm:py-3 lg:py-5 xl:py-6 2xl:py-7 text-xl sm:text-xl lg:text-[1.6rem] xl:text-[1.8rem] 2xl:text-[2rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
           >
-            Book My Discovery Call Now
+            Book Discovery Call Now
           </CTAButton>
         </div>
 
@@ -180,7 +180,7 @@ function SavingsCTA() {
           <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
             See Savings Example
           </CTAButton>
-          <CTAButton href="#book-a-call" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+          <CTAButton href="#book-a-call" className="inline-flex items-center justify-center px-8 py-2 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
             Book Discovery Call Now
           </CTAButton>
         </div>

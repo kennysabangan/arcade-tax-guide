@@ -139,7 +139,7 @@ export function FloatingCTA() {
   return (
     <a
       href="/#book-a-call"
-      className={`fixed bottom-6 right-6 z-40 px-5 py-3 bg-gold text-dark font-semibold text-sm rounded-full shadow-lg cursor-pointer hover:bg-gold/90 hover:shadow-[0_0_20px_rgba(219,177,85,0.5)] active:scale-95 transition-all duration-200 ${
+      className={`fixed bottom-6 right-6 z-40 px-5 py-2 bg-gold text-dark font-semibold text-sm rounded-full shadow-lg cursor-pointer hover:bg-gold/90 hover:shadow-[0_0_20px_rgba(219,177,85,0.5)] active:scale-95 transition-all duration-200 ${
         show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
@@ -280,8 +280,8 @@ export function BookCallCTA() {
         <p className="text-cream-70 text-base sm:text-lg leading-relaxed mb-8">
           Most people overpay in taxes because nobody showed them what's possible. You've seen the math — a $25K investment that can eliminate six figures in tax liability and put a real business in your name. The only question left is whether you want to be the one who took action or the one who wished they had.
         </p>
-        <a href="/#book-a-call" className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
-          Book My Discovery Call Now
+        <a href="/#book-a-call" className="inline-flex items-center justify-center px-8 sm:px-12 py-2.5 sm:py-4 text-lg sm:text-2xl font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+          Book Discovery Call Now
         </a>
         <p className="text-cream-50 text-sm mt-4">No commitment. Just a conversation about your situation.</p>
       </div>
