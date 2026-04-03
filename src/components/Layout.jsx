@@ -35,7 +35,7 @@ export function Navbar() {
         scrolled ? 'bg-body/95 backdrop-blur-md border-gold-20' : 'bg-transparent border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16 landscape:h-12">
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 group">
           <span
             className="text-gold text-lg leading-none"
