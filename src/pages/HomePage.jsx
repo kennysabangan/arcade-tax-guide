@@ -65,15 +65,15 @@ function Hero() {
         <div className="mb-4 sm:mb-8 lg:mb-10 landscape:mb-2">
           <CTAButton
             href="#book-a-call"
-            className="inline-flex items-center justify-center px-10 sm:px-14 lg:px-20 py-4 sm:py-6 lg:py-6 text-xl sm:text-2xl lg:text-2xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 py-4 sm:py-4 lg:py-6 text-xl sm:text-xl lg:text-2xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
           >
             Book My Discovery Call Now
           </CTAButton>
         </div>
 
         <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-8 lg:mb-10 landscape:mb-2">
-          <CTAButton to="/tax-guide" variant="outline" className="text-xs sm:text-base lg:text-xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-6 lg:px-10 py-1.5 sm:py-3 lg:py-4">Explore the Tax Guide</CTAButton>
-          <CTAButton to="/retirement" variant="outline" className="text-xs sm:text-base lg:text-xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-6 lg:px-10 py-1.5 sm:py-3 lg:py-4">Retire with Arcade Games</CTAButton>
+          <CTAButton to="/tax-guide" variant="outline" className="text-xs sm:text-sm lg:text-xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 py-1.5 sm:py-2 lg:py-4">Explore the Tax Guide</CTAButton>
+          <CTAButton to="/retirement" variant="outline" className="text-xs sm:text-sm lg:text-xl landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 py-1.5 sm:py-2 lg:py-4">Retire with Arcade Games</CTAButton>
         </div>
 
         <div className="flex items-center justify-center gap-6 sm:gap-10 lg:gap-16 border-t border-gold-20 pt-2 sm:pt-3 lg:pt-4 w-full max-w-xs sm:max-w-sm lg:max-w-lg">
