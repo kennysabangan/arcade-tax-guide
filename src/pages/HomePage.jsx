@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl">
+        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl">
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-xl landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -66,23 +66,23 @@ function Hero() {
           <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
             <CTAButton
               href="#book-a-call"
-              className="inline-flex items-center justify-center px-10 sm:px-14 lg:px-16 xl:px-18 2xl:px-20 py-3 sm:py-4 lg:py-5 xl:py-5 2xl:py-5 text-lg sm:text-xl lg:text-xl xl:text-2xl landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center px-8 sm:px-12 lg:px-14 xl:px-16 2xl:px-16 py-2.5 sm:py-3 lg:py-4 xl:py-4 2xl:py-4 text-base sm:text-lg lg:text-lg xl:text-xl landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
             >
               Book Discovery Call Now
             </CTAButton>
           </div>
 
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4">
-            <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base lg:text-base xl:text-lg landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-8 xl:px-10 2xl:px-10 py-2 sm:py-3 lg:py-3 xl:py-4 2xl:py-4">Explore the Tax Guide</CTAButton>
-            <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base lg:text-base xl:text-lg landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-8 xl:px-10 2xl:px-10 py-2 sm:py-3 lg:py-3 xl:py-4 2xl:py-4">Retire with Arcade Games</CTAButton>
+            <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-sm lg:text-sm xl:text-base landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-8 py-1.5 sm:py-2 lg:py-2 xl:py-3 2xl:py-3">Explore the Tax Guide</CTAButton>
+            <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-sm lg:text-sm xl:text-base landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-8 py-1.5 sm:py-2 lg:py-2 xl:py-3 2xl:py-3">Retire with Arcade Games</CTAButton>
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-6 sm:gap-10 lg:gap-16 border-t border-gold-20 pt-2 sm:pt-3 lg:pt-4 lg:mt-8 w-full max-w-xs sm:max-w-sm lg:max-w-lg">
+        <div className="flex items-center justify-center gap-4 sm:gap-8 lg:gap-12 border-t border-gold-20 pt-2 sm:pt-3 lg:pt-3 lg:mt-6 w-full max-w-xs sm:max-w-sm lg:max-w-md">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
-                className="font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl landscape:text-sm leading-none mb-1"
+                className="font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl landscape:text-sm leading-none mb-1"
                 style={{ color: '#dbb155', textShadow: '0 0 10px rgba(219,177,85,0.5)' }}
               >
                 {s.value}
