@@ -62,18 +62,20 @@ function Hero() {
           restored by the One Big Beautiful Bill Act.
         </p>
 
-        <div className="mb-2 sm:mb-4 lg:mb-6 landscape:mb-2">
-          <CTAButton
-            href="#book-a-call"
-            className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-16 xl:px-20 2xl:px-24 py-3 sm:py-3 lg:py-4 xl:py-5 2xl:py-6 text-xl sm:text-xl lg:text-[1.2rem] xl:text-[1.3rem] 2xl:text-[1.4rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
-          >
-            Book Discovery Call Now
-          </CTAButton>
-        </div>
+        <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-4 landscape:mb-4">
+          <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
+            <CTAButton
+              href="#book-a-call"
+              className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-16 xl:px-20 2xl:px-24 py-3 sm:py-3 lg:py-4 xl:py-5 2xl:py-6 text-xl sm:text-xl lg:text-[1.2rem] xl:text-[1.3rem] 2xl:text-[1.4rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+            >
+              Book Discovery Call Now
+            </CTAButton>
+          </div>
 
-        <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4 mt-4 sm:mt-8 lg:mt-10 mb-4 sm:mb-8 lg:mb-10 landscape:mb-2">
-          <CTAButton to="/tax-guide" variant="outline" className="text-xs sm:text-sm lg:text-[1.1rem] xl:text-[1.3rem] 2xl:text-[1.5rem] landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 xl:px-12 2xl:px-14 py-1.5 sm:py-2 lg:py-4 xl:py-5 2xl:py-6">Explore the Tax Guide</CTAButton>
-          <CTAButton to="/retirement" variant="outline" className="text-xs sm:text-sm lg:text-[1.1rem] xl:text-[1.3rem] 2xl:text-[1.5rem] landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 xl:px-12 2xl:px-14 py-1.5 sm:py-2 lg:py-4 xl:py-5 2xl:py-6">Retire with Arcade Games</CTAButton>
+          <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4">
+            <CTAButton to="/tax-guide" variant="outline" className="text-xs sm:text-sm lg:text-[1.1rem] xl:text-[1.3rem] 2xl:text-[1.5rem] landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 xl:px-12 2xl:px-14 py-1.5 sm:py-2 lg:py-4 xl:py-5 2xl:py-6">Explore the Tax Guide</CTAButton>
+            <CTAButton to="/retirement" variant="outline" className="text-xs sm:text-sm lg:text-[1.1rem] xl:text-[1.3rem] 2xl:text-[1.5rem] landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 xl:px-12 2xl:px-14 py-1.5 sm:py-2 lg:py-4 xl:py-5 2xl:py-6">Retire with Arcade Games</CTAButton>
+          </div>
         </div>
 
         <div className="flex items-center justify-center gap-6 sm:gap-10 lg:gap-16 border-t border-gold-20 pt-2 sm:pt-3 lg:pt-4 lg:mt-8 w-full max-w-xs sm:max-w-sm lg:max-w-lg">
