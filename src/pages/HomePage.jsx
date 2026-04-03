@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-sm sm:text-lg lg:text-[2.2rem] xl:text-[2.5rem] 2xl:text-[2.8rem] landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto mb-4 sm:mb-8 lg:mb-10 landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-sm sm:text-lg lg:text-[2.8rem] xl:text-[3.2rem] 2xl:text-[3.6rem] landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-5xl xl:max-w-6xl mx-auto mb-4 sm:mb-8 lg:mb-10 landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -701,7 +701,7 @@ function References() {
 }
 
 // ─── Home Page ───
-const ALT_BG = { background: 'linear-gradient(180deg, rgba(219,177,85,0.03) 0%, rgba(15,15,25,0.5) 100%)' }
+const ALT_BG = { background: 'rgba(13,13,18,0.5)' }
 
 export default function HomePage() {
   return (
