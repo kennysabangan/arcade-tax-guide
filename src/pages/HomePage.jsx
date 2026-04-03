@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-base sm:text-lg lg:text-2xl xl:text-3xl landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -66,7 +66,7 @@ function Hero() {
           <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
             <CTAButton
               href="#book-a-call"
-              className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 xl:px-24 2xl:px-28 py-3 sm:py-3 lg:py-5 xl:py-6 2xl:py-7 text-base sm:text-lg lg:text-2xl xl:text-3xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 xl:px-24 2xl:px-28 py-3 sm:py-3 lg:py-5 xl:py-6 2xl:py-7 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
             >
               Book Discovery Call Now
             </CTAButton>
