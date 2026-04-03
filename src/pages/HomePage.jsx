@@ -62,7 +62,7 @@ function Hero() {
           restored by the One Big Beautiful Bill Act.
         </p>
 
-        <div className="mt-6 sm:mt-10 lg:mt-12 mb-4 sm:mb-8 lg:mb-14 landscape:mb-2">
+        <div className="mb-2 sm:mb-4 lg:mb-6 landscape:mb-2">
           <CTAButton
             href="#book-a-call"
             className="inline-flex items-center justify-center px-10 sm:px-12 lg:px-20 xl:px-24 2xl:px-28 py-3 sm:py-3 lg:py-5 xl:py-6 2xl:py-7 text-xl sm:text-xl lg:text-[1.6rem] xl:text-[1.8rem] 2xl:text-[2rem] landscape:text-sm landscape:px-4 landscape:py-2 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
@@ -71,7 +71,7 @@ function Hero() {
           </CTAButton>
         </div>
 
-        <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-8 lg:mb-10 landscape:mb-2">
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4 mt-4 sm:mt-8 lg:mt-10 mb-4 sm:mb-8 lg:mb-10 landscape:mb-2">
           <CTAButton to="/tax-guide" variant="outline" className="text-xs sm:text-sm lg:text-[1.1rem] xl:text-[1.3rem] 2xl:text-[1.5rem] landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 xl:px-12 2xl:px-14 py-1.5 sm:py-2 lg:py-4 xl:py-5 2xl:py-6">Explore the Tax Guide</CTAButton>
           <CTAButton to="/retirement" variant="outline" className="text-xs sm:text-sm lg:text-[1.1rem] xl:text-[1.3rem] 2xl:text-[1.5rem] landscape:text-xs landscape:px-2 landscape:py-1.5 px-2.5 sm:px-4 lg:px-10 xl:px-12 2xl:px-14 py-1.5 sm:py-2 lg:py-4 xl:py-5 2xl:py-6">Retire with Arcade Games</CTAButton>
         </div>
