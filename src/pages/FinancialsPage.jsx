@@ -176,7 +176,60 @@ function TaxSavingsExample() {
           Below is a sample of a single and a married taxpayer earning $215K on a W2, using the standard deduction. The tax savings is more than the initial investment.
         </p>
       </div>
-      {/* Worksheet placeholder — awaiting data from Kenny */}
+      <div className="max-w-3xl mx-auto">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gold-20">
+                <th className="text-left text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">Item</th>
+                <th className="text-right text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">Single Taxpayer</th>
+                <th className="text-right text-gold font-semibold py-3 px-4 font-nav uppercase tracking-wider text-xs">Married Taxpayer</th>
+              </tr>
+            </thead>
+            <tbody className="text-cream-70">
+              {/* Section 1: Without Bonus Depreciation */}
+              <tr className="border-b border-card-border">
+                <td colSpan={3} className="pt-4 pb-2 px-4 text-gold font-semibold font-nav uppercase tracking-wider text-xs">Without Bonus Depreciation</td>
+              </tr>
+              {[
+                ['W2 Income', '$215,000', '$215,000'],
+                ['Standard Deduction', '($16,100)', '($32,200)'],
+                ['Taxable Income', '$198,900', '$182,800'],
+                ['Federal Tax', '$40,334', '$29,640'],
+              ].map(([label, s, m], i) => (
+                <tr key={`w1-${i}`} className="border-b border-card-border">
+                  <td className="py-2 px-4">{label}</td>
+                  <td className="text-right py-2 px-4 font-mono">{s}</td>
+                  <td className="text-right py-2 px-4 font-mono">{m}</td>
+                </tr>
+              ))}
+              {/* Section 2: With Bonus Depreciation */}
+              <tr className="border-b border-card-border">
+                <td colSpan={3} className="pt-4 pb-2 px-4 text-gold font-semibold font-nav uppercase tracking-wider text-xs">With Bonus Depreciation</td>
+              </tr>
+              {[
+                ['W2 Income', '$215,000', '$215,000'],
+                ['Bonus Depreciation Deduction', '($200,000)', '($200,000)'],
+                ['Standard Deduction', '($16,100)', '($32,200)'],
+                ['Taxable Income', '$0', '$0'],
+                ['Tax', '$0', '$0'],
+              ].map(([label, s, m], i) => (
+                <tr key={`w2-${i}`} className="border-b border-card-border">
+                  <td className="py-2 px-4">{label}</td>
+                  <td className="text-right py-2 px-4 font-mono">{s}</td>
+                  <td className="text-right py-2 px-4 font-mono">{m}</td>
+                </tr>
+              ))}
+              {/* Total Savings */}
+              <tr>
+                <td className="py-3 px-4 text-gold font-bold">Total Tax Strategy Savings</td>
+                <td className="text-right py-3 px-4 font-mono text-gold font-bold text-lg">$40,334</td>
+                <td className="text-right py-3 px-4 font-mono text-gold font-bold text-lg">$29,640</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </SectionWrapper>
   )
 }
