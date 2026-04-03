@@ -85,7 +85,7 @@ function Hero() {
               >
                 {s.value}
               </div>
-              <div className="text-cream-50 text-[10px] sm:text-xs lg:text-base uppercase tracking-wider font-nav">{s.label}</div>
+              <div className="text-cream-50 text-[10px] sm:text-xs lg:text-sm uppercase tracking-wider font-nav">{s.label}</div>
             </div>
           ))}
         </div>
