@@ -179,10 +179,10 @@ function SavingsCTA() {
           A taxpayer earning $215,000 of W-2 income may owe approximately $40,334 as a single filer or $29,640 married filing jointly. By acquiring a qualified arcade business asset with only a $25,000 down payment, the strategy can generate a $200,000 first-year bonus depreciation deduction that may reduce federal tax liability to zero. In many cases, the tax savings alone exceed the initial cash investment, allowing the client to own a real income-producing business while creating immediate positive cash flow.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+          <CTAButton to="/financials" className="inline-flex items-center justify-center px-6 py-2 text-sm sm:text-base font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
             See Savings Example
           </CTAButton>
-          <CTAButton href="#book-a-call" className="inline-flex items-center justify-center px-8 py-2 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+          <CTAButton href="#book-a-call" className="inline-flex items-center justify-center px-6 py-2 text-sm sm:text-base font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
             Book Discovery Call Now
           </CTAButton>
         </div>
