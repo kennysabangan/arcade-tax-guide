@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-5xl lg:text-6xl xl:text-7xl">
+        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
