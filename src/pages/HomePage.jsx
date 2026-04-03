@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-sm sm:text-lg lg:text-[1.8rem] landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto mb-4 sm:mb-8 lg:mb-10 landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-sm sm:text-lg lg:text-[2rem] landscape:text-sm max-w-xs sm:max-w-2xl lg:max-w-5xl mx-auto mb-4 sm:mb-8 lg:mb-10 landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
