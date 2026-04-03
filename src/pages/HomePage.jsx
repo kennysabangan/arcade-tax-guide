@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
+        <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl">
           <span className="block">
             <span className="text-cream-warm">Qualifying </span>
             <span className="text-gold neon-gold">Arcade Games</span>
@@ -55,7 +55,7 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="text-cream-70 text-base sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-5xl 2xl:max-w-6xl mx-auto landscape:mb-2 leading-relaxed">
+        <p className="text-cream-70 text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
           A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
           including the permanent{' '}
           <span className="text-gold font-semibold">100% bonus depreciation</span>{' '}
@@ -66,15 +66,15 @@ function Hero() {
           <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
             <CTAButton
               href="#book-a-call"
-              className="inline-flex items-center justify-center px-10 sm:px-14 lg:px-22 xl:px-26 2xl:px-30 py-3 sm:py-4 lg:py-6 xl:py-7 2xl:py-8 text-lg sm:text-xl lg:text-3xl xl:text-4xl landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center px-10 sm:px-14 lg:px-16 xl:px-18 2xl:px-20 py-3 sm:py-4 lg:py-5 xl:py-5 2xl:py-5 text-lg sm:text-xl lg:text-xl xl:text-2xl landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
             >
               Book Discovery Call Now
             </CTAButton>
           </div>
 
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 lg:gap-4">
-            <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base lg:text-lg xl:text-xl landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-12 xl:px-14 2xl:px-16 py-2 sm:py-3 lg:py-5 xl:py-6 2xl:py-7">Explore the Tax Guide</CTAButton>
-            <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base lg:text-lg xl:text-xl landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-12 xl:px-14 2xl:px-16 py-2 sm:py-3 lg:py-5 xl:py-6 2xl:py-7">Retire with Arcade Games</CTAButton>
+            <CTAButton to="/tax-guide" variant="outline" className="text-sm sm:text-base lg:text-base xl:text-lg landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-8 xl:px-10 2xl:px-10 py-2 sm:py-3 lg:py-3 xl:py-4 2xl:py-4">Explore the Tax Guide</CTAButton>
+            <CTAButton to="/retirement" variant="outline" className="text-sm sm:text-base lg:text-base xl:text-lg landscape:text-sm landscape:px-3 landscape:py-2 px-3 sm:px-5 lg:px-8 xl:px-10 2xl:px-10 py-2 sm:py-3 lg:py-3 xl:py-4 2xl:py-4">Retire with Arcade Games</CTAButton>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ function Hero() {
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
-                className="font-bold text-xl sm:text-2xl lg:text-4xl xl:text-4xl 2xl:text-5xl landscape:text-sm leading-none mb-1"
+                className="font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl landscape:text-sm leading-none mb-1"
                 style={{ color: '#dbb155', textShadow: '0 0 10px rgba(219,177,85,0.5)' }}
               >
                 {s.value}
