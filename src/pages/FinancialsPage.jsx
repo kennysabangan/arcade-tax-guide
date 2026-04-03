@@ -1,4 +1,4 @@
-import { SectionLabel, SectionWrapper, Card, CTAButton } from '../components/Layout'
+import { SectionLabel, SectionWrapper, Card, CTAButton, BookCallCTA } from '../components/Layout'
 
 function Placeholder({ title, description }) {
   return (
@@ -245,6 +245,7 @@ export default function FinancialsPage() {
       <TaxSavingsExample />
       <RevenueModel />
       <Amortization />
+      <BookCallCTA />
     </div>
   )
 }

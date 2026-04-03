@@ -269,3 +269,15 @@ export function StatBox({ icon, label, value, sublabel }) {
     </div>
   )
 }
+
+export function BookCallCTA() {
+  return (
+    <SectionWrapper>
+      <div className="text-center">
+        <a href="/#book-a-call" className="inline-flex items-center justify-center px-8 sm:px-12 py-3.5 sm:py-5 text-lg sm:text-2xl font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+          Book My Discovery Call Now
+        </a>
+      </div>
+    </SectionWrapper>
+  )
+}

@@ -23,18 +23,6 @@ function Hero() {
           </p>
         </div>
       </div>
-      <div className="relative z-30 w-full py-6 sm:py-8 px-5">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-cream-70 text-base sm:text-lg leading-relaxed">
-            A taxpayer earning $215,000 of W-2 income may owe approximately $40,334 as a single filer or $29,640 married filing jointly. By acquiring a qualified arcade business asset with only a $25,000 down payment, the strategy can generate a $200,000 first-year bonus depreciation deduction that may reduce federal tax liability to zero. In many cases, the tax savings alone exceed the initial cash investment, allowing the client to own a real income-producing business while creating immediate positive cash flow.
-          </p>
-          <div className="mt-6">
-            <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
-              See Savings Example
-            </CTAButton>
-          </div>
-        </div>
-      </div>
       <div className="absolute inset-0 bg-body" />
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50"
@@ -173,6 +161,27 @@ function Overview() {
         <StatBox label="MACRS Recovery" value="7-Year" sublabel="Asset Class 79.0" />
         <StatBox label="Business Use Required" value=">50%" sublabel="Listed Property" />
         <StatBox label="IRC Section" value="168(k)" sublabel="Qualified Property" />
+      </div>
+    </SectionWrapper>
+  )
+}
+
+// ─── Savings CTA ───
+function SavingsCTA() {
+  return (
+    <SectionWrapper>
+      <div className="text-center max-w-3xl mx-auto">
+        <p className="text-cream-70 text-base sm:text-lg leading-relaxed">
+          A taxpayer earning $215,000 of W-2 income may owe approximately $40,334 as a single filer or $29,640 married filing jointly. By acquiring a qualified arcade business asset with only a $25,000 down payment, the strategy can generate a $200,000 first-year bonus depreciation deduction that may reduce federal tax liability to zero. In many cases, the tax savings alone exceed the initial cash investment, allowing the client to own a real income-producing business while creating immediate positive cash flow.
+        </p>
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <CTAButton to="/financials" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+            See Savings Example
+          </CTAButton>
+          <CTAButton href="#book-a-call" className="inline-flex items-center justify-center px-8 py-3 text-base sm:text-lg font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200">
+            Book My Discovery Call Now
+          </CTAButton>
+        </div>
       </div>
     </SectionWrapper>
   )
@@ -695,6 +704,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Overview />
+      <SavingsCTA />
       <Gallery />
       <FAQ />
       <Glossary />

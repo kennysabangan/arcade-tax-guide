@@ -1,4 +1,4 @@
-import { SectionLabel, SectionWrapper, CTAButton } from '../components/Layout'
+import { SectionLabel, SectionWrapper, CTAButton, BookCallCTA } from '../components/Layout'
 import { useState, useMemo, useEffect } from 'react'
 
 const SERVICE_PERIODS = [
@@ -240,6 +240,7 @@ export default function CalculatorPage() {
     <div className="pt-16">
       <Calculator />
       <Checklist />
+      <BookCallCTA />
     </div>
   )
 }

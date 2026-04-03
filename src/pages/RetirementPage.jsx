@@ -1,4 +1,4 @@
-import { SectionLabel, SectionWrapper, Card } from '../components/Layout'
+import { SectionLabel, SectionWrapper, Card, BookCallCTA } from '../components/Layout'
 
 function RetirementHero() {
   return (
@@ -162,6 +162,7 @@ export default function RetirementPage() {
       <RetirementHero />
       <StrategyDetails />
       <AfterDebtService />
+      <BookCallCTA />
     </div>
   )
 }

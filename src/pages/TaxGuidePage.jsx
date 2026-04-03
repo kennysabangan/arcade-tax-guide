@@ -1,4 +1,4 @@
-import { SectionLabel, SectionWrapper, Card, StatBox } from '../components/Layout'
+import { SectionLabel, SectionWrapper, Card, StatBox, BookCallCTA } from '../components/Layout'
 
 // ─── Bonus Depreciation ───
 const QUALIFICATION = [
@@ -249,6 +249,7 @@ export default function TaxGuidePage() {
       <MACRSProperty />
       <BusinessUse />
       <ListedProperty />
+      <BookCallCTA />
     </div>
   )
 }
