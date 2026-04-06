@@ -64,7 +64,6 @@ export default function App() {
         <Route path="analytics" element={<AnalyticsPage />} />
         <Route path="arcade" element={<ArcadeLandingPage />} />
       </Routes>
-      </Routes>
       <Analytics />
     </BrowserRouter>
   )
