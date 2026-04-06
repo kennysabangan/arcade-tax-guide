@@ -145,7 +145,7 @@ function ArcadeLandingPage() {
       <StickyMobileCTA />
 
       {/* Hero */}
-      <section className="relative flex flex-col overflow-x-hidden pt-16 min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh]">
+      <section className="relative flex flex-col overflow-x-hidden min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh]">
         {/* Announcement Bar */}
         <div className="relative z-30 w-full py-3 sm:py-4" style={{ background: '#1a5f45', borderBottom: '2px solid rgba(219,177,85,0.3)' }}>
           <div className="max-w-7xl mx-auto px-4 text-center">
