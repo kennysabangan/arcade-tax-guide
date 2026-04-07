@@ -18,6 +18,27 @@ function CheckIcon() {
   )
 }
 
+function CalendlyWidget() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return (
+    <div
+      className="calendly-inline-widget"
+      data-url="https://calendly.com/carmen-fastfundbusiness/new-meeting"
+      style={{ minWidth: '320px', height: '700px' }}
+    />
+  );
+}
+
 // ─── Sticky Mobile CTA ───
 function StickyMobileCTA() {
   const [show, setShow] = useState(false)
@@ -161,14 +182,7 @@ const leadScore = computeLeadScore();
           </div>
           <h2 className="font-heading text-gold text-2xl font-bold mb-4">Thank You</h2>
           <p className="text-cream-70 mb-6">Your strategy review request has been submitted. Please pick a time below to complete your booking.</p>
-          <iframe
-            src="https://calendly.com/carmen-fastfundbusiness/new-meeting"
-            width="100%"
-            height="700"
-            frameBorder="0"
-            className="rounded"
-            title="Book your strategy call"
-          />
+          <CalendlyWidget />
         </Card>
       </div>
     )
