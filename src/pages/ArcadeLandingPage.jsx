@@ -71,10 +71,12 @@ function ArcadeLandingPage() {
           lastName: formData.lastName,
           email: formData.email,
           phone: formData.mobile,
+          source: window.location.pathname === '/' ? 'Arcade Home Page' : 'Arcade Funnel Page',
           customFields: [
             { id: '2SUP1cLPoUkecnIj0fNh', value: String(formData.filingStatus) },
-            { id: '8DLGn4gzV3BLqRWbt0DP', value: String(formData.income) },
+            { id: 'xtYbdtKV2GB7KFBMZIJj', value: String(formData.income) },
             { id: 'iYCMxRDLqgbQaIYiGoCk', value: String(formData.taxOwed) },
+            { id: '8DLGn4gzV3BLqRWbt0DP', value: String(formData.liquidity) },
             { id: 'fFI7kUtLUPxWAR3VDmSM', value: String(formData.rothConversion) },
             { id: 'eBxzRtzSfo3UjBknVHkT', value: String(formData.timeline) },
           ],

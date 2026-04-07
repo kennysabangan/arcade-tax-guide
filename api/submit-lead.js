@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, phone, customFields } = req.body;
+  const { firstName, lastName, email, phone, customFields, source } = req.body;
   const gaClientId = req.headers['x-ga-client-id'];
 
   const GHL_HEADERS = {
@@ -51,6 +51,7 @@ export default async function handler(req, res) {
     phone,
     locationId: GHL_LOCATION_ID,
     tags: ['arcade-tax-lead'],
+    source: source || 'Arcade Funnel Page',
     customFields,
   };
 
