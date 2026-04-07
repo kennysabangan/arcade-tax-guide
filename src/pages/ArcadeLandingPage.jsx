@@ -72,12 +72,11 @@ function ArcadeLandingPage() {
           email: formData.email,
           phone: formData.mobile,
           customFields: [
-            { id: 'CDic45invuFIuxK0ufBj', value: String(formData.filingStatus) },
-            { id: 'yr79z4yqSBLA0jHkkToD', value: String(formData.income) },
+            { id: '2SUP1cLPoUkecnIj0fNh', value: String(formData.filingStatus) },
+            { id: '8DLGn4gzV3BLqRWbt0DP', value: String(formData.income) },
             { id: 'iYCMxRDLqgbQaIYiGoCk', value: String(formData.taxOwed) },
-            { id: 'DfCpDUxOkEjw8JcYt0Gz', value: String(formData.liquidity) },
             { id: 'fFI7kUtLUPxWAR3VDmSM', value: String(formData.rothConversion) },
-            { id: 'whmzWyU6ve5cDd9ZaoMl', value: String(formData.timeline) },
+            { id: 'eBxzRtzSfo3UjBknVHkT', value: String(formData.timeline) },
           ],
         }),
       })
