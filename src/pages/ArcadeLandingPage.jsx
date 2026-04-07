@@ -162,7 +162,7 @@ const leadScore = computeLeadScore();
           <h2 className="font-heading text-gold text-2xl font-bold mb-4">Thank You</h2>
           <p className="text-cream-70 mb-6">Your strategy review request has been submitted. Please pick a time below to complete your booking.</p>
           <iframe
-            src="https://calendly.com/carmen-fastfundbusiness/arcade-tax-strategy-call"
+            src="https://calendly.com/carmen-fastfundbusiness/new-meeting"
             width="100%"
             height="700"
             frameBorder="0"
