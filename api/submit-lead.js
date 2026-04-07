@@ -1,8 +1,30 @@
+async function sendGA4Event(clientId) {
+  const measurementId = process.env.GA_MEASUREMENT_ID || 'G-G6VD432JZL';
+  const apiSecret = process.env.GA_API_SECRET;
+  if (!apiSecret || !clientId) return;
+  try {
+    await fetch(
+      `https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          client_id: clientId,
+          events: [{
+            name: 'generate_lead',
+            params: { event_category: 'lead', event_label: 'arcade_landing_page', value: 1 },
+          }],
+        }),
+      }
+    );
+  } catch (_) { /* non-blocking */ }
+}
+
 export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-GA-Client-ID');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -13,6 +35,7 @@ export default async function handler(req, res) {
   }
 
   const { firstName, lastName, email, phone, customFields } = req.body;
+  const gaClientId = req.headers['x-ga-client-id'];
 
   const GHL_HEADERS = {
     'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
@@ -40,6 +63,7 @@ export default async function handler(req, res) {
 
     if (ghRes.ok) {
       const data = await ghRes.json();
+      sendGA4Event(gaClientId);
       return res.status(200).json({ success: true, contact: data });
     }
 
@@ -88,6 +112,7 @@ export default async function handler(req, res) {
           }
         ).catch(() => {});
 
+        sendGA4Event(gaClientId);
         return res.status(200).json({ success: true, updated: true, contact: updateData });
       }
 

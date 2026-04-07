@@ -492,10 +492,18 @@ function BookCall() {
       ],
     }
 
+    const gaClientId = (() => {
+      const match = document.cookie.match(/_ga=GA\d+\.\d+\.(\d+\.\d+)/)
+      return match ? match[1] : undefined
+    })()
+
     try {
       const res = await fetch('/api/submit-lead', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(gaClientId && { 'X-GA-Client-ID': gaClientId }),
+        },
         body: JSON.stringify(contactBody),
       })
 

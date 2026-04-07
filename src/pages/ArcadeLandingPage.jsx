@@ -238,11 +238,11 @@ function ArcadeLandingPage() {
             <SectionLabel>The Problem</SectionLabel>
             <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Why High Earners Overpay in Taxes</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto">
             {problems.map((p, i) => (
-              <Card key={i} className="hover:bg-card-bg/80 transition-colors">
-                <div className="text-4xl mb-3">{p.icon}</div>
-                <h3 className="font-heading text-cream font-bold text-lg">{p.title}</h3>
+              <Card key={i} className="hover:bg-card-bg/80 transition-colors text-center">
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{p.icon}</div>
+                <h3 className="font-heading text-cream font-bold text-sm sm:text-lg">{p.title}</h3>
               </Card>
             ))}
           </div>
