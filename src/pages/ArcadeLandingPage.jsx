@@ -76,6 +76,14 @@ function ArcadeLandingPage() {
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(data.error || 'Something went wrong')
+      // GA4 conversion event
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'lead',
+          event_label: 'arcade_landing_page',
+          value: 1,
+        })
+      }
       setSubmitted(true)
     } catch (err) {
       setError(err.message || 'Something went wrong')
