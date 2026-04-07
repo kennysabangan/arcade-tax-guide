@@ -88,7 +88,7 @@ function StickyMobileCTA() {
 
 function ArcadeLandingPage() {
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', mobile: '', filingStatus: '', income: '', taxOwed: '', liquidity: '', rothConversion: '', urgency: ''
+    firstName: '', lastName: '', email: '', mobile: '', filingStatus: '', income: '', taxOwed: '', liquidity: '', urgency: ''
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -136,7 +136,6 @@ const leadScore = computeLeadScore();
             { id: 'xtYbdtKV2GB7KFBMZIJj', value: String(formData.income) },
             { id: 'iYCMxRDLqgbQaIYiGoCk', value: String(formData.taxOwed) },
             { id: '8DLGn4gzV3BLqRWbt0DP', value: String(formData.liquidity) },
-            { id: 'fFI7kUtLUPxWAR3VDmSM', value: String(formData.rothConversion) },
             { id: 'eBxzRtzSfo3UjBknVHkT', value: String(formData.urgency) },
             { id: '1NdH5nTE1us9KEkfJFMi', value: leadScore },
           ],
@@ -527,20 +526,6 @@ const leadScore = computeLeadScore();
                     <option value="100-250">$100k - $250k</option>
                     <option value="250+">$250k+</option>
                   </select>
-                </div>
-
-                <div>
-                  <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Roth Conversion Planned? *</label>
-                  <div className="flex gap-6 mt-2">
-                    <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
-                      <input type="radio" name="rothConversion" value="yes" required checked={formData.rothConversion === 'yes'} onChange={handleChange} className="text-gold accent-gold" />
-                      Yes
-                    </label>
-                    <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
-                      <input type="radio" name="rothConversion" value="no" required checked={formData.rothConversion === 'no'} onChange={handleChange} className="text-gold accent-gold" />
-                      No
-                    </label>
-                  </div>
                 </div>
 
                 <button
