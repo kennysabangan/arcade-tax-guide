@@ -40,7 +40,7 @@ function StickyMobileCTA() {
 
 function ArcadeLandingPage() {
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', mobile: '', filingStatus: '', income: '', taxOwed: '', liquidity: '', rothConversion: '', timeline: ''
+    firstName: '', lastName: '', email: '', mobile: '', filingStatus: '', income: '', taxOwed: '', liquidity: '', rothConversion: '', urgency: ''
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -78,7 +78,7 @@ function ArcadeLandingPage() {
             { id: 'iYCMxRDLqgbQaIYiGoCk', value: String(formData.taxOwed) },
             { id: '8DLGn4gzV3BLqRWbt0DP', value: String(formData.liquidity) },
             { id: 'fFI7kUtLUPxWAR3VDmSM', value: String(formData.rothConversion) },
-            { id: 'eBxzRtzSfo3UjBknVHkT', value: String(formData.timeline) },
+            { id: 'eBxzRtzSfo3UjBknVHkT', value: String(formData.urgency) },
           ],
         }),
       })
@@ -443,8 +443,8 @@ function ArcadeLandingPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Timeline *</label>
-                    <select name="timeline" required value={formData.timeline} onChange={handleChange} className={inputClasses + ' bg-body'} style={inputStyles}>
+                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Urgency *</label>
+                    <select name="urgency" required value={formData.urgency} onChange={handleChange} className={inputClasses + ' bg-body'} style={inputStyles}>
                       <option value="">Select...</option>
                       <option value="Within 30 days">Within 30 days</option>
                       <option value="Within 90 days">Within 90 days</option>
