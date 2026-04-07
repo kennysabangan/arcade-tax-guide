@@ -72,12 +72,12 @@ function ArcadeLandingPage() {
           email: formData.email,
           phone: formData.mobile,
           customFields: [
-            { id: 'CDic45ipvuFIuxK0ufBj', value: formData.filingStatus },
-            { id: 'yr79z4yqSBLA0jHkkToD', value: formData.income },
-            { id: 'iYCMxRDLqgbQaIYiGoCk', value: formData.taxOwed },
-            { id: 'DfCpDUxOkEjw8JcYt0Gz', value: formData.liquidity },
-            { id: 'fFI7kUtLUPxWAR3VDmSM', value: formData.rothConversion },
-            { id: 'whmzWyU6ve5cDd9ZaoMl', value: formData.timeline },
+            { id: 'CDic45invuFIuxK0ufBj', value: String(formData.filingStatus) },
+            { id: 'yr79z4yqSBLA0jHkkToD', value: String(formData.income) },
+            { id: 'iYCMxRDLqgbQaIYiGoCk', value: String(formData.taxOwed) },
+            { id: 'DfCpDUxOkEjw8JcYt0Gz', value: String(formData.liquidity) },
+            { id: 'fFI7kUtLUPxWAR3VDmSM', value: String(formData.rothConversion) },
+            { id: 'whmzWyU6ve5cDd9ZaoMl', value: String(formData.timeline) },
           ],
         }),
       })
@@ -435,10 +435,10 @@ function ArcadeLandingPage() {
                     <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Filing Status *</label>
                     <select name="filingStatus" required value={formData.filingStatus} onChange={handleChange} className={inputClasses + ' bg-body'} style={inputStyles}>
                       <option value="">Select...</option>
-                      <option value="single">Single</option>
-                      <option value="married-joint">Married Filing Jointly</option>
-                      <option value="married-separate">Married Separate</option>
-                      <option value="head">Head of Household</option>
+                      <option value="Single">Single</option>
+                      <option value="Married Filing Joint">Married Filing Joint</option>
+                      <option value="Married Filing Separate">Married Filing Separate</option>
+                      <option value="Head of Household">Head of Household</option>
                     </select>
                   </div>
                   <div>
