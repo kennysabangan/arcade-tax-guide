@@ -155,14 +155,19 @@ const leadScore = computeLeadScore();
             <CheckIcon />
           </div>
           <h2 className="font-heading text-gold text-2xl font-bold mb-4">Thank You</h2>
-          <p className="text-cream-70 mb-6">Your strategy review request has been submitted. Please pick a time below to complete your booking.</p>
+          <p className="text-cream-70 mb-6">
+            Your strategy review request has been submitted. We'll review your information and contact you shortly to schedule your call.
+          </p>
+          <p className="text-cream-70 mb-6">
+            If you'd like to expedite the process, you can book a call directly:
+          </p>
           <a
             href="https://calendly.com/carmen-fastfundbusiness/new-meeting"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-sm text-lg bg-gold text-dark font-bold hover:bg-gold/90"
           >
-            Book Your Strategy Call
+            Book a Call Now
           </a>
         </Card>
       </div>
