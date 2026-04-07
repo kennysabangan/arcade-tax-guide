@@ -223,7 +223,7 @@ function ArcadeLandingPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-xs sm:max-w-2xl lg:max-w-3xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl">
             {trustBullets.map((s, i) => (
               <StatBox key={i} label={s.label} value={s.value} />
             ))}
