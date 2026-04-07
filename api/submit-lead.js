@@ -35,7 +35,15 @@ export default async function handler(req, res) {
   }
 
   const { firstName, lastName, email, phone, customFields, source } = req.body;
-  const gaClientId = req.headers['x-ga-client-id'];
+  let gaClientId = req.headers['x-ga-client-id'];
+  if (!gaClientId) {
+    // Fallback: read _ga cookie directly from headers
+    const cookies = req.headers.cookie || '';
+    const match = cookies.match(/_ga=GA\d+\.\d+\.(\d+\.\d+)/);
+    if (match) gaClientId = match[1];
+  }
+  // Debug: log presence (remove after confirm)
+  console.log('GA clientId:', gaClientId || 'none', 'hasSecret:', !!process.env.GA_API_SECRET);
 
   const GHL_HEADERS = {
     'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
