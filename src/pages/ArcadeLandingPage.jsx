@@ -40,7 +40,8 @@ function StickyMobileCTA() {
 
 function ArcadeLandingPage() {
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', mobile: '', filingStatus: '', income: '', taxOwed: '', liquidity: '', rothConversion: '', urgency: ''
+    firstName: '', lastName: '', email: '', mobile: '', filingStatus: '', income: '', taxOwed: '', liquidity: '', rothConversion: '', urgency: '',
+    businessOwner: '', activeDayToDay: '', wantsBoth: '', noApprovalNeeded: ''
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -55,6 +56,21 @@ function ArcadeLandingPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
+
+    // Compute lead score (0-7)
+    const computeLeadScore = () => {
+  let score = 0;
+  const income = parseFloat(String(formData.income).replace(/[^0-9.]/g, '')) || 0;
+  if (income > 200000) score++;
+  if (formData.liquidity) score++;
+  if (formData.urgency && formData.urgency.toLowerCase().includes('30 days')) score++;
+  if (formData.businessOwner === 'yes') score++;
+  if (formData.activeDayToDay === 'yes') score++;
+  if (formData.wantsBoth === 'yes') score++;
+  if (formData.noApprovalNeeded === 'yes') score++;
+  return score;
+};
+const leadScore = computeLeadScore();
     try {
       const gaClientId = (() => {
         const match = document.cookie.match(/_ga=GA\d+\.\d+\.(\d+\.\d+)/)
@@ -79,6 +95,7 @@ function ArcadeLandingPage() {
             { id: '8DLGn4gzV3BLqRWbt0DP', value: String(formData.liquidity) },
             { id: 'fFI7kUtLUPxWAR3VDmSM', value: String(formData.rothConversion) },
             { id: 'eBxzRtzSfo3UjBknVHkT', value: String(formData.urgency) },
+            { id: '1NdH5nTE1us9KEkfJFMi', value: leadScore },
           ],
         }),
       })
@@ -487,6 +504,65 @@ function ArcadeLandingPage() {
                       <input type="radio" name="rothConversion" value="no" required checked={formData.rothConversion === 'no'} onChange={handleChange} className="text-gold accent-gold" />
                       No
                     </label>
+                  </div>
+                </div>
+
+                {/* Lead Scoring Fields */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Owns an active business? *</label>
+                    <div className="flex gap-6 mt-2">
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="businessOwner" value="yes" checked={formData.businessOwner === 'yes'} onChange={handleChange} className="text-gold accent-gold" />
+                        Yes
+                      </label>
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="businessOwner" value="no" checked={formData.businessOwner === 'no'} onChange={handleChange} className="text-gold accent-gold" />
+                        No
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Personally active day-to-day? *</label>
+                    <div className="flex gap-6 mt-2">
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="activeDayToDay" value="yes" checked={formData.activeDayToDay === 'yes'} onChange={handleChange} className="text-gold accent-gold" />
+                        Yes
+                      </label>
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="activeDayToDay" value="no" checked={formData.activeDayToDay === 'no'} onChange={handleChange} className="text-gold accent-gold" />
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Wants both tax savings + recurring revenue? *</label>
+                    <div className="flex gap-6 mt-2">
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="wantsBoth" value="yes" checked={formData.wantsBoth === 'yes'} onChange={handleChange} className="text-gold accent-gold" />
+                        Yes
+                      </label>
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="wantsBoth" value="no" checked={formData.wantsBoth === 'no'} onChange={handleChange} className="text-gold accent-gold" />
+                        No
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">No spouse / CPA / partner approval needed? *</label>
+                    <div className="flex gap-6 mt-2">
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="noApprovalNeeded" value="yes" checked={formData.noApprovalNeeded === 'yes'} onChange={handleChange} className="text-gold accent-gold" />
+                        Yes
+                      </label>
+                      <label className="inline-flex items-center gap-2 text-cream-70 cursor-pointer">
+                        <input type="radio" name="noApprovalNeeded" value="no" checked={formData.noApprovalNeeded === 'no'} onChange={handleChange} className="text-gold accent-gold" />
+                        No
+                      </label>
+                    </div>
                   </div>
                 </div>
 
