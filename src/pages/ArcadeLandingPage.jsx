@@ -19,12 +19,39 @@ function CheckIcon() {
 }
 
 function CalendlyWidget() {
+  const containerRef = React.useRef(null);
+
   useEffect(() => {
+    // Avoid loading script multiple times
+    if (document.querySelector('script[src*="calendly"]')) {
+      // Script already loaded; initialize manually
+      if (window.Calendly) {
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/carmen-fastfundbusiness/new-meeting',
+          parentElement: containerRef.current,
+          prefill: {},
+          utm: {}
+        });
+      }
+      return;
+    }
+
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
     script.defer = true;
+    script.onload = () => {
+      if (window.Calendly) {
+        window.Calendly.initInlineWidget({
+          url: 'https://calendly.com/carmen-fastfundbusiness/new-meeting',
+          parentElement: containerRef.current,
+          prefill: {},
+          utm: {}
+        });
+      }
+    };
     document.body.appendChild(script);
+
     return () => {
       document.body.removeChild(script);
     };
@@ -32,8 +59,8 @@ function CalendlyWidget() {
 
   return (
     <div
+      ref={containerRef}
       className="calendly-inline-widget"
-      data-url="https://calendly.com/carmen-fastfundbusiness/new-meeting"
       style={{ minWidth: '320px', height: '700px' }}
     />
   );
