@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SectionLabel, SectionWrapper, Card, Accordion, StatBox, CTAButton } from '../components/Layout'
 
@@ -21,11 +21,11 @@ function CheckIcon() {
 // ─── Sticky Mobile CTA ───
 function StickyMobileCTA() {
   const [show, setShow] = useState(false)
-  useState(() => {
+  useEffect(() => {
     const fn = () => setShow(window.scrollY > 600)
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
-  })
+  }, [])
   return (
     <a
       href="#lead-form"
@@ -66,11 +66,11 @@ function ArcadeLandingPage() {
           phone: formData.mobile,
           customFields: [
             { id: 'filing_status', value: formData.filingStatus },
-            { id: 'estimated_income', value: formData.income },
+            { id: 'income_range', value: formData.income },
             { id: 'tax_owed', value: formData.taxOwed },
-            { id: 'liquidity', value: formData.liquidity },
+            { id: '275k_liquidity_available', value: formData.liquidity },
             { id: 'roth_conversion', value: formData.rothConversion },
-            { id: 'timeline', value: formData.timeline },
+            { id: 'urgency', value: formData.timeline },
           ],
         }),
       })
