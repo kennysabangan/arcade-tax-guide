@@ -445,9 +445,9 @@ function ArcadeLandingPage() {
                     <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Timeline *</label>
                     <select name="timeline" required value={formData.timeline} onChange={handleChange} className={inputClasses + ' bg-body'} style={inputStyles}>
                       <option value="">Select...</option>
-                      <option value="30">Within 30 days</option>
-                      <option value="90">Within 90 days</option>
-                      <option value="180">Within 180 days</option>
+                      <option value="30 days">Within 30 days</option>
+                      <option value="90 days">Within 90 days</option>
+                      <option value="180 days">Within 180 days</option>
                       <option value="exploring">Just Exploring</option>
                     </select>
                   </div>
