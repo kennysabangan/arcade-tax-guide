@@ -18,53 +18,6 @@ function CheckIcon() {
   )
 }
 
-function CalendlyWidget() {
-  const containerRef = React.useRef(null);
-
-  useEffect(() => {
-    // Avoid loading script multiple times
-    if (document.querySelector('script[src*="calendly"]')) {
-      // Script already loaded; initialize manually
-      if (window.Calendly) {
-        window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/carmen-fastfundbusiness/new-meeting',
-          parentElement: containerRef.current,
-          prefill: {},
-          utm: {}
-        });
-      }
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    script.defer = true;
-    script.onload = () => {
-      if (window.Calendly) {
-        window.Calendly.initInlineWidget({
-          url: 'https://calendly.com/carmen-fastfundbusiness/new-meeting',
-          parentElement: containerRef.current,
-          prefill: {},
-          utm: {}
-        });
-      }
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={containerRef}
-      className="calendly-inline-widget"
-      style={{ minWidth: '320px', height: '700px' }}
-    />
-  );
-}
 
 // ─── Sticky Mobile CTA ───
 function StickyMobileCTA() {
@@ -203,7 +156,14 @@ const leadScore = computeLeadScore();
           </div>
           <h2 className="font-heading text-gold text-2xl font-bold mb-4">Thank You</h2>
           <p className="text-cream-70 mb-6">Your strategy review request has been submitted. Please pick a time below to complete your booking.</p>
-          <CalendlyWidget />
+          <a
+            href="https://calendly.com/carmen-fastfundbusiness/new-meeting"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-sm text-lg bg-gold text-dark font-bold hover:bg-gold/90"
+          >
+            Book Your Strategy Call
+          </a>
         </Card>
       </div>
     )
