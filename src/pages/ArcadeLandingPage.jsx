@@ -72,12 +72,12 @@ function ArcadeLandingPage() {
           email: formData.email,
           phone: formData.mobile,
           customFields: [
-            { id: 'filing_status', value: formData.filingStatus },
-            { id: 'income_range', value: formData.income },
-            { id: 'tax_owed', value: formData.taxOwed },
-            { id: '275k_liquidity_available', value: formData.liquidity },
-            { id: 'roth_conversion', value: formData.rothConversion },
-            { id: 'urgency', value: formData.timeline },
+            { id: 'CDic45ipvuFIuxK0ufBj', value: formData.filingStatus },
+            { id: 'yr79z4yqSBLA0jHkkToD', value: formData.income },
+            { id: 'iYCMxRDLqgbQaIYiGoK', value: formData.taxOwed },
+            { id: 'DfCpDUxOkEjw8JcYt0Gz', value: formData.liquidity },
+            { id: 'fFI7kUtLUPxWAR3VDmSM', value: formData.rothConversion },
+            { id: 'whmzWyU6ve5cDd9ZaoMl', value: formData.timeline },
           ],
         }),
       })
