@@ -77,7 +77,6 @@ function ArcadeLandingPage() {
       const data = await res.json().catch(() => ({}))
       if (!res.ok) throw new Error(data.error || 'Something went wrong')
       setSubmitted(true)
-      setTimeout(() => navigate('/arcade/thank-you'), 1000)
     } catch (err) {
       setError(err.message || 'Something went wrong')
     } finally {
@@ -119,7 +118,7 @@ function ArcadeLandingPage() {
 
   const inputClasses = 'w-full bg-body border border-card-border rounded-md px-4 py-3 text-cream placeholder-cream-40 focus:border-gold focus:outline-none transition-colors'
 
-  // ─── Submitted state ───
+  // ─── Submitted view ───
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-body px-4">
@@ -128,7 +127,15 @@ function ArcadeLandingPage() {
             <CheckIcon />
           </div>
           <h2 className="font-heading text-gold text-2xl font-bold mb-4">Thank You</h2>
-          <p className="text-cream-70 mb-6">Your strategy review request has been submitted. Redirecting to booking...</p>
+          <p className="text-cream-70 mb-6">Your strategy review request has been submitted. Please pick a time below to complete your booking.</p>
+          <iframe
+            src="https://calendly.com/carmen-fastfundbusiness/arcade-tax-strategy-call"
+            width="100%"
+            height="700"
+            frameBorder="0"
+            className="rounded"
+            title="Book your strategy call"
+          />
         </Card>
       </div>
     )
