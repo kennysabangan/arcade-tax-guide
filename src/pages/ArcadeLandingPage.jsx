@@ -469,7 +469,7 @@ const leadScore = computeLeadScore();
                     </select>
                   </div>
                   <div>
-                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">Urgency *</label>
+                    <label className="block text-cream-60 text-sm font-nav uppercase tracking-wider mb-1">WHEN YOU'D LIKE THIS DONE *</label>
                     <select name="urgency" required value={formData.urgency} onChange={handleChange} className={inputClasses + ' bg-body'} style={inputStyles}>
                       <option value="">Select...</option>
                       <option value="Within 30 days">Within 30 days</option>
