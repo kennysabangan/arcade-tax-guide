@@ -82,8 +82,10 @@ Creates or updates a contact in GoHighLevel.
 
 ## Analytics & Tracking
 - **GA4 Measurement ID:** G-G6VD432JZL
+- **Meta Pixel ID:** 953181697145468
 - **Event Tracking:** `generate_lead` event on form submission
 - **Page Tracking:** Automatic via React Router + Vercel Analytics
+- **Meta Pixel Events:** PageView (baseline), Lead (form submit), ViewContent (page views)
 
 ## Security Notes
 - **GHL API Token:** Stored in Vercel environment variables (never commit)
