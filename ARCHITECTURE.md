@@ -76,6 +76,26 @@ Creates or updates a contact in GoHighLevel.
   - `urgency`: `eBxzRtzSfo3UjBknVHkT`
   - `lead_score`: `1NdH5nTE1us9KEkfJFMi`
 
+## Referral Tracking
+
+The website supports referral tracking via URL parameter `ref` on both `/` (HomePage) and `/arcade` (ArcadeLandingPage) pages.
+
+### URL Parameter
+- Example: `?ref=svconsulting` or `?ref=1000banks`
+- When present, the form's `source` field is set to the referral value.
+- The referral value is stored in `sessionStorage` so it persists across page navigation before submission.
+
+### GHL Tags
+Based on the `ref` value, corresponding tags are added to the GoHighLevel contact:
+- `svconsulting` → tags: `partner-svconsulting`
+- `1000banks` → tags: `partner-1000banks`
+- No ref → tags: `arcade-tax-lead` (current default)
+
+### Implementation
+- Frontend: `useSearchParams` to read `ref` from URL, store in sessionStorage, include in API request.
+- Backend: `/api/submit-lead` reads `ref` parameter and assigns appropriate tags before creating/updating GHL contact.
+- Duplicate contact handling also uses the same tag logic.
+
 ## Deployment
 - **URL:** https://arcade-tax-guide-pujuijzaw-scalesolving.vercel.app
 - **Repo:** https://github.com/kennysabangan/arcade-tax-guide

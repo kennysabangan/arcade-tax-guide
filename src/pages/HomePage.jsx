@@ -1,6 +1,6 @@
 import { SectionLabel, SectionWrapper, Card, CTAButton, StatBox, Accordion } from '../components/Layout'
 import { useState, useEffect, useRef, useMemo } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 
 // ─── Hero ───
 function Hero() {
@@ -465,6 +465,19 @@ ${name || '[Your Name]'}`
 
 // ─── Book a Call ───
 function BookCall() {
+  const [searchParams] = useSearchParams();
+  const [referralRef, setReferralRef] = useState('');
+  useEffect(() => {
+    // Get ref from URL or sessionStorage
+    const urlRef = searchParams.get('ref');
+    const storedRef = sessionStorage.getItem('arcadeRef');
+    const finalRef = urlRef || storedRef;
+    if (finalRef) {
+      setReferralRef(finalRef);
+      sessionStorage.setItem('arcadeRef', finalRef);
+    }
+  }, [searchParams]);
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -482,11 +495,16 @@ function BookCall() {
     const firstName = nameParts[0] || ''
     const lastName = nameParts.slice(1).join(' ') || ''
 
+    // Determine source: referral ref or default
+    const source = referralRef || 'Arcade Home Page';
+
     const contactBody = {
       firstName,
       lastName,
       email,
       phone,
+      source,
+      ref: referralRef,
       customFields: [
         { id: 'xtYbdtKV2GB7KFBMZIJj', value: income },
       ],

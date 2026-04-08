@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { SectionLabel, SectionWrapper, Card, Accordion, StatBox, CTAButton } from '../components/Layout'
 
@@ -47,6 +48,18 @@ function ArcadeLandingPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams();
+  const [referralRef, setReferralRef] = useState('');
+  useEffect(() => {
+    // Get ref from URL or sessionStorage
+    const urlRef = searchParams.get('ref');
+    const storedRef = sessionStorage.getItem('arcadeRef');
+    const finalRef = urlRef || storedRef;
+    if (finalRef) {
+      setReferralRef(finalRef);
+      sessionStorage.setItem('arcadeRef', finalRef);
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -83,7 +96,8 @@ const leadScore = computeLeadScore();
           lastName: formData.lastName,
           email: formData.email,
           phone: formData.mobile,
-          source: window.location.pathname === '/' ? 'Arcade Home Page' : 'Arcade Funnel Page',
+          source: referralRef || (window.location.pathname === '/' ? 'Arcade Home Page' : 'Arcade Funnel Page'),
+          ref: referralRef,
           customFields: [
             { id: '2SUP1cLPoUkecnIj0fNh', value: String(formData.filingStatus) },
             { id: 'xtYbdtKV2GB7KFBMZIJj', value: String(formData.income) },

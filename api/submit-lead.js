@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, phone, customFields, source, leadScore } = req.body;
+  const { firstName, lastName, email, phone, customFields, source, leadScore, ref } = req.body;
   
   // Extract custom fields for Google Sheet
   const filingStatus = customFields?.find(f => f.id === '2SUP1cLPoUkecnIj0fNh')?.value;
@@ -50,6 +50,14 @@ export default async function handler(req, res) {
   console.log('GA clientId:', gaClientId || 'none', 'hasSecret:', !!process.env.GA_API_SECRET);
   console.log('Form submission:', { email, firstName, lastName, phone });
 
+  // Determine tags based on referral ref
+  let tags = ['arcade-tax-lead'];
+  if (ref === 'svconsulting') {
+    tags = ['partner-svconsulting'];
+  } else if (ref === '1000banks') {
+    tags = ['partner-1000banks'];
+  }
+
   const GHL_HEADERS = {
     'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
     'Version': '2021-07-28',
@@ -63,7 +71,7 @@ export default async function handler(req, res) {
     email,
     phone,
     locationId: GHL_LOCATION_ID,
-    tags: ['arcade-tax-lead'],
+    tags,
     source: source || 'Arcade Funnel Page',
     customFields,
   };
@@ -145,7 +153,7 @@ export default async function handler(req, res) {
           {
             method: 'POST',
             headers: GHL_HEADERS,
-            body: JSON.stringify({ tags: ['arcade-tax-lead'] }),
+            body: JSON.stringify({ tags }),
           }
         ).catch(() => {});
 
