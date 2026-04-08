@@ -2,22 +2,21 @@ async function sendGA4Event(clientId) {
   const measurementId = process.env.GA_MEASUREMENT_ID || 'G-G6VD432JZL';
   const apiSecret = process.env.GA_API_SECRET;
   if (!apiSecret || !clientId) return;
-  try {
-    await fetch(
-      `https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          client_id: clientId,
-          events: [{
-            name: 'generate_lead',
-            params: { event_category: 'lead', event_label: 'arcade_landing_page', value: 1 },
-          }],
-        }),
-      }
-    );
-  } catch (_) { /* non-blocking */ }
+  // Fire and forget - don't await
+  fetch(
+    `https://www.google-analytics.com/mp/collect?measurement_id=${measurementId}&api_secret=${apiSecret}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_id: clientId,
+        events: [{
+          name: 'generate_lead',
+          params: { event_category: 'lead', event_label: 'arcade_landing_page', value: 1 },
+        }],
+      }),
+    }
+  ).catch(() => {});
 }
 
 export default async function handler(req, res) {
@@ -71,11 +70,16 @@ export default async function handler(req, res) {
 
   try {
     console.log('Attempting GHL contact creation...', { email, firstName });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+    
     const ghRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST',
       headers: GHL_HEADERS,
       body: JSON.stringify(contactBody),
+      signal: controller.signal,
     });
+    clearTimeout(timeout);
 
     console.log('GHL Response status:', ghRes.status);
 
@@ -83,8 +87,8 @@ export default async function handler(req, res) {
       const data = await ghRes.json();
       console.log('GHL Success:', data.id);
       sendGA4Event(gaClientId);
-      // Append to Google Sheet
-      await appendToSheet({ email, firstName, lastName, phone, source, leadScore, filingStatus, income, taxOwed });
+      // Append to Google Sheet (fire and forget)
+      appendToSheet({ email, firstName, lastName, phone, source, leadScore, filingStatus, income, taxOwed }).catch(() => {});
       return res.status(200).json({ success: true, contact: data });
     }
     
@@ -116,14 +120,19 @@ export default async function handler(req, res) {
           phone,
           customFields,
         };
+        const updateController = new AbortController();
+        const updateTimeout = setTimeout(() => updateController.abort(), 10000);
+        
         const updateRes = await fetch(
           `https://services.leadconnectorhq.com/contacts/${existingContactId}`,
           {
             method: 'PUT',
             headers: GHL_HEADERS,
             body: JSON.stringify(updateBody),
+            signal: updateController.signal,
           }
         );
+        clearTimeout(updateTimeout);
         if (!updateRes.ok) {
           const updateErr = await updateRes.json().catch(() => ({}));
           return res.status(500).json({ error: 'Failed to update existing contact', details: updateErr });
@@ -141,8 +150,8 @@ export default async function handler(req, res) {
         ).catch(() => {});
 
         sendGA4Event(gaClientId);
-        // Append to Google Sheet
-        await appendToSheet({ email, firstName, lastName, phone, source, leadScore, filingStatus, income, taxOwed });
+        // Append to Google Sheet (fire and forget)
+        appendToSheet({ email, firstName, lastName, phone, source, leadScore, filingStatus, income, taxOwed }).catch(() => {});
         return res.status(200).json({ success: true, updated: true, contact: updateData });
       }
 
