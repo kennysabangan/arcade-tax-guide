@@ -44,21 +44,7 @@ export default async function handler(req, res) {
   }
   // Debug: log presence (remove after confirm)
   console.log('GA clientId:', gaClientId || 'none', 'hasSecret:', !!process.env.GA_API_SECRET);
-  
-  // Log submission to file for tracking
-  const fs = require('fs');
-  const path = require('path');
-  const logPath = path.join(__dirname, 'submissions.log');
-  const logEntry = JSON.stringify({
-    email,
-    firstName,
-    lastName,
-    phone,
-    userAgent: req.headers['user-agent'],
-    ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-    timestamp: new Date().toISOString(),
-  }) + '\n';
-  fs.appendFileSync(logPath, logEntry);
+  console.log('Form submission:', { email, firstName, lastName, phone });
 
   const GHL_HEADERS = {
     'Authorization': 'Bearer pit-c118366a-df44-44f2-a257-52c8c8934353',
