@@ -89,10 +89,8 @@ export default async function handler(req, res) {
     }
     
     const errData = await ghRes.json().catch(() => ({}));
-    console.log('GHL Error:', errData);
-
-    const errData = await ghRes.json().catch(() => ({}));
     const msg = (errData.message || '').toLowerCase();
+    console.log('GHL Error:', errData);
 
     // Handle duplicate contact — search and update
     if (ghRes.status === 400 && msg.includes('duplicate')) {
