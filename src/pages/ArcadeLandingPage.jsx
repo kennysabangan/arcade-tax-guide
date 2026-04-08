@@ -104,6 +104,10 @@ const leadScore = computeLeadScore();
           value: 1,
         })
       }
+      // Meta Pixel Lead event
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', { content_name: 'arcade_landing_page' })
+      }
       setSubmitted(true)
     } catch (err) {
       setError(err.message || 'Something went wrong')
