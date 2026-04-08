@@ -1,6 +1,6 @@
 # Arcade Tax Guide Deployment
 
-**Live URL:** https://arcade-tax-guide-m0kf07iui-scalesolving.vercel.app
+**Live URL:** https://arcade-tax-guide-3lg68efti-scalesolving.vercel.app
 **GitHub:** https://github.com/kennysabangan/arcade-tax-guide
 
 ## Status
