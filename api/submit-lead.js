@@ -82,16 +82,22 @@ export default async function handler(req, res) {
 
     // Handle duplicate contact — search and update
     if (ghRes.status === 400 && msg.includes('duplicate')) {
-      const searchRes = await fetch(
-        `https://services.leadconnectorhq.com/contacts/?locationId=${GHL_LOCATION_ID}&query=${encodeURIComponent(email)}`,
-        { method: 'GET', headers: { 'Authorization': GHL_HEADERS.Authorization, 'Version': GHL_HEADERS.Version } }
-      );
-      const searchData = await searchRes.json().catch(() => ({}));
-      const existing = searchData.contacts?.find(
-        (c) => c.email?.toLowerCase() === email.toLowerCase()
-      );
+      // Try to extract existing contact ID from error metadata
+      let existingContactId = errData.meta?.contactId;
+      if (!existingContactId) {
+        // Fallback: search by email
+        const searchRes = await fetch(
+          `https://services.leadconnectorhq.com/contacts/?locationId=${GHL_LOCATION_ID}&query=${encodeURIComponent(email)}`,
+          { method: 'GET', headers: { 'Authorization': GHL_HEADERS.Authorization, 'Version': GHL_HEADERS.Version } }
+        );
+        const searchData = await searchRes.json().catch(() => ({}));
+        const existing = searchData.contacts?.find(
+          (c) => c.email?.toLowerCase() === email.toLowerCase()
+        );
+        existingContactId = existing?.id;
+      }
 
-      if (existing?.id) {
+      if (existingContactId) {
         const updateBody = {
           firstName,
           lastName,
@@ -99,7 +105,7 @@ export default async function handler(req, res) {
           customFields,
         };
         const updateRes = await fetch(
-          `https://services.leadconnectorhq.com/contacts/${existing.id}`,
+          `https://services.leadconnectorhq.com/contacts/${existingContactId}`,
           {
             method: 'PUT',
             headers: GHL_HEADERS,
@@ -114,7 +120,7 @@ export default async function handler(req, res) {
 
         // Re-add tag after update
         await fetch(
-          `https://services.leadconnectorhq.com/contacts/${existing.id}/tags`,
+          `https://services.leadconnectorhq.com/contacts/${existingContactId}/tags`,
           {
             method: 'POST',
             headers: GHL_HEADERS,

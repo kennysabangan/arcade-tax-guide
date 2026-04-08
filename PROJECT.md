@@ -57,14 +57,14 @@ Do **not** change frontend field names without updating the ID mapping.
 
 | Field Name (form key) | GHL Custom Field ID | Notes |
 |----------------------|---------------------|-------|
-| `filing_status` | `CDic45ipvuFIuxK0ufBj` | e.g., `single`, `married` |
-| `income_range` | `yr79z4yqSBLA0jHkkToD` | e.g., `200000`, `250k-500k` (string) |
-| `tax_owed` | `iYCMxRDLqgbQaIYiGoK` | numeric (e.g., `40000`) |
-| `275k_liquidity_available` | `DfCpDUxOkEjw8JcYt0Gz` | e.g., `25-50` (thousands) |
-| `roth_conversion` | `fFI7kUtLUPxWAR3VDmSM` | `yes` / `no` |
-| `urgency` | `whmzWyU6ve5cDd9ZaoMl` | number of **months** (e.g., `30`) |
+| `filing_status` | `2SUP1cLPoUkecnIj0fNh` | e.g., `single`, `married` |
+| `income_range` | `xtYbdtKV2GB7KFBMZIJj` | e.g., `200000`, `250k-500k` (string) |
+| `tax_owed` | `iYCMxRDLqgbQaIYiGoCk` | numeric (e.g., `40000`) |
+| `liquidity` | `8DLGn4gzV3BLqRWbt0DP` | e.g., `25-50` (thousands) |
+| `urgency` | `eBxzRtzSfo3UjBknVHkT` | number of **months** (e.g., `30`) |
+| `lead_score` | `1NdH5nTE1us9KEkfJFMi` | numeric (0-3) |
 
-**HomePage BookCall** only sends `income_range` (maps `anticipated_taxable_income` → `yr79z4yqSBLA0jHkkToD`).
+**HomePage BookCall** only sends `income_range` (maps `anticipated_taxable_income` → `xtYbdtKV2GB7KFBMZIJj`).
 
 ---
 

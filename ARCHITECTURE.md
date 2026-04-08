@@ -69,11 +69,12 @@ Creates or updates a contact in GoHighLevel.
 - **Auth:** Bearer token (pit-*)
 - **Location ID:** `Mp6SVlSkhbup63EKVSvb`
 - **Custom Fields Mapping:**
-  - `filing_status`: `CDic45ipvuFIuxK0ufBj`
-  - `income_range`: `yr79z4yqSBLA0jHkkToD`
-  - `tax_owed`: `iYCMxRDLqgbQaIYiGoK`
-  - `liquidity`: `DfCpDUxOkEjw8JcYt0Gz`
-  - `urgency`: `whmzWyU6ve5cDd9ZaoMl`
+  - `filing_status`: `2SUP1cLPoUkecnIj0fNh`
+  - `income_range`: `xtYbdtKV2GB7KFBMZIJj`
+  - `tax_owed`: `iYCMxRDLqgbQaIYiGoCk`
+  - `liquidity`: `8DLGn4gzV3BLqRWbt0DP`
+  - `urgency`: `eBxzRtzSfo3UjBknVHkT`
+  - `lead_score`: `1NdH5nTE1us9KEkfJFMi`
 
 ## Deployment
 - **URL:** https://arcade-tax-guide-pujuijzaw-scalesolving.vercel.app
