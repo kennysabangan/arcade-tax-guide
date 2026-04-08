@@ -170,8 +170,9 @@ async function appendToSheet(row) {
   
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}:append?valueInputOption=USER_ENTERED&key=${API_KEY}`;
   
+  console.log('Appending to Google Sheet...');
   try {
-    await fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -189,6 +190,7 @@ async function appendToSheet(row) {
         ]]
       })
     });
+    console.log('Sheet append response:', response.status);
   } catch (err) {
     console.log('Sheet append failed:', err.message);
   }
