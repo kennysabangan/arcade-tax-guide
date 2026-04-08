@@ -34,7 +34,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, phone, customFields, source } = req.body;
+  const { firstName, lastName, email, phone, customFields, source, leadScore } = req.body;
+  
+  // Extract custom fields for Google Sheet
+  const filingStatus = customFields?.find(f => f.id === '2SUP1cLPoUkecnIj0fNh')?.value;
+  const income = customFields?.find(f => f.id === 'xtYbdtKV2GB7KFBMZIJj')?.value;
+  const taxOwed = customFields?.find(f => f.id === 'iYCMxRDLqgbQaIYiGoCk')?.value;
   let gaClientId = req.headers['x-ga-client-id'];
   if (!gaClientId) {
     // Fallback: read _ga cookie directly from headers
@@ -65,17 +70,26 @@ export default async function handler(req, res) {
   };
 
   try {
+    console.log('Attempting GHL contact creation...', { email, firstName });
     const ghRes = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method: 'POST',
       headers: GHL_HEADERS,
       body: JSON.stringify(contactBody),
     });
 
+    console.log('GHL Response status:', ghRes.status);
+
     if (ghRes.ok) {
       const data = await ghRes.json();
+      console.log('GHL Success:', data.id);
       sendGA4Event(gaClientId);
+      // Append to Google Sheet
+      await appendToSheet({ email, firstName, lastName, phone, source, leadScore, filingStatus, income, taxOwed });
       return res.status(200).json({ success: true, contact: data });
     }
+    
+    const errData = await ghRes.json().catch(() => ({}));
+    console.log('GHL Error:', errData);
 
     const errData = await ghRes.json().catch(() => ({}));
     const msg = (errData.message || '').toLowerCase();
@@ -129,6 +143,8 @@ export default async function handler(req, res) {
         ).catch(() => {});
 
         sendGA4Event(gaClientId);
+        // Append to Google Sheet
+        await appendToSheet({ email, firstName, lastName, phone, source, leadScore, filingStatus, income, taxOwed });
         return res.status(200).json({ success: true, updated: true, contact: updateData });
       }
 
@@ -138,5 +154,42 @@ export default async function handler(req, res) {
     return res.status(ghRes.status).json({ error: errData.message || 'GHL API error' });
   } catch (err) {
     return res.status(500).json({ error: 'Internal server error', message: err.message });
+  }
+}
+
+// Helper function to append row to Google Sheet
+async function appendToSheet(row) {
+  const SHEET_ID = process.env.GOOGLE_SHEET_ID;
+  const SHEET_RANGE = 'Leads!A:J'; // Adjust range as needed
+  const API_KEY = process.env.GOOGLE_API_KEY;
+  
+  if (!SHEET_ID || !API_KEY) {
+    console.log('Google Sheet config missing - skipping sheet append');
+    return;
+  }
+  
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_RANGE}:append?valueInputOption=USER_ENTERED&key=${API_KEY}`;
+  
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        values: [[
+          row.email,
+          row.firstName,
+          row.lastName,
+          row.phone,
+          row.source,
+          new Date().toISOString(),
+          row.leadScore || '',
+          row.filingStatus || '',
+          row.income || '',
+          row.taxOwed || ''
+        ]]
+      })
+    });
+  } catch (err) {
+    console.log('Sheet append failed:', err.message);
   }
 }
