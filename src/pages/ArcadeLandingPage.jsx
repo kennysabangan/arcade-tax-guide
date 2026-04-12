@@ -283,8 +283,8 @@ const leadScore = computeLeadScore();
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto">
             {problems.map((p, i) => (
-              <Card key={i} className="hover:bg-card-bg/80 transition-colors text-center">
-                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{p.icon}</div>
+              <Card key={i} className="hover:bg-card-bg/80 transition-colors text-center p-3 sm:p-4">
+                <div className="text-2xl sm:text-3xl mb-1 sm:mb-2">{p.icon}</div>
                 <h3 className="font-heading text-cream font-bold text-xs sm:text-base">{p.title}</h3>
               </Card>
             ))}
