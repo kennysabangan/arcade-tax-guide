@@ -228,41 +228,46 @@ const leadScore = computeLeadScore();
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(26,95,69,0.12) 0%, transparent 70%)' }}
         />
-        <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-5 py-4 sm:py-6 landscape:py-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 landscape:px-2 landscape:py-0.5 rounded-sm border border-green-700/30 bg-green-900/20 mt-4 mb-8 sm:mb-10 lg:mb-12 landscape:mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(74,222,128,0.8)' }} />
-            <span className="text-green-400 text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
-              IRC Section 168(k) Bonus Depreciation
-            </span>
-          </div>
+        <div className="relative z-20 flex-1 flex flex-row items-center justify-center px-5 py-4 sm:py-6 landscape:py-2 gap-8 max-w-6xl mx-auto">
+          <div className="flex-1 max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 landscape:px-2 landscape:py-0.5 rounded-sm border border-green-700/30 bg-green-900/20 mt-4 mb-8 sm:mb-10 lg:mb-12 landscape:mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(74,222,128,0.8)' }} />
+              <span className="text-green-400 text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
+                IRC Section 168(k) Bonus Depreciation
+              </span>
+            </div>
 
-          <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-2xl sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
-            <span className="block text-cream-warm">$25,000 Down.</span>
-            <span className="block">
-              <span className="text-gold neon-gold">$200,000 Deduction.</span>
-            </span>
-            <span className="block text-cream-warm">Real Revenue Business.</span>
-          </h1>
+            <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-2xl sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
+              <span className="block text-cream-warm">$25,000 Down.</span>
+              <span className="block">
+                <span className="text-gold neon-gold">$200,000 Deduction.</span>
+              </span>
+              <span className="block text-cream-warm">Real Revenue Business.</span>
+            </h1>
 
-          <p className="text-cream-70 text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-lg landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto landscape:mb-2 leading-relaxed">
-            For high-income W2 earners, business owners, and Roth conversion taxpayers who need a 2026 bonus depreciation strategy that can create tax savings greater than the initial cash invested.
-          </p>
+            <p className="text-cream-70 text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-lg landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl landscape:mb-2 leading-relaxed">
+              For high-income W2 earners, business owners, and Roth conversion taxpayers who need a 2026 bonus depreciation strategy that can create tax savings greater than the initial cash invested.
+            </p>
 
-          <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-6 landscape:mb-6">
-            <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
-              <a
-                href="#lead-form"
-                className="inline-flex items-center justify-center px-8 sm:px-12 lg:px-12 xl:px-14 2xl:px-14 py-2.5 sm:py-3 lg:py-3 xl:py-3 2xl:py-3 text-base sm:text-lg lg:text-base xl:text-lg landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
-              >
-                See If You Qualify
-              </a>
+            <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-6 landscape:mb-6">
+              <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
+                <a
+                  href="#lead-form"
+                  className="inline-flex items-center justify-center px-8 sm:px-12 lg:px-12 xl:px-14 2xl:px-14 py-2.5 sm:py-3 lg:py-3 xl:py-3 2xl:py-3 text-base sm:text-lg lg:text-base xl:text-lg landscape:text-lg landscape:px-6 landscape:py-3 font-heading font-bold rounded-sm bg-gold text-dark hover:bg-gold/90 hover:shadow-[0_0_32px_rgba(219,177,85,0.6)] active:scale-[0.98] transition-all duration-200"
+                >
+                  See If You Qualify
+                </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl">
+              {trustBullets.map((s, i) => (
+                <StatBox key={i} label={s.label} value={s.value} />
+              ))}
             </div>
           </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl">
-            {trustBullets.map((s, i) => (
-              <StatBox key={i} label={s.label} value={s.value} />
-            ))}
+          <div className="flex-1 max-w-sm hidden md:flex justify-center items-center">
+            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-auto object-contain" />
           </div>
         </div>
       </section>
