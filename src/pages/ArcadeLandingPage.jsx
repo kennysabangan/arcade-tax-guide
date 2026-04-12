@@ -260,10 +260,12 @@ const leadScore = computeLeadScore();
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl" style={{ flexBasis: 'auto' }}>
-              {trustBullets.map((s, i) => (
-                <StatBox key={i} label={s.label} value={s.value} />
-              ))}
+            <div className="flex justify-center">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl sm:max-w-4xl lg:max-w-6xl" style={{ flexBasis: 'auto' }}>
+                {trustBullets.map((s, i) => (
+                  <StatBox key={i} label={s.label} value={s.value} />
+                ))}
+              </div>
             </div>
           </div>
           <div className="flex-1 max-w-[200px] sm:max-w-[280px] flex justify-center items-center order-2" style={{ flexBasis: 'auto' }}>
