@@ -244,7 +244,7 @@ export function Accordion({ title, children, defaultOpen = false }) {
 export function StatBox({ icon, label, value, sublabel }) {
   return (
     <div
-      className="relative rounded-sm p-5 text-center overflow-hidden"
+      className="relative rounded-sm p-3 sm:p-4 text-center overflow-hidden"
       style={{
         background: 'rgba(255,255,255,0.025)',
         border: '1px solid rgba(219,177,85,0.2)',
@@ -256,15 +256,15 @@ export function StatBox({ icon, label, value, sublabel }) {
         style={{ background: 'linear-gradient(90deg, transparent, rgba(219,177,85,0.4), transparent)' }}
       />
       {icon && <div className="text-gold mb-2 flex justify-center">{icon}</div>}
-      <div className="text-cream-50 text-xs uppercase tracking-[0.2em] mb-2 font-nav">{label}</div>
+      <div className="text-cream-50 text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-1 sm:mb-2 font-nav leading-tight">{label}</div>
       <div
-        className="text-gold font-mono text-3xl font-black tracking-tight"
+        className="text-gold font-mono text-2xl sm:text-3xl font-black tracking-tight"
         style={{ textShadow: '0 0 16px rgba(219,177,85,0.6), 0 0 32px rgba(219,177,85,0.2)' }}
       >
         {value}
       </div>
       {sublabel && (
-        <div className="text-cyan text-xs mt-1.5 font-mono tracking-widest uppercase opacity-70">{sublabel}</div>
+        <div className="text-cyan text-[10px] sm:text-xs mt-1 font-mono tracking-widest uppercase opacity-70">{sublabel}</div>
       )}
     </div>
   )
