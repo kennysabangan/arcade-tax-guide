@@ -261,11 +261,11 @@ const leadScore = computeLeadScore();
             </div>
 
           </div>
-          <div className="flex-1 flex justify-center items-center order-2" style={{ flexBasis: 'auto', minHeight: '350px' }}>
-            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxWidth: '350px', minHeight: '300px' }} />
+          <div className="flex-1 flex justify-center items-center order-2 min-h-[350px] sm:min-h-0" style={{ flexBasis: 'auto' }}>
+            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain min-h-[300px] sm:min-h-0" style={{ maxWidth: '350px' }} />
           </div>
         </div>
-        <div className="flex justify-center px-5 py-4">
+        <div className="flex sm:justify-center px-5 py-4">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl sm:max-w-4xl lg:max-w-6xl">
             {trustBullets.map((s, i) => (
               <StatBox key={i} label={s.label} value={s.value} />
