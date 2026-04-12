@@ -262,7 +262,7 @@ const leadScore = computeLeadScore();
 
           </div>
         </div>
-        <div className="flex justify-center px-5 py-4">
+        <div className="hidden sm:flex justify-center px-5 py-4">
           <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full max-w-xs sm:max-w-sm" />
         </div>
         <div className="flex justify-center px-5 py-4" style={{ display: 'flex' }}>
