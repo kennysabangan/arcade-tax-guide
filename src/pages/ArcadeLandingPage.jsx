@@ -427,7 +427,7 @@ const leadScore = computeLeadScore();
       </div>
 
       {/* Lead Form */}
-      <section id="lead-form" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <section id="lead-form" className="py-8 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <SectionLabel>Take Action</SectionLabel>
@@ -441,7 +441,7 @@ const leadScore = computeLeadScore();
 
           <Card>
             <div
-              className="rounded-lg ring-1 ring-gold-20/30 p-6 sm:p-10"
+              className="rounded-lg ring-1 ring-gold-20/30 p-4 sm:p-10"
               style={{ boxShadow: '0 0 60px rgba(219,177,85,0.08), 0 0 120px rgba(219,177,85,0.04)' }}
             >
               {error && (
