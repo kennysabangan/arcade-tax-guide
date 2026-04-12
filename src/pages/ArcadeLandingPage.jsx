@@ -237,7 +237,7 @@ const leadScore = computeLeadScore();
               </span>
             </div>
 
-            <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-2xl sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl">
+            <h1 className="font-heading font-bold leading-[1.1] mb-4 sm:mb-6 lg:mb-8 landscape:mb-2 landscape:text-xl text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 2xl:text-5xl">
               <span className="block text-cream-warm">$25,000 Down.</span>
               <span className="block">
                 <span className="text-gold neon-gold">$200,000 Deduction.</span>
@@ -263,7 +263,7 @@ const leadScore = computeLeadScore();
           </div>
         </div>
         <div className="flex justify-center px-5 py-4" style={{ minHeight: '200px' }}>
-          <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxHeight: '100%', maxWidth: '300px' }} />
+          <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxHeight: '200px', maxWidth: '300px' }} />
         </div>
         <div className="flex justify-center px-5 py-4" style={{ display: 'flex' }}>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl sm:max-w-4xl lg:max-w-6xl">
@@ -279,13 +279,13 @@ const leadScore = computeLeadScore();
         <SectionWrapper>
           <div className="text-center mb-6">
             <SectionLabel>The Problem</SectionLabel>
-            <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-6">Why High Earners Overpay in Taxes</h2>
+            <h2 className="font-heading text-gold text-2xl sm:text-3xl font-bold mt-4 mb-6">Why High Earners Overpay in Taxes</h2>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto">
             {problems.map((p, i) => (
               <Card key={i} className="hover:bg-card-bg/80 transition-colors text-center">
-                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{p.icon}</div>
-                <h3 className="font-heading text-cream font-bold text-sm sm:text-lg">{p.title}</h3>
+                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{p.icon}</div>
+                <h3 className="font-heading text-cream font-bold text-xs sm:text-base">{p.title}</h3>
               </Card>
             ))}
           </div>
