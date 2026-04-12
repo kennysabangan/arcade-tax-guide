@@ -228,8 +228,8 @@ const leadScore = computeLeadScore();
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(26,95,69,0.12) 0%, transparent 70%)' }}
         />
-        <div className="relative z-20 flex-1 flex flex-col sm:flex-row items-center justify-center px-5 py-4 sm:py-6 landscape:py-2 gap-8 max-w-6xl mx-auto">
-          <div className="flex-1 max-w-xl order-1 sm:order-1">
+        <div className="relative z-20 flex-1 flex flex-row items-center justify-center px-5 py-4 sm:py-6 landscape:py-2 gap-8 max-w-6xl mx-auto">
+          <div className="flex-1 max-w-xl order-1">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 landscape:px-2 landscape:py-0.5 rounded-sm border border-green-700/30 bg-green-900/20 mt-4 mb-8 sm:mb-10 lg:mb-12 landscape:mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(74,222,128,0.8)' }} />
               <span className="text-green-400 text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
@@ -266,7 +266,7 @@ const leadScore = computeLeadScore();
               ))}
             </div>
           </div>
-          <div className="flex-1 max-w-[200px] sm:max-w-[280px] flex justify-center items-center order-2 sm:order-2">
+          <div className="flex-1 max-w-[200px] sm:max-w-[280px] flex justify-center items-center order-2">
             <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-auto object-contain" />
           </div>
         </div>
