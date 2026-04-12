@@ -296,7 +296,7 @@ const leadScore = computeLeadScore();
       <SectionWrapper>
         <div className="text-center mb-6">
           <SectionLabel>The Strategy</SectionLabel>
-          <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-10">How the Arcade Strategy Works</h2>
+          <h2 className="font-heading text-gold text-2xl sm:text-3xl font-bold mt-4 mb-10">How the Arcade Strategy Works</h2>
         </div>
         <div className="max-w-3xl mx-auto space-y-6">
           {steps.map((step, i) => (
@@ -324,7 +324,7 @@ const leadScore = computeLeadScore();
         <SectionWrapper>
           <div className="text-center mb-6">
             <SectionLabel>The Math</SectionLabel>
-            <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-10">Example Tax Savings Breakdown</h2>
+            <h2 className="font-heading text-gold text-2xl sm:text-3xl font-bold mt-4 mb-10">Example Tax Savings Breakdown</h2>
           </div>
           <div className="max-w-xl mx-auto">
             <Card>
@@ -381,7 +381,7 @@ const leadScore = computeLeadScore();
       <SectionWrapper>
         <div className="text-center mb-6">
           <SectionLabel>Who This Is For</SectionLabel>
-          <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-8">Best Fit Clients</h2>
+          <h2 className="font-heading text-gold text-2xl sm:text-3xl font-bold mt-4 mb-8">Best Fit Clients</h2>
         </div>
         <div className="flex flex-wrap gap-3 justify-center max-w-3xl mx-auto">
           {personas.map((p, i) => (
@@ -404,7 +404,7 @@ const leadScore = computeLeadScore();
         <SectionWrapper>
           <div className="text-center mb-6">
             <SectionLabel>FAQ</SectionLabel>
-            <h2 className="font-heading text-gold text-3xl sm:text-4xl font-bold mt-4 mb-8">Common Questions</h2>
+            <h2 className="font-heading text-gold text-2xl sm:text-3xl font-bold mt-4 mb-8">Common Questions</h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
             {faqs.map((faq, i) => (
@@ -431,7 +431,7 @@ const leadScore = computeLeadScore();
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <SectionLabel>Take Action</SectionLabel>
-            <h2 className="font-heading text-gold text-2xl sm:text-3xl lg:text-4xl font-bold mt-4 mb-3">
+            <h2 className="font-heading text-gold text-xl sm:text-2xl lg:text-3xl font-bold mt-4 mb-3">
               See If Your Tax Savings Could Exceed Your Investment
             </h2>
             <p className="text-cream-70 text-base max-w-xl mx-auto">
