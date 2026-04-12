@@ -228,8 +228,8 @@ const leadScore = computeLeadScore();
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 45%, rgba(26,95,69,0.12) 0%, transparent 70%)' }}
         />
-        <div className="relative z-20 flex-1 flex flex-row items-stretch px-5 py-4 sm:py-6 landscape:py-2 gap-8 max-w-6xl mx-auto">
-          <div className="flex-1 max-w-xl order-1 h-full flex flex-col justify-center">
+        <div className="relative z-20 flex-1 flex flex-row px-5 py-4 sm:py-6 landscape:py-2 gap-8 max-w-6xl mx-auto" style={{ display: 'flex' }}>
+          <div className="flex-1 max-w-xl order-1 flex flex-col justify-center" style={{ height: '100%' }}>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 landscape:px-2 landscape:py-0.5 rounded-sm border border-green-700/30 bg-green-900/20 mt-4 mb-8 sm:mb-10 lg:mb-12 landscape:mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" style={{ boxShadow: '0 0 6px rgba(74,222,128,0.8)' }} />
               <span className="text-green-400 text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.2em] font-nav whitespace-nowrap">
@@ -249,7 +249,7 @@ const leadScore = computeLeadScore();
               For high-income W2 earners, business owners, and Roth conversion taxpayers who need a 2026 bonus depreciation strategy that can create tax savings greater than the initial cash invested.
             </p>
 
-            <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-6 landscape:mb-6 flex-1 flex flex-col justify-center" style={{ flexBasis: 'auto' }}>
+            <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-6 landscape:mb-6" style={{ flexBasis: 'auto' }}>
               <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
                 <a
                   href="#lead-form"
@@ -260,14 +260,14 @@ const leadScore = computeLeadScore();
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl flex-shrink-0" style={{ flexBasis: 'auto' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl" style={{ flexBasis: 'auto' }}>
               {trustBullets.map((s, i) => (
                 <StatBox key={i} label={s.label} value={s.value} />
               ))}
             </div>
           </div>
-          <div className="flex-1 max-w-[200px] sm:max-w-[280px] flex justify-center items-center order-2 h-full" style={{ flexBasis: 'auto' }}>
-            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-auto object-contain" />
+          <div className="flex-1 max-w-[200px] sm:max-w-[280px] flex justify-center items-center order-2" style={{ flexBasis: 'auto', height: '100%' }}>
+            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxHeight: '450px' }} />
           </div>
         </div>
       </section>
