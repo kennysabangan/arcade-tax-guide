@@ -263,7 +263,7 @@ const leadScore = computeLeadScore();
           </div>
         </div>
         <div className="flex justify-center px-5 py-4" style={{ minHeight: '200px' }}>
-          <img src="./images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxHeight: '100%', maxWidth: '300px' }} />
+          <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxHeight: '100%', maxWidth: '300px' }} />
         </div>
         <div className="flex justify-center px-5 py-4" style={{ display: 'flex' }}>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl sm:max-w-4xl lg:max-w-6xl">
