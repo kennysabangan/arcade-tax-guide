@@ -261,8 +261,8 @@ const leadScore = computeLeadScore();
             </div>
 
           </div>
-          <div className="flex-1 max-w-[200px] sm:max-w-[280px] flex justify-center items-center order-2" style={{ flexBasis: 'auto' }}>
-            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" />
+          <div className="flex-1 flex justify-center items-center order-2" style={{ flexBasis: 'auto' }}>
+            <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full h-full object-contain" style={{ maxWidth: '350px' }} />
           </div>
         </div>
         <div className="flex justify-center px-5 py-4">
