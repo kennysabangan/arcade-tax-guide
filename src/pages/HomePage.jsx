@@ -110,7 +110,7 @@ const TICKER_DATA = [
   { label: 'Qualified Property', value: 'Listed' },
   { label: 'Depreciation Method', value: '200% DB' },
   { label: 'ADS Recovery', value: '10-Year' },
-  { label: 'Down Payment', value: '10%' },
+  { label: 'Down Payment', value: '$25k' },
 ]
 const TICKER_ITEMS = [...TICKER_DATA, ...TICKER_DATA]
 
