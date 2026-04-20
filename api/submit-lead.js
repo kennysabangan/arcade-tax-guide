@@ -56,6 +56,8 @@ export default async function handler(req, res) {
     tags = ['partner-svconsulting'];
   } else if (ref === '1000banks') {
     tags = ['partner-1000banks'];
+  } else if (ref === 'Belhomme') {
+    tags = ['partner-Belhomme'];
   }
 
   const GHL_HEADERS = {

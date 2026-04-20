@@ -475,6 +475,12 @@ function BookCall() {
     if (finalRef) {
       setReferralRef(finalRef);
       sessionStorage.setItem('arcadeRef', finalRef);
+    } else if (window.location.pathname === '/arcade') {
+      const urlRef = searchParams.get('ref');
+      if (urlRef) {
+        setReferralRef(urlRef);
+        sessionStorage.setItem('arcadeRef', urlRef);
+      }
     }
   }, [searchParams]);
 
