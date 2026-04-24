@@ -58,6 +58,8 @@ export default async function handler(req, res) {
     tags = ['partner-1000banks'];
   } else if (ref === 'Belhomme') {
     tags = ['partner-Belhomme'];
+  } else if (ref === 'cptaxsolution') {
+    tags = ['partner-cptaxsolution'];
   }
 
   const GHL_HEADERS = {
