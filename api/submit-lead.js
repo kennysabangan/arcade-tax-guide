@@ -60,6 +60,8 @@ export default async function handler(req, res) {
     tags = ['partner-Belhomme'];
   } else if (ref === 'cptaxsolution') {
     tags = ['partner-cptaxsolution'];
+  } else if (ref === 'RSVEAdvisory') {
+    tags = ['partner-RSVEAdvisory'];
   }
 
   const GHL_HEADERS = {
