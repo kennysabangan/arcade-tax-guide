@@ -62,6 +62,8 @@ export default async function handler(req, res) {
     tags = ['partner-cptaxsolution'];
   } else if (ref === 'RSVEAdvisory') {
     tags = ['partner-RSVEAdvisory'];
+  } else if (ref === 'TPStrategists') {
+    tags = ['partner-TPStrategists'];
   }
 
   const GHL_HEADERS = {
