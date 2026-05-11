@@ -64,6 +64,8 @@ export default async function handler(req, res) {
     tags = ['partner-RSVEAdvisory'];
   } else if (ref === 'TPStrategists') {
     tags = ['partner-TPStrategists'];
+  } else if (ref === 'Hancock') {
+    tags = ['partner-Hancock'];
   }
 
   const GHL_HEADERS = {
