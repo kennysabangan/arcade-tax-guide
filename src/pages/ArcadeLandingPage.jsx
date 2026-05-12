@@ -176,6 +176,9 @@ const leadScore = computeLeadScore();
           <p className="text-cream-70 mb-6">
             Your strategy review request has been submitted. We'll review your information and contact you shortly to schedule your call.
           </p>
+          <p className="text-cream text-lg mb-6">
+            You will shortly be receiving an email from info@fastfundbusiness.com with a confirmation of your submission. Please check your spam folder if you do not receive it.
+          </p>
           <p className="text-cream-70 mb-6">
             If you'd like to expedite the process, you can book a call directly:
           </p>
