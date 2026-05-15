@@ -66,6 +66,8 @@ export default async function handler(req, res) {
     tags = ['partner-TPStrategists'];
   } else if (ref === 'Hancock') {
     tags = ['partner-Hancock'];
+  } else if (ref === 'shore') {
+    tags = ['partner-shore'];
   }
 
   const GHL_HEADERS = {
