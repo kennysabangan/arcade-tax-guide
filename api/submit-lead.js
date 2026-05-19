@@ -70,6 +70,8 @@ export default async function handler(req, res) {
     tags = ['partner-shore'];
   } else if (ref === 'AETadvisors') {
     tags = ['partner-AETadvisors'];
+  } else if (ref === 'Aspire') {
+    tags = ['partner-Aspire'];
   }
 
   const GHL_HEADERS = {
