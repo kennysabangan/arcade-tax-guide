@@ -74,6 +74,8 @@ export default async function handler(req, res) {
     tags = ['partner-Aspire'];
   } else if (ref === 'RAOassoc') {
     tags = ['partner-RAOassoc'];
+  } else if (ref === 'BDTgroup') {
+    tags = ['partner-BDTgroup'];
   }
 
   const GHL_HEADERS = {
