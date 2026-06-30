@@ -50,36 +50,27 @@ export default async function handler(req, res) {
   console.log('GA clientId:', gaClientId || 'none', 'hasSecret:', !!process.env.GA_API_SECRET);
   console.log('Form submission:', { email, firstName, lastName, phone });
 
-  // Determine tags based on referral ref
+  // Determine tags based on referral ref (case-insensitive)
+  const PARTNER_TAGS = {
+    'svconsulting': 'partner-svconsulting',
+    '1000banks': 'partner-1000banks',
+    'belhomme': 'partner-Belhomme',
+    'cptaxsolution': 'partner-cptaxsolution',
+    'rsveadvisory': 'partner-RSVEAdvisory',
+    'tpstrategists': 'partner-TPStrategists',
+    'hancock': 'partner-Hancock',
+    'shore': 'partner-shore',
+    'aetadvisors': 'partner-AETadvisors',
+    'aspire': 'partner-Aspire',
+    'raoassoc': 'partner-RAOassoc',
+    'bdtgroup': 'partner-BDTgroup',
+    'savians': 'partner-Savians',
+    'mapade': 'partner-Mapade',
+  };
+  const refNorm = (ref || '').toLowerCase();
   let tags = ['arcade-tax-lead'];
-  if (ref === 'svconsulting') {
-    tags = ['partner-svconsulting'];
-  } else if (ref === '1000banks') {
-    tags = ['partner-1000banks'];
-  } else if (ref === 'Belhomme') {
-    tags = ['partner-Belhomme'];
-  } else if (ref === 'cptaxsolution') {
-    tags = ['partner-cptaxsolution'];
-  } else if (ref === 'RSVEAdvisory') {
-    tags = ['partner-RSVEAdvisory'];
-  } else if (ref === 'TPStrategists') {
-    tags = ['partner-TPStrategists'];
-  } else if (ref === 'Hancock') {
-    tags = ['partner-Hancock'];
-  } else if (ref === 'shore') {
-    tags = ['partner-shore'];
-  } else if (ref === 'AETadvisors') {
-    tags = ['partner-AETadvisors'];
-  } else if (ref === 'Aspire') {
-    tags = ['partner-Aspire'];
-  } else if (ref === 'RAOassoc') {
-    tags = ['partner-RAOassoc'];
-  } else if (ref === 'BDTgroup') {
-    tags = ['partner-BDTgroup'];
-  } else if (ref === 'Savians') {
-    tags = ['partner-Savians'];
-  } else if (ref === 'Mapade') {
-    tags = ['partner-Mapade'];
+  if (refNorm && PARTNER_TAGS[refNorm]) {
+    tags = [PARTNER_TAGS[refNorm]];
   }
 
   const GHL_HEADERS = {
