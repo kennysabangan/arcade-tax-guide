@@ -48,29 +48,37 @@ const SWISSPAY_API_URL = 'https://app.swisspay.ai/api/v1/payments'
 const SWISSPAY_PK = '' // Insert publishable key here
 
 const PRODUCTS = {
-  'strategy-review': {
-    name: 'Arcade Tax Strategy Review',
-    description: '1-on-1 strategy session with a qualified tax advisor. Includes personalized analysis of your tax situation, bonus depreciation eligibility, and projected savings.',
-    price: 250000,
-    priceDisplay: '$2,500',
+  'single-unit': {
+    name: 'Arcade Machine — 1 Unit',
+    description: 'One arcade machine acquisition package including game unit deposit and full administration.',
+    price: 2750000,
+    priceDisplay: '$27,500',
+    lineItems: [
+      { label: 'Arcade Game Deposit', amount: '$25,000' },
+      { label: 'Administration Fee', amount: '$2,500' },
+    ],
     features: [
-      'Personalized tax strategy analysis',
-      'Bonus depreciation eligibility review',
-      'Projected savings report',
-      '60-minute strategy call',
-      'Follow-up action plan',
+      'Full arcade game unit',
+      'Placement & installation coordination',
+      'Entity & compliance documentation',
+      'Revenue-share program enrollment',
+      'Ongoing advisor access',
     ],
   },
-  'documentation-fee': {
-    name: 'Documentation & Coordination Fee',
-    description: 'Full documentation package for your arcade acquisition including entity setup coordination, lender introductions, and compliance review.',
-    price: 250000,
-    priceDisplay: '$2,500',
+  'two-units': {
+    name: 'Arcade Machines — 2 Units',
+    description: 'Two arcade machine acquisition package including game unit deposits and full administration.',
+    price: 5500000,
+    priceDisplay: '$55,000',
+    lineItems: [
+      { label: 'Arcade Game Deposit (×2)', amount: '$50,000' },
+      { label: 'Administration Fee (×2)', amount: '$5,000' },
+    ],
     features: [
-      'Entity structure coordination',
-      'Lender introduction & facilitation',
-      'Compliance documentation review',
-      'Asset acquisition support',
+      'Two full arcade game units',
+      'Placement & installation coordination',
+      'Entity & compliance documentation',
+      'Revenue-share program enrollment',
       'Ongoing advisor access',
     ],
   },
@@ -485,6 +493,24 @@ export default function CheckoutPage() {
                   <p className="text-gray-400 text-sm leading-relaxed mb-5">{product.description}</p>
 
                   <div className="border-t border-gray-100 pt-4 mb-4">
+                    {product.lineItems && (
+                      <div className="mb-4 space-y-1.5">
+                        {product.lineItems.map((item, i) => (
+                          <div key={i} className="flex justify-between text-sm">
+                            <span className="text-gray-500">{item.label}</span>
+                            <span className="text-gray-700 font-['JetBrains_Mono',monospace]">{item.amount}</span>
+                          </div>
+                        ))}
+                        <div className="border-t border-gray-100 pt-2 mt-2">
+                          <div className="flex justify-between">
+                            <span className="text-gray-900 font-bold">Total</span>
+                            <span className="text-[#dbb155] font-['JetBrains_Mono',monospace] font-bold text-2xl" style={{ textShadow: '0 0 12px rgba(219,177,85,0.3)' }}>
+                              {product.priceDisplay}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     <ul className="space-y-2.5">
                       {product.features.map((f, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-sm">
@@ -497,23 +523,6 @@ export default function CheckoutPage() {
                         </li>
                       ))}
                     </ul>
-                  </div>
-
-                  <div className="border-t border-gray-100 pt-4">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-gray-400 text-sm">Subtotal</span>
-                      <span className="text-gray-900 font-['JetBrains_Mono',monospace]">{product.priceDisplay}</span>
-                    </div>
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-gray-400 text-sm">Processing fee</span>
-                      <span className="text-gray-900 font-['JetBrains_Mono',monospace]">$0</span>
-                    </div>
-                    <div className="border-t border-gray-100 pt-3 flex justify-between items-center">
-                      <span className="text-gray-900 font-bold text-lg">Total</span>
-                      <span className="text-[#dbb155] font-['JetBrains_Mono',monospace] font-bold text-2xl" style={{ textShadow: '0 0 12px rgba(219,177,85,0.3)' }}>
-                        {product.priceDisplay}
-                      </span>
-                    </div>
                   </div>
                 </div>
 
