@@ -150,7 +150,7 @@ function FormSection({ title, icon, children }) {
 export default function CheckoutPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const productId = searchParams.get('product') || 'strategy-review'
+  const productId = searchParams.get('product') || 'single-unit'
   const product = PRODUCTS[productId] || PRODUCTS['strategy-review']
 
   const [step, setStep] = useState('details')
