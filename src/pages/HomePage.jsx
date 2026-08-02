@@ -729,6 +729,22 @@ function References() {
             </div>
           ))}
         </div>
+        {/* Purchase Buttons */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/checkout?product=one-unit"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-sm text-base bg-gold text-dark font-bold hover:bg-gold/90 hover:shadow-[0_0_24px_rgba(219,177,85,0.5)] active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
+          >
+            Purchase 1 Unit — $28,650
+          </a>
+          <a
+            href="/checkout?product=two-unit"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-sm text-base border border-gold text-gold font-bold hover:bg-gold-20 hover:shadow-[0_0_20px_rgba(219,177,85,0.3)] active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
+          >
+            Purchase 2 Units — $57,300
+          </a>
+        </div>
+        <p className="text-cream-50 text-sm mt-4 text-center">Secure checkout. Instant confirmation.</p>
       </div>
     </SectionWrapper>
   )
