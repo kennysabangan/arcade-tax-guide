@@ -10,6 +10,7 @@ import RetirementPage from './pages/RetirementPage'
 import ReportPage from './pages/ReportPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 import ArcadeLandingPage from './pages/ArcadeLandingPage'
+import CheckoutPage from './pages/CheckoutPage'
 
 function ScrollToHash() {
   const location = useLocation()
@@ -63,6 +64,7 @@ export default function App() {
         </Route>
         <Route path="analytics" element={<AnalyticsPage />} />
         <Route path="arcade" element={<ArcadeLandingPage />} />
+        <Route path="checkout" element={<CheckoutPage />} />
       </Routes>
       <Analytics />
     </BrowserRouter>
