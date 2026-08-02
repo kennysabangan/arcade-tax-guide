@@ -51,7 +51,7 @@ const PRODUCTS = {
   'strategy-review': {
     name: 'Arcade Tax Strategy Review',
     description: '1-on-1 strategy session with a qualified tax advisor. Includes personalized analysis of your tax situation, bonus depreciation eligibility, and projected savings.',
-    price: 250000, // $2,500.00 in cents
+    price: 250000,
     priceDisplay: '$2,500',
     features: [
       'Personalized tax strategy analysis',
@@ -64,7 +64,7 @@ const PRODUCTS = {
   'documentation-fee': {
     name: 'Documentation & Coordination Fee',
     description: 'Full documentation package for your arcade acquisition including entity setup coordination, lender introductions, and compliance review.',
-    price: 250000, // $2,500.00
+    price: 250000,
     priceDisplay: '$2,500',
     features: [
       'Entity structure coordination',
@@ -76,29 +76,11 @@ const PRODUCTS = {
   },
 }
 
-// ─── Dark panel card (slightly lighter than body) ───
-function Panel({ children, className = '' }) {
-  return (
-    <div
-      className={`relative rounded-xl p-5 sm:p-6 ${className}`}
-      style={{
-        background: 'rgba(255,255,255,0.035)',
-        border: '1px solid rgba(219,177,85,0.12)',
-      }}
-    >
-      {/* gold corner accents */}
-      <span className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-gold/40 rounded-tl-xl" />
-      <span className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-gold/40 rounded-tr-xl" />
-      <span className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-gold/40 rounded-bl-xl" />
-      <span className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-gold/40 rounded-br-xl" />
-      {children}
-    </div>
-  )
-}
-
-// ─── Form input classes ───
+// ─── Styling ───
 const inputClasses =
-  'w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold/40 focus:outline-none transition-colors text-sm'
+  'w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-[#dbb155] focus:ring-2 focus:ring-[#dbb155]/20 focus:outline-none transition-all text-sm shadow-sm'
+
+const labelClasses = 'block text-gray-500 text-xs font-medium uppercase tracking-wider mb-1.5'
 
 function formatCardNumber(value) {
   const digits = value.replace(/\D/g, '').slice(0, 16)
@@ -111,6 +93,51 @@ function formatExpiry(value) {
   return digits
 }
 
+// ─── Header (dark brand bar) ───
+function CheckoutHeader() {
+  return (
+    <header style={{ background: '#0a0a0f' }} className="border-b border-[#dbb155]/20 py-3 px-4">
+      <div className="max-w-5xl mx-auto flex items-center justify-between">
+        <a href="/" className="flex items-center gap-2 group">
+          <span className="text-[#dbb155] text-lg leading-none" style={{ textShadow: '0 0 8px rgba(219,177,85,0.7)' }}>◈</span>
+          <span className="font-['Playfair_Display',serif] font-bold text-lg text-[#dbb155] group-hover:opacity-80 transition-opacity" style={{ textShadow: '0 0 10px rgba(219,177,85,0.4)' }}>
+            Arcade Tax Guide
+          </span>
+        </a>
+        <div className="flex items-center gap-1.5 text-white/40 text-xs font-['Inter',sans-serif]">
+          <LockIcon />
+          <span>Secure Checkout</span>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+// ─── Footer (dark brand bar) ───
+function CheckoutFooter() {
+  return (
+    <footer style={{ background: '#0a0a0f' }} className="border-t border-[#dbb155]/20 py-8 px-4">
+      <div className="max-w-3xl mx-auto text-center">
+        <p className="text-white/40 text-sm mb-1">© {new Date().getFullYear()} Arcade Tax Guide. All rights reserved.</p>
+        <p className="text-xs text-white/25">Not tax advice. Consult your CPA.</p>
+      </div>
+    </footer>
+  )
+}
+
+// ─── Form section card ───
+function FormSection({ title, icon, children }) {
+  return (
+    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <div className="flex items-center gap-2.5 mb-5">
+        {icon && <span className="text-[#dbb155]">{icon}</span>}
+        <h3 className="font-['Playfair_Display',serif] text-gray-900 font-bold text-lg">{title}</h3>
+      </div>
+      {children}
+    </div>
+  )
+}
+
 // ─── Main Component ───
 export default function CheckoutPage() {
   const [searchParams] = useSearchParams()
@@ -118,24 +145,14 @@ export default function CheckoutPage() {
   const productId = searchParams.get('product') || 'strategy-review'
   const product = PRODUCTS[productId] || PRODUCTS['strategy-review']
 
-  const [step, setStep] = useState('details') // details | processing | success | failed
+  const [step, setStep] = useState('details')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    cardNumber: '',
-    expMonth: '',
-    cvc: '',
-    holderName: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
-    country: 'US',
+    firstName: '', lastName: '', email: '', phone: '',
+    cardNumber: '', expMonth: '', cvc: '', holderName: '',
+    address: '', city: '', state: '', zip: '', country: 'US',
   })
 
   const [referralRef, setReferralRef] = useState('')
@@ -238,33 +255,27 @@ export default function CheckoutPage() {
   // ─── Success ───
   if (step === 'success') {
     return (
-      <div className="min-h-screen flex flex-col bg-body text-cream">
+      <div className="min-h-screen flex flex-col" style={{ background: '#f9f7f2' }}>
         <CheckoutHeader />
         <div className="flex-1 flex items-center justify-center px-4 py-16">
-          <Panel className="max-w-lg w-full text-center">
-            <div
-              className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6"
-              style={{ background: 'rgba(219,177,85,0.1)', border: '2px solid rgba(219,177,85,0.3)' }}
-            >
-              <span className="text-gold"><CheckIcon /></span>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 max-w-lg w-full text-center">
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ background: 'rgba(219,177,85,0.1)', border: '2px solid rgba(219,177,85,0.3)' }}>
+              <span className="text-[#dbb155]"><CheckIcon /></span>
             </div>
-            <h2 className="font-heading text-gold text-2xl font-bold mb-3">Payment Confirmed</h2>
-            <p className="text-cream-60 mb-6">
-              You'll receive a confirmation email at <span className="text-cream font-medium">{form.email || 'your email'}</span> shortly.
+            <h2 className="font-['Playfair_Display',serif] text-gray-900 text-2xl font-bold mb-3">Payment Confirmed</h2>
+            <p className="text-gray-500 mb-6">
+              You'll receive a confirmation email at <span className="text-gray-900 font-medium">{form.email || 'your email'}</span> shortly.
             </p>
-            <div className="rounded-lg p-4 mb-6 text-left" style={{ background: 'rgba(219,177,85,0.05)', border: '1px solid rgba(219,177,85,0.15)' }}>
-              <p className="text-xs uppercase tracking-wider text-cream-40 font-nav mb-1">Order</p>
-              <p className="text-cream font-medium">{product.name}</p>
-              <p className="text-gold font-mono font-bold text-xl mt-2">{product.priceDisplay}</p>
+            <div className="bg-gray-50 rounded-lg border border-gray-100 p-4 mb-6 text-left">
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-['Inter',sans-serif] mb-1">Order</p>
+              <p className="text-gray-900 font-medium">{product.name}</p>
+              <p className="text-[#dbb155] font-['JetBrains_Mono',monospace] font-bold text-xl mt-2">{product.priceDisplay}</p>
             </div>
-            <p className="text-cream-50 text-sm mb-6">Our team will reach out within 1 business day to schedule your session.</p>
-            <a
-              href="/"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm text-sm bg-gold text-dark font-bold hover:bg-gold/90 hover:shadow-[0_0_18px_rgba(219,177,85,0.55)] active:scale-[0.98] transition-all duration-200"
-            >
+            <p className="text-gray-400 text-sm mb-6">Our team will reach out within 1 business day to schedule your session.</p>
+            <a href="/" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm bg-[#dbb155] text-[#0a0a0f] font-bold hover:brightness-110 hover:shadow-[0_0_20px_rgba(219,177,85,0.4)] active:scale-[0.98] transition-all duration-200">
               Back to Home <ArrowIcon />
             </a>
-          </Panel>
+          </div>
         </div>
         <CheckoutFooter />
       </div>
@@ -274,25 +285,22 @@ export default function CheckoutPage() {
   // ─── Failed ───
   if (step === 'failed') {
     return (
-      <div className="min-h-screen flex flex-col bg-body text-cream">
+      <div className="min-h-screen flex flex-col" style={{ background: '#f9f7f2' }}>
         <CheckoutHeader />
         <div className="flex-1 flex items-center justify-center px-4 py-16">
-          <Panel className="max-w-lg w-full text-center">
-            <div
-              className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6"
-              style={{ background: 'rgba(239,68,68,0.08)', border: '2px solid rgba(239,68,68,0.2)' }}
-            >
-              <span className="text-red-400 text-2xl">✕</span>
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 max-w-lg w-full text-center">
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ background: 'rgba(239,68,68,0.08)', border: '2px solid rgba(239,68,68,0.2)' }}>
+              <span className="text-red-500 text-2xl">✕</span>
             </div>
-            <h2 className="font-heading text-cream text-2xl font-bold mb-3">Payment Declined</h2>
-            <p className="text-cream-60 mb-6">{error || 'Your card was declined. Please try a different payment method.'}</p>
+            <h2 className="font-['Playfair_Display',serif] text-gray-900 text-2xl font-bold mb-3">Payment Declined</h2>
+            <p className="text-gray-500 mb-6">{error || 'Your card was declined. Please try a different payment method.'}</p>
             <button
               onClick={() => { setStep('details'); setError('') }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-sm text-sm border border-gold text-gold font-semibold hover:bg-gold-20 hover:shadow-[0_0_14px_rgba(219,177,85,0.3)] transition-all duration-200 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm border border-[#dbb155] text-[#dbb155] font-semibold hover:bg-[#dbb155]/5 transition-all duration-200 cursor-pointer"
             >
               Try Again
             </button>
-          </Panel>
+          </div>
         </div>
         <CheckoutFooter />
       </div>
@@ -302,19 +310,16 @@ export default function CheckoutPage() {
   // ─── Processing ───
   if (step === 'processing') {
     return (
-      <div className="min-h-screen flex flex-col bg-body text-cream">
+      <div className="min-h-screen flex flex-col" style={{ background: '#f9f7f2' }}>
         <CheckoutHeader />
         <div className="flex-1 flex items-center justify-center px-4 py-16">
-          <Panel className="max-w-lg w-full text-center">
-            <div
-              className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6"
-              style={{ background: 'rgba(219,177,85,0.08)', border: '2px solid rgba(219,177,85,0.2)' }}
-            >
-              <div className="w-6 h-6 border-2 border-gold border-t-transparent rounded-full animate-spin" />
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 max-w-lg w-full text-center">
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ background: 'rgba(219,177,85,0.08)', border: '2px solid rgba(219,177,85,0.2)' }}>
+              <div className="w-6 h-6 border-2 border-[#dbb155] border-t-transparent rounded-full animate-spin" />
             </div>
-            <h2 className="font-heading text-cream text-xl font-bold mb-2">Processing Payment</h2>
-            <p className="text-cream-40 text-sm">Please don't close this window...</p>
-          </Panel>
+            <h2 className="font-['Playfair_Display',serif] text-gray-900 text-xl font-bold mb-2">Processing Payment</h2>
+            <p className="text-gray-400 text-sm">Please don't close this window...</p>
+          </div>
         </div>
         <CheckoutFooter />
       </div>
@@ -323,66 +328,59 @@ export default function CheckoutPage() {
 
   // ─── Checkout form ───
   return (
-    <div className="min-h-screen flex flex-col bg-body text-cream">
+    <div className="min-h-screen flex flex-col" style={{ background: '#f9f7f2', color: '#1a1a1a' }}>
       <CheckoutHeader />
 
       <div className="flex-1">
-        <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="max-w-5xl mx-auto px-4 py-10 sm:py-14">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
 
             {/* Left — Form (3 cols) */}
             <div className="lg:col-span-3">
               <div className="mb-8">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm border border-gold-20 bg-gold-20/10">
-                  <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] font-nav text-gold">Secure Payment</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#dbb155]/20 bg-[#dbb155]/5">
+                  <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] font-['Inter',sans-serif] text-[#dbb155]">Secure Payment</span>
                 </span>
-                <h1 className="font-heading text-cream text-2xl sm:text-3xl font-bold mt-4 mb-2">Complete Your Purchase</h1>
-                <p className="text-cream-50 text-sm">All fields are required. Your payment is encrypted and secure.</p>
+                <h1 className="font-['Playfair_Display',serif] text-gray-900 text-2xl sm:text-3xl font-bold mt-4 mb-2">Complete Your Purchase</h1>
+                <p className="text-gray-400 text-sm">All fields are required. Your payment is encrypted and secure.</p>
               </div>
 
               {error && (
-                <div className="mb-6 p-4 rounded-lg text-sm" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', color: '#fca5a5' }}>
+                <div className="mb-6 p-4 rounded-lg text-sm bg-red-50 border border-red-200 text-red-700">
                   {error}
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Contact */}
-                <Panel>
-                  <h3 className="font-heading text-cream font-bold text-lg mb-5">Contact Information</h3>
+                <FormSection title="Contact Information">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">First Name</label>
+                      <label className={labelClasses}>First Name</label>
                       <input name="firstName" required value={form.firstName} onChange={handleChange} placeholder="John" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Last Name</label>
+                      <label className={labelClasses}>Last Name</label>
                       <input name="lastName" required value={form.lastName} onChange={handleChange} placeholder="Smith" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Email</label>
+                      <label className={labelClasses}>Email</label>
                       <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder="john@example.com" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Phone</label>
+                      <label className={labelClasses}>Phone</label>
                       <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder="(555) 123-4567" className={inputClasses} />
                     </div>
                   </div>
-                </Panel>
+                </FormSection>
 
-                {/* Card details */}
-                <Panel>
-                  <div className="flex items-center gap-2 mb-5">
-                    <span className="text-gold"><CardIcon /></span>
-                    <h3 className="font-heading text-cream font-bold text-lg">Payment Details</h3>
-                  </div>
+                <FormSection title="Payment Details" icon={<CardIcon />}>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Cardholder Name</label>
+                      <label className={labelClasses}>Cardholder Name</label>
                       <input name="holderName" required value={form.holderName} onChange={handleChange} placeholder="John Smith" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Card Number</label>
+                      <label className={labelClasses}>Card Number</label>
                       <div className="relative">
                         <input
                           name="cardNumber"
@@ -391,7 +389,7 @@ export default function CheckoutPage() {
                           onChange={handleChange}
                           placeholder="4242 4242 4242 4242"
                           maxLength={19}
-                          className={inputClasses + ' font-mono tracking-wider pr-12'}
+                          className={inputClasses + ' font-["JetBrains_Mono",monospace] tracking-wider pr-12'}
                         />
                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300">
                           <CardIcon />
@@ -400,42 +398,40 @@ export default function CheckoutPage() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Expiry</label>
-                        <input name="expMonth" required value={form.expMonth} onChange={handleChange} placeholder="MM / YY" maxLength={7} className={inputClasses + ' font-mono'} />
+                        <label className={labelClasses}>Expiry</label>
+                        <input name="expMonth" required value={form.expMonth} onChange={handleChange} placeholder="MM / YY" maxLength={7} className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
                       </div>
                       <div>
-                        <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">CVC</label>
-                        <input name="cvc" required value={form.cvc} onChange={handleChange} placeholder="123" maxLength={4} className={inputClasses + ' font-mono'} />
+                        <label className={labelClasses}>CVC</label>
+                        <input name="cvc" required value={form.cvc} onChange={handleChange} placeholder="123" maxLength={4} className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
                       </div>
                     </div>
                   </div>
-                </Panel>
+                </FormSection>
 
-                {/* Billing */}
-                <Panel>
-                  <h3 className="font-heading text-cream font-bold text-lg mb-5">Billing Address</h3>
+                <FormSection title="Billing Address">
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Street Address</label>
+                      <label className={labelClasses}>Street Address</label>
                       <input name="address" required value={form.address} onChange={handleChange} placeholder="123 Main St" className={inputClasses} />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">City</label>
+                        <label className={labelClasses}>City</label>
                         <input name="city" required value={form.city} onChange={handleChange} placeholder="New York" className={inputClasses} />
                       </div>
                       <div>
-                        <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">State</label>
+                        <label className={labelClasses}>State</label>
                         <input name="state" required value={form.state} onChange={handleChange} placeholder="NY" className={inputClasses} />
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">ZIP Code</label>
+                        <label className={labelClasses}>ZIP Code</label>
                         <input name="zip" required value={form.zip} onChange={handleChange} placeholder="10001" className={inputClasses} />
                       </div>
                       <div>
-                        <label className="block text-gold text-xs font-nav uppercase tracking-wider mb-1.5">Country</label>
+                        <label className={labelClasses}>Country</label>
                         <select name="country" value={form.country} onChange={handleChange} className={inputClasses + ' bg-white'}>
                           <option value="US">United States</option>
                           <option value="CA">Canada</option>
@@ -447,17 +443,17 @@ export default function CheckoutPage() {
                       </div>
                     </div>
                   </div>
-                </Panel>
+                </FormSection>
 
                 {/* Submit */}
                 <button
                   type="submit"
                   disabled={loading || !SWISSPAY_PK}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-sm text-lg bg-gold text-dark font-bold hover:bg-gold/90 hover:shadow-[0_0_24px_rgba(219,177,85,0.5)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg text-lg bg-[#dbb155] text-[#0a0a0f] font-bold hover:brightness-110 hover:shadow-[0_0_24px_rgba(219,177,85,0.4)] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed shadow-md"
                 >
                   {loading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-dark border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-[#0a0a0f] border-t-transparent rounded-full animate-spin" />
                       Processing...
                     </>
                   ) : (
@@ -468,11 +464,11 @@ export default function CheckoutPage() {
                   )}
                 </button>
 
-                <div className="flex items-center justify-center gap-4 text-cream-40 text-xs pt-1">
+                <div className="flex items-center justify-center gap-4 text-gray-400 text-xs pt-1">
                   <span className="flex items-center gap-1"><ShieldIcon /> 256-bit SSL</span>
-                  <span>•</span>
+                  <span>·</span>
                   <span>PCI Compliant</span>
-                  <span>•</span>
+                  <span>·</span>
                   <span>Powered by SwissPay</span>
                 </div>
               </form>
@@ -481,48 +477,45 @@ export default function CheckoutPage() {
             {/* Right — Order summary sidebar */}
             <div className="lg:col-span-2">
               <div className="lg:sticky lg:top-8">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-sm border border-gold-20 bg-gold-20/10">
-                  <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] font-nav text-gold">Order Summary</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#dbb155]/20 bg-[#dbb155]/5">
+                  <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] font-['Inter',sans-serif] text-[#dbb155]">Order Summary</span>
                 </span>
-                <Panel className="mt-4">
-                  <h3 className="font-heading text-cream font-bold text-lg mb-2">{product.name}</h3>
-                  <p className="text-cream-60 text-sm leading-relaxed mb-5">{product.description}</p>
+                <div className="mt-4 bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+                  <h3 className="font-['Playfair_Display',serif] text-gray-900 font-bold text-lg mb-2">{product.name}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-5">{product.description}</p>
 
-                  <div className="border-t border-card-border pt-4 mb-4">
+                  <div className="border-t border-gray-100 pt-4 mb-4">
                     <ul className="space-y-2.5">
                       {product.features.map((f, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm">
-                          <span className="text-gold mt-0.5 flex-shrink-0">
+                        <li key={i} className="flex items-start gap-2.5 text-sm">
+                          <span className="text-[#dbb155] mt-0.5 flex-shrink-0">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                           </span>
-                          <span className="text-cream-70">{f}</span>
+                          <span className="text-gray-600">{f}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="border-t border-card-border pt-4">
+                  <div className="border-t border-gray-100 pt-4">
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-cream-60 text-sm">Subtotal</span>
-                      <span className="text-cream font-mono">{product.priceDisplay}</span>
+                      <span className="text-gray-400 text-sm">Subtotal</span>
+                      <span className="text-gray-900 font-['JetBrains_Mono',monospace]">{product.priceDisplay}</span>
                     </div>
                     <div className="flex justify-between items-center mb-3">
-                      <span className="text-cream-60 text-sm">Processing fee</span>
-                      <span className="text-cream font-mono">$0</span>
+                      <span className="text-gray-400 text-sm">Processing fee</span>
+                      <span className="text-gray-900 font-['JetBrains_Mono',monospace]">$0</span>
                     </div>
-                    <div className="border-t border-card-border pt-3 flex justify-between items-center">
-                      <span className="text-cream font-bold text-lg">Total</span>
-                      <span
-                        className="text-gold font-mono font-bold text-2xl"
-                        style={{ textShadow: '0 0 12px rgba(219,177,85,0.5)' }}
-                      >
+                    <div className="border-t border-gray-100 pt-3 flex justify-between items-center">
+                      <span className="text-gray-900 font-bold text-lg">Total</span>
+                      <span className="text-[#dbb155] font-['JetBrains_Mono',monospace] font-bold text-2xl" style={{ textShadow: '0 0 12px rgba(219,177,85,0.3)' }}>
                         {product.priceDisplay}
                       </span>
                     </div>
                   </div>
-                </Panel>
+                </div>
 
                 {/* Trust signals */}
                 <div className="mt-5 space-y-3">
@@ -531,14 +524,14 @@ export default function CheckoutPage() {
                     { icon: <span className="text-sm">📞</span>, text: 'Support: info@fastfundbusiness.com' },
                     { icon: <span className="text-sm">↩️</span>, text: 'Full refund within 7 days' },
                   ].map((t, i) => (
-                    <div key={i} className="flex items-center gap-2.5 text-cream-50 text-xs font-nav px-1">
-                      <span className="text-gold/60 flex-shrink-0">{t.icon}</span>
+                    <div key={i} className="flex items-center gap-2.5 text-gray-400 text-xs font-['Inter',sans-serif] px-1">
+                      <span className="text-[#dbb155]/50 flex-shrink-0">{t.icon}</span>
                       <span>{t.text}</span>
                     </div>
                   ))}
                 </div>
 
-                <p className="mt-5 text-cream-40 text-[11px] leading-relaxed px-1">
+                <p className="mt-5 text-gray-300 text-[11px] leading-relaxed px-1">
                   By completing this purchase you agree to the terms of service. Tax strategy consultations are for informational purposes and do not constitute tax advice. Consult your CPA.
                 </p>
               </div>
@@ -550,40 +543,5 @@ export default function CheckoutPage() {
 
       <CheckoutFooter />
     </div>
-  )
-}
-
-// ─── Branded header ───
-function CheckoutHeader() {
-  return (
-    <div className="bg-body border-b border-gold-20 py-3 px-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2 group">
-          <span className="text-gold text-lg leading-none" style={{ textShadow: '0 0 8px rgba(219,177,85,0.7)' }}>◈</span>
-          <span
-            className="font-heading font-bold text-lg text-gold transition-opacity group-hover:opacity-80"
-            style={{ textShadow: '0 0 10px rgba(219,177,85,0.4)' }}
-          >
-            Arcade Tax Guide
-          </span>
-        </a>
-        <div className="flex items-center gap-1.5 text-cream-50 text-xs font-nav">
-          <LockIcon />
-          <span>Secure Checkout</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// ─── Branded footer ───
-function CheckoutFooter() {
-  return (
-    <footer className="bg-body border-t border-gold-20 py-8 px-4">
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="text-cream-50 text-sm mb-1">© {new Date().getFullYear()} Arcade Tax Guide. All rights reserved.</p>
-        <p className="text-xs text-cream-40">Not tax advice. Consult your CPA.</p>
-      </div>
-    </footer>
   )
 }
