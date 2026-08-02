@@ -48,14 +48,15 @@ const SWISSPAY_API_URL = 'https://app.swisspay.ai/api/v1/payments'
 const SWISSPAY_PK = '' // Insert publishable key here
 
 const PRODUCTS = {
-  'single-unit': {
+  'one-unit': {
     name: 'Arcade Machine — 1 Unit',
-    description: 'One arcade machine acquisition package including game unit deposit and full administration.',
-    price: 2750000,
-    priceDisplay: '$27,500',
+    description: 'One arcade machine acquisition package including game unit deposit, administration, and convenience fee.',
+    price: 2865000,
+    priceDisplay: '$28,650',
     lineItems: [
       { label: 'Arcade Game Deposit', amount: '$25,000' },
       { label: 'Administration Fee', amount: '$2,500' },
+      { label: 'Convenience Fee', amount: '$1,150' },
     ],
     features: [
       'Full arcade game unit',
@@ -65,14 +66,15 @@ const PRODUCTS = {
       'Ongoing advisor access',
     ],
   },
-  'two-units': {
+  'two-unit': {
     name: 'Arcade Machines — 2 Units',
-    description: 'Two arcade machine acquisition package including game unit deposits and full administration.',
-    price: 5500000,
-    priceDisplay: '$55,000',
+    description: 'Two arcade machine acquisition package including game unit deposits, administration, and convenience fees.',
+    price: 5730000,
+    priceDisplay: '$57,300',
     lineItems: [
       { label: 'Arcade Game Deposit (×2)', amount: '$50,000' },
       { label: 'Administration Fee (×2)', amount: '$5,000' },
+      { label: 'Convenience Fee (×2)', amount: '$2,300' },
     ],
     features: [
       'Two full arcade game units',
@@ -150,7 +152,7 @@ function FormSection({ title, icon, children }) {
 export default function CheckoutPage() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const productId = searchParams.get('product') || 'single-unit'
+  const productId = searchParams.get('product') || 'one-unit'
   const product = PRODUCTS[productId] || PRODUCTS['strategy-review']
 
   const [step, setStep] = useState('details')
