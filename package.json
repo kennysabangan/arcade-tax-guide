@@ -12,13 +12,10 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@react-pdf/renderer": "^4.3.2",
-    "@stripe/react-stripe-js": "^6.8.0",
-    "@stripe/stripe-js": "^9.12.1",
     "@vercel/analytics": "^2.0.1",
     "jspdf": "^4.2.1",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "stripe": "^22.4.0"
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

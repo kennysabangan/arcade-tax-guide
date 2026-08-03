@@ -18,6 +18,14 @@ function CheckIcon() {
   )
 }
 
+function CardIcon() {
+  return (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+    </svg>
+  )
+}
+
 function ArrowIcon() {
   return (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,6 +82,23 @@ const PRODUCTS = {
   },
 }
 
+// ─── Styling ───
+const inputClasses =
+  'w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-[#dbb155] focus:ring-2 focus:ring-[#dbb155]/20 focus:outline-none transition-all text-sm shadow-sm'
+
+const labelClasses = 'block text-gray-500 text-xs font-medium uppercase tracking-wider mb-1.5'
+
+function formatCardNumber(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 16)
+  return digits.replace(/(\d{4})(?=\d)/g, '$1 ')
+}
+
+function formatExpiry(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 4)
+  if (digits.length >= 3) return digits.slice(0, 2) + ' / ' + digits.slice(2)
+  return digits
+}
+
 // ─── Header (dark brand bar) ───
 function CheckoutHeader() {
   return (
@@ -106,6 +131,19 @@ function CheckoutFooter() {
   )
 }
 
+// ─── Form section card ───
+function FormSection({ title, icon, children }) {
+  return (
+    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <div className="flex items-center gap-2.5 mb-5">
+        {icon && <span className="text-[#dbb155]">{icon}</span>}
+        <h3 className="font-['Playfair_Display',serif] text-gray-900 font-bold text-lg">{title}</h3>
+      </div>
+      {children}
+    </div>
+  )
+}
+
 // ─── Main Component ───
 export default function CheckoutPage() {
   const [searchParams] = useSearchParams()
@@ -119,6 +157,8 @@ export default function CheckoutPage() {
 
   const [form, setForm] = useState({
     firstName: '', lastName: '', email: '', phone: '',
+    cardNumber: '', expMonth: '', cvc: '', holderName: '',
+    address: '', city: '', state: '', zip: '', country: 'US',
   })
 
   const [referralRef, setReferralRef] = useState('')
@@ -133,32 +173,67 @@ export default function CheckoutPage() {
   }, [searchParams])
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    let { name, value } = e.target
+    if (name === 'cardNumber') value = formatCardNumber(value)
+    if (name === 'expMonth') value = formatExpiry(value)
     setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  function parseExpiry() {
+    const raw = form.expMonth.replace(/\s/g, '')
+    const parts = raw.split('/')
+    const month = parseInt(parts[0], 10)
+    const year = parts[1] ? 2000 + parseInt(parts[1], 10) : 0
+    return { month, year }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
     setLoading(true)
+    setStep('processing')
 
     try {
+      const { month, year } = parseExpiry()
       const res = await fetch('/api/create-payment', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': crypto.randomUUID(),
+        },
         body: JSON.stringify({
           productId,
+          firstName: form.firstName,
+          lastName: form.lastName,
           email: form.email,
+          phone: form.phone,
           referral: referralRef,
+          cardNumber: form.cardNumber,
+          expMonth: month,
+          expYear: year,
+          cvc: form.cvc,
+          holderName: form.holderName,
+          address: form.address,
+          city: form.city,
+          state: form.state,
+          zip: form.zip,
+          country: form.country,
         }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Payment failed')
-      if (data.url) {
-        window.location.href = data.url
+      if (data.error) throw new Error(data.error)
+      if (data.requiresAction && data.redirectUrl) {
+        // 3DS challenge — redirect shopper
+        window.location.href = data.redirectUrl
+        return
+      }
+      if (data.success) {
+        setStep('success')
       }
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.')
+      setStep('details')
+    } finally {
       setLoading(false)
     }
   }
@@ -168,7 +243,7 @@ export default function CheckoutPage() {
     if (status === 'success') setStep('success')
     if (status === 'failed') {
       setStep('failed')
-      setError('Payment was declined or cancelled. Please try again.')
+      setError('Payment was declined. Please try a different payment method.')
     }
   }, [searchParams])
 
@@ -183,7 +258,9 @@ export default function CheckoutPage() {
               <span className="text-[#dbb155]"><CheckIcon /></span>
             </div>
             <h2 className="font-['Playfair_Display',serif] text-gray-900 text-2xl font-bold mb-3">Payment Confirmed</h2>
-            <p className="text-gray-500 mb-6">You'll receive a confirmation email shortly.</p>
+            <p className="text-gray-500 mb-6">
+              You'll receive a confirmation email at <span className="text-gray-900 font-medium">{form.email || 'your email'}</span> shortly.
+            </p>
             <div className="bg-gray-50 rounded-lg border border-gray-100 p-4 mb-6 text-left">
               <p className="text-xs uppercase tracking-wider text-gray-400 font-['Inter',sans-serif] mb-1">Order</p>
               <p className="text-gray-900 font-medium">{product.name}</p>
@@ -211,13 +288,32 @@ export default function CheckoutPage() {
               <span className="text-red-500 text-2xl">✕</span>
             </div>
             <h2 className="font-['Playfair_Display',serif] text-gray-900 text-2xl font-bold mb-3">Payment Declined</h2>
-            <p className="text-gray-500 mb-6">{error || 'Your payment was declined. Please try a different payment method.'}</p>
+            <p className="text-gray-500 mb-6">{error || 'Your card was declined. Please try a different payment method.'}</p>
             <button
               onClick={() => { setStep('details'); setError('') }}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm border border-[#dbb155] text-[#dbb155] font-semibold hover:bg-[#dbb155]/5 transition-all duration-200 cursor-pointer"
             >
               Try Again
             </button>
+          </div>
+        </div>
+        <CheckoutFooter />
+      </div>
+    )
+  }
+
+  // ─── Processing ───
+  if (step === 'processing') {
+    return (
+      <div className="min-h-screen flex flex-col" style={{ background: '#f9f7f2' }}>
+        <CheckoutHeader />
+        <div className="flex-1 flex items-center justify-center px-4 py-16">
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 max-w-lg w-full text-center">
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ background: 'rgba(219,177,85,0.08)', border: '2px solid rgba(219,177,85,0.2)' }}>
+              <div className="w-6 h-6 border-2 border-[#dbb155] border-t-transparent rounded-full animate-spin" />
+            </div>
+            <h2 className="font-['Playfair_Display',serif] text-gray-900 text-xl font-bold mb-2">Processing Payment</h2>
+            <p className="text-gray-400 text-sm">Please don't close this window...</p>
           </div>
         </div>
         <CheckoutFooter />
@@ -241,7 +337,7 @@ export default function CheckoutPage() {
                   <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] font-['Inter',sans-serif] text-[#dbb155]">Secure Payment</span>
                 </span>
                 <h1 className="font-['Playfair_Display',serif] text-gray-900 text-2xl sm:text-3xl font-bold mt-4 mb-2">Complete Your Purchase</h1>
-                <p className="text-gray-400 text-sm">Enter your details below. You'll be redirected to our secure payment page.</p>
+                <p className="text-gray-400 text-sm">All fields are required. Your payment is encrypted and secure.</p>
               </div>
 
               {error && (
@@ -251,31 +347,98 @@ export default function CheckoutPage() {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
-                  <h3 className="font-['Playfair_Display',serif] text-gray-900 font-bold text-lg mb-5">Contact Information</h3>
+                <FormSection title="Contact Information">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-gray-500 text-xs font-medium uppercase tracking-wider mb-1.5">First Name</label>
-                      <input name="firstName" required value={form.firstName} onChange={handleChange} placeholder="John"
-                        className="w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-[#dbb155] focus:ring-2 focus:ring-[#dbb155]/20 focus:outline-none transition-all text-sm shadow-sm" />
+                      <label className={labelClasses}>First Name</label>
+                      <input name="firstName" required value={form.firstName} onChange={handleChange} placeholder="John" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gray-500 text-xs font-medium uppercase tracking-wider mb-1.5">Last Name</label>
-                      <input name="lastName" required value={form.lastName} onChange={handleChange} placeholder="Smith"
-                        className="w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-[#dbb155] focus:ring-2 focus:ring-[#dbb155]/20 focus:outline-none transition-all text-sm shadow-sm" />
+                      <label className={labelClasses}>Last Name</label>
+                      <input name="lastName" required value={form.lastName} onChange={handleChange} placeholder="Smith" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gray-500 text-xs font-medium uppercase tracking-wider mb-1.5">Email</label>
-                      <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder="john@example.com"
-                        className="w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-[#dbb155] focus:ring-2 focus:ring-[#dbb155]/20 focus:outline-none transition-all text-sm shadow-sm" />
+                      <label className={labelClasses}>Email</label>
+                      <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder="john@example.com" className={inputClasses} />
                     </div>
                     <div>
-                      <label className="block text-gray-500 text-xs font-medium uppercase tracking-wider mb-1.5">Phone</label>
-                      <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder="(555) 123-4567"
-                        className="w-full rounded-md px-4 py-3 text-gray-900 placeholder-gray-400 bg-white border border-gray-200 focus:border-[#dbb155] focus:ring-2 focus:ring-[#dbb155]/20 focus:outline-none transition-all text-sm shadow-sm" />
+                      <label className={labelClasses}>Phone</label>
+                      <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder="(555) 123-4567" className={inputClasses} />
                     </div>
                   </div>
-                </div>
+                </FormSection>
+
+                <FormSection title="Payment Details" icon={<CardIcon />}>
+                  <div className="space-y-4">
+                    <div>
+                      <label className={labelClasses}>Cardholder Name</label>
+                      <input name="holderName" required value={form.holderName} onChange={handleChange} placeholder="John Smith" className={inputClasses} />
+                    </div>
+                    <div>
+                      <label className={labelClasses}>Card Number</label>
+                      <div className="relative">
+                        <input
+                          name="cardNumber"
+                          required
+                          value={form.cardNumber}
+                          onChange={handleChange}
+                          placeholder="4242 4242 4242 4242"
+                          maxLength={19}
+                          className={inputClasses + ' font-["JetBrains_Mono",monospace] tracking-wider pr-12'}
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300">
+                          <CardIcon />
+                        </span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className={labelClasses}>Expiry</label>
+                        <input name="expMonth" required value={form.expMonth} onChange={handleChange} placeholder="MM / YY" maxLength={7} className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
+                      </div>
+                      <div>
+                        <label className={labelClasses}>CVC</label>
+                        <input name="cvc" required value={form.cvc} onChange={handleChange} placeholder="123" maxLength={4} className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
+                      </div>
+                    </div>
+                  </div>
+                </FormSection>
+
+                <FormSection title="Billing Address">
+                  <div className="space-y-4">
+                    <div>
+                      <label className={labelClasses}>Street Address</label>
+                      <input name="address" required value={form.address} onChange={handleChange} placeholder="123 Main St" className={inputClasses} />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className={labelClasses}>City</label>
+                        <input name="city" required value={form.city} onChange={handleChange} placeholder="New York" className={inputClasses} />
+                      </div>
+                      <div>
+                        <label className={labelClasses}>State</label>
+                        <input name="state" required value={form.state} onChange={handleChange} placeholder="NY" className={inputClasses} />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className={labelClasses}>ZIP Code</label>
+                        <input name="zip" required value={form.zip} onChange={handleChange} placeholder="10001" className={inputClasses} />
+                      </div>
+                      <div>
+                        <label className={labelClasses}>Country</label>
+                        <select name="country" value={form.country} onChange={handleChange} className={inputClasses + ' bg-white'}>
+                          <option value="US">United States</option>
+                          <option value="CA">Canada</option>
+                          <option value="GB">United Kingdom</option>
+                          <option value="CH">Switzerland</option>
+                          <option value="DE">Germany</option>
+                          <option value="AU">Australia</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </FormSection>
 
                 {/* Submit */}
                 <button
@@ -286,7 +449,7 @@ export default function CheckoutPage() {
                   {loading ? (
                     <>
                       <div className="w-5 h-5 border-2 border-[#0a0a0f] border-t-transparent rounded-full animate-spin" />
-                      Redirecting to payment...
+                      Processing...
                     </>
                   ) : (
                     <>
