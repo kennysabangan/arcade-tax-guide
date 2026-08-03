@@ -147,7 +147,7 @@ export default function TermsPage() {
               </ul>
               <p className="mt-3">
                 To request a cancellation within the eligible window, contact us at{' '}
-                <a href="mailto:hello@scalesolving.com" className="text-[#dbb155] hover:underline">hello@scalesolving.com</a>.
+                <a href="mailto:info@fastfundbusiness.com" className="text-[#dbb155] hover:underline">info@fastfundbusiness.com</a>.
                 Refund requests must be submitted in writing via email.
               </p>
             </Section>
@@ -226,7 +226,7 @@ export default function TermsPage() {
               </p>
               <p className="mt-2">
                 Email:{' '}
-                <a href="mailto:hello@scalesolving.com" className="text-[#dbb155] hover:underline">hello@scalesolving.com</a>
+                <a href="mailto:info@fastfundbusiness.com" className="text-[#dbb155] hover:underline">info@fastfundbusiness.com</a>
               </p>
             </Section>
           </div>

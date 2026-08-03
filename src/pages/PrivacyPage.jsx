@@ -201,7 +201,7 @@ export default function PrivacyPage() {
               </ul>
               <p className="mt-3">
                 To exercise any of these rights, contact us at{' '}
-                <a href="mailto:hello@scalesolving.com" className="text-[#dbb155] hover:underline">hello@scalesolving.com</a>.
+                <a href="mailto:info@fastfundbusiness.com" className="text-[#dbb155] hover:underline">info@fastfundbusiness.com</a>.
                 We will respond to your request within 30 days.
               </p>
             </Section>
@@ -274,7 +274,7 @@ export default function PrivacyPage() {
               </p>
               <p className="mt-2">
                 Email:{' '}
-                <a href="mailto:hello@scalesolving.com" className="text-[#dbb155] hover:underline">hello@scalesolving.com</a>
+                <a href="mailto:info@fastfundbusiness.com" className="text-[#dbb155] hover:underline">info@fastfundbusiness.com</a>
               </p>
             </Section>
           </div>
