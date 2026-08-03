@@ -113,6 +113,8 @@ export function Footer() {
             <Link to="/financials" className="hover:text-gold transition-colors">Financials</Link>
             <Link to="/retirement" className="hover:text-gold transition-colors">Retirement</Link>
             <a href="/#book-a-call" className="hover:text-gold transition-colors">Book a Call</a>
+            <Link to="/terms-of-service" className="hover:text-gold transition-colors">Terms of Service</Link>
+            <Link to="/privacy-policy" className="hover:text-gold transition-colors">Privacy Policy</Link>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gold-20 text-center text-cream-40 text-xs">
