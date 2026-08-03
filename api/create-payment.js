@@ -9,11 +9,11 @@ export default async function handler(req, res) {
   const SWISSPAY_KEY = process.env.SWISSPAY_SECRET_KEY;
   if (!SWISSPAY_KEY) return res.status(500).json({ error: 'SwissPay key not configured' });
 
-  const { productId, firstName, lastName, email, phone, referral, cardNumber, expMonth, expYear, cvc, holderName, address, city, state, zip, country } = req.body;
+  const { productId, firstName, lastName, email, phone, referral, cardNumber, expMonth, expYear, cvc, holderName } = req.body;
 
   const PRODUCTS = {
-    'one-unit': { amount: 2865000, name: 'Arcade Machine — 1 Unit' },
-    'two-unit': { amount: 5730000, name: 'Arcade Machines — 2 Units' },
+    'one-unit': { amount: 2865000, name: 'Arcade Tax Guide — 1 Unit' },
+    'two-unit': { amount: 5730000, name: 'Arcade Tax Guide — 2 Units' },
   };
 
   const product = PRODUCTS[productId];
@@ -23,19 +23,6 @@ export default async function handler(req, res) {
   const cleanCvc = String(cvc).trim();
   const cleanMonth = parseInt(expMonth, 10);
   const cleanYear = parseInt(expYear, 10);
-
-  // Detailed logging
-  console.log('PAYMENT REQUEST:', JSON.stringify({
-    productId,
-    amount: product.amount,
-    card_last4: cleanCard.slice(-4),
-    card_length: cleanCard.length,
-    exp_month: cleanMonth,
-    exp_year: cleanYear,
-    cvc: cleanCvc,
-    cvc_length: cleanCvc.length,
-    holderName,
-  }));
 
   const origin = req.headers.origin || `https://${req.headers.host}`;
   const idempotencyKey = req.headers['idempotency-key'] || crypto.randomUUID();
@@ -47,11 +34,7 @@ export default async function handler(req, res) {
     success_url: `${origin}/checkout?product=${productId}&status=success`,
     failure_url: `${origin}/checkout?product=${productId}&status=failed`,
     customer: email ? { email, name: `${firstName} ${lastName}` } : undefined,
-    metadata: {
-      product_id: productId,
-      referral: referral || '',
-      phone: phone || '',
-    },
+    metadata: { product_id: productId, referral: referral || '', phone: phone || '' },
     payment_method: {
       type: 'card',
       number: cleanCard,
@@ -61,8 +44,6 @@ export default async function handler(req, res) {
       holder_name: holderName || `${firstName} ${lastName}`,
     },
   };
-
-  console.log('SWISSPAY_PAYLOAD:', JSON.stringify(payload));
 
   try {
     const swissRes = await fetch('https://app.swisspay.ai/api/v1/payments', {
@@ -76,10 +57,8 @@ export default async function handler(req, res) {
     });
 
     const data = await swissRes.json();
-    console.log('SWISSPAY_RESPONSE:', JSON.stringify(data));
 
     if (!swissRes.ok && swissRes.status !== 200) {
-      console.log('SWISSPAY_ERROR_FULL:', JSON.stringify(data));
       return res.status(swissRes.status).json({ error: data.error?.message || JSON.stringify(data.error) || 'SwissPay error' });
     }
 

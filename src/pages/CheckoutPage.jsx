@@ -259,14 +259,13 @@ export default function CheckoutPage() {
             </div>
             <h2 className="font-['Playfair_Display',serif] text-gray-900 text-2xl font-bold mb-3">Payment Confirmed</h2>
             <p className="text-gray-500 mb-6">
-              You'll receive a confirmation email at <span className="text-gray-900 font-medium">{form.email || 'your email'}</span> shortly.
+              Our team will reach out within 1 business day to schedule your session.
             </p>
             <div className="bg-gray-50 rounded-lg border border-gray-100 p-4 mb-6 text-left">
               <p className="text-xs uppercase tracking-wider text-gray-400 font-['Inter',sans-serif] mb-1">Order</p>
               <p className="text-gray-900 font-medium">{product.name}</p>
               <p className="text-[#dbb155] font-['JetBrains_Mono',monospace] font-bold text-xl mt-2">{product.priceDisplay}</p>
             </div>
-            <p className="text-gray-400 text-sm mb-6">Our team will reach out within 1 business day to schedule your session.</p>
             <a href="/" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm bg-[#dbb155] text-[#0a0a0f] font-bold hover:brightness-110 hover:shadow-[0_0_20px_rgba(219,177,85,0.4)] active:scale-[0.98] transition-all duration-200">
               Back to Home <ArrowIcon />
             </a>
