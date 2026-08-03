@@ -384,6 +384,7 @@ export default function CheckoutPage() {
                           onChange={handleChange}
                           placeholder="4242 4242 4242 4242"
                           maxLength={19}
+                          autoComplete="off"
                           className={inputClasses + ' font-["JetBrains_Mono",monospace] tracking-wider pr-12'}
                         />
                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300">
@@ -394,11 +395,11 @@ export default function CheckoutPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className={labelClasses}>Expiry</label>
-                        <input name="expMonth" required value={form.expMonth} onChange={handleChange} placeholder="MM / YY" maxLength={7} className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
+                        <input name="expMonth" required value={form.expMonth} onChange={handleChange} placeholder="MM / YY" maxLength={7} autoComplete="off" className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
                       </div>
                       <div>
                         <label className={labelClasses}>CVC</label>
-                        <input name="cvc" required value={form.cvc} onChange={handleChange} placeholder="123" maxLength={4} className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
+                        <input name="cvc" required value={form.cvc} onChange={handleChange} placeholder="123" maxLength={4} autoComplete="off" className={inputClasses + ' font-["JetBrains_Mono",monospace]'} />
                       </div>
                     </div>
                   </div>

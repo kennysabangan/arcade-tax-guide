@@ -79,7 +79,8 @@ export default async function handler(req, res) {
     console.log('SWISSPAY_RESPONSE:', JSON.stringify(data));
 
     if (!swissRes.ok && swissRes.status !== 200) {
-      return res.status(swissRes.status).json({ error: data.error?.message || 'SwissPay error' });
+      console.log('SWISSPAY_ERROR_FULL:', JSON.stringify(data));
+      return res.status(swissRes.status).json({ error: data.error?.message || JSON.stringify(data.error) || 'SwissPay error' });
     }
 
     if (data.status === 'requires_action' && data.next_action?.redirect_url) {
