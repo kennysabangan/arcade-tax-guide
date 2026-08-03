@@ -22,6 +22,20 @@ export default async function handler(req, res) {
   const origin = req.headers.origin || `https://${req.headers.host}`;
   const idempotencyKey = req.headers['idempotency-key'] || crypto.randomUUID();
 
+  // Log what we're sending (minus full card number)
+  console.log('SwissPay request:', JSON.stringify({
+    productId, amount: product.amount, currency: 'usd',
+    cardLast4: cardNumber.replace(/\s/g, '').slice(-4),
+    expMonth, expYear, cvc, holderName
+  }));
+
+  // Log what we're sending (minus full card number)
+  console.log('SwissPay request:', JSON.stringify({
+    productId, amount: product.amount, currency: 'usd',
+    cardLast4: cardNumber.replace(/\s/g, '').slice(-4),
+    expMonth, expYear, cvc, holderName
+  }));
+
   try {
     const swissRes = await fetch('https://app.swisspay.ai/api/v1/payments', {
       method: 'POST',
