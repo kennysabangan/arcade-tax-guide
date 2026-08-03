@@ -11,6 +11,8 @@ import ReportPage from './pages/ReportPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 import ArcadeLandingPage from './pages/ArcadeLandingPage'
 import CheckoutPage from './pages/CheckoutPage'
+import TermsPage from './pages/TermsPage'
+import PrivacyPage from './pages/PrivacyPage'
 
 function ScrollToHash() {
   const location = useLocation()
@@ -65,6 +67,8 @@ export default function App() {
         <Route path="analytics" element={<AnalyticsPage />} />
         <Route path="arcade" element={<ArcadeLandingPage />} />
         <Route path="checkout" element={<CheckoutPage />} />
+        <Route path="terms-of-service" element={<TermsPage />} />
+        <Route path="privacy-policy" element={<PrivacyPage />} />
       </Routes>
       <Analytics />
     </BrowserRouter>

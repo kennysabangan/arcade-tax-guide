@@ -124,7 +124,12 @@ function CheckoutFooter() {
   return (
     <footer style={{ background: '#0a0a0f' }} className="border-t border-[#dbb155]/20 py-8 px-4">
       <div className="max-w-3xl mx-auto text-center">
-        <p className="text-white/40 text-sm mb-1">© {new Date().getFullYear()} Arcade Tax Guide. All rights reserved.</p>
+        <p className="text-white/40 text-sm mb-3">© {new Date().getFullYear()} Arcade Tax Guide. All rights reserved.</p>
+        <div className="flex items-center justify-center gap-4 text-xs mb-3">
+          <a href="/terms-of-service" className="text-white/30 hover:text-[#dbb155] transition-colors">Terms of Service</a>
+          <span className="text-white/10">|</span>
+          <a href="/privacy-policy" className="text-white/30 hover:text-[#dbb155] transition-colors">Privacy Policy</a>
+        </div>
         <p className="text-xs text-white/25">Not tax advice. Consult your CPA.</p>
       </div>
     </footer>
@@ -528,7 +533,11 @@ export default function CheckoutPage() {
                 </div>
 
                 <p className="mt-5 text-gray-300 text-[11px] leading-relaxed px-1">
-                  By completing this purchase you agree to the terms of service. Tax strategy consultations are for informational purposes and do not constitute tax advice. Consult your CPA.
+                  By completing this purchase you agree to the{' '}
+                  <a href="/terms-of-service" className="text-[#dbb155] hover:underline">Terms of Service</a>
+                  {' '}and{' '}
+                  <a href="/privacy-policy" className="text-[#dbb155] hover:underline">Privacy Policy</a>.
+                  {' '}Tax strategy consultations are for informational purposes and do not constitute tax advice. Consult your CPA.
                 </p>
               </div>
             </div>
