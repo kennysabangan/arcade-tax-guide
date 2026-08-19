@@ -265,6 +265,39 @@ const leadScore = computeLeadScore();
 
           </div>
         </div>
+
+        {/* Qualifying Arcade Games — SEO / Educational Section */}
+        <div className="relative z-20 w-full max-w-5xl mx-auto px-5 py-8 sm:py-12">
+          <div className="text-center">
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight mb-4">
+              <span className="text-cream-warm">Qualifying Arcade Games</span>
+              <span className="block text-gold neon-gold">for Bonus Depreciation</span>
+            </h2>
+            <p className="text-cream-60 text-sm sm:text-base font-heading mb-8">
+              A comprehensive guide to leveraging arcade games as qualifying business assets under the Internal Revenue Code,
+              including the permanent 100% bonus depreciation restored by the <span className="text-gold">One Big Beautiful Bill Act</span>.
+            </p>
+            <div className="max-w-3xl mx-auto space-y-6 text-left">
+              <div>
+                <h3 className="font-heading text-gold text-lg sm:text-xl font-bold mb-3">Turning Play into Tax Strategy</h3>
+                <p className="text-cream-70 text-sm sm:text-base leading-relaxed">
+                  The Internal Revenue Code offers several incentives to encourage business investment, one of the most significant
+                  being the additional first-year depreciation deduction, commonly known as bonus depreciation, codified under
+                  <span className="text-cream font-semibold"> Section 168(k)</span>. This provision allows businesses to immediately
+                  deduct a substantial percentage of the cost of qualifying assets in the year they are placed in service, rather
+                  than depreciating them over their useful life.
+                </p>
+              </div>
+              <p className="text-cream-70 text-sm sm:text-base leading-relaxed">
+                Arcade games and coin-operated amusement devices qualify as tangible personal property under
+                <span className="text-cream font-semibold"> MACRS Asset Class 79.0 (Recreation)</span>, with a 7-year recovery
+                period. When used in a trade or business, these assets are eligible for 100% bonus depreciation under the
+                One Big Beautiful Bill Act, allowing the full cost to be deducted in the first year.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="hidden sm:flex justify-center px-5 py-4">
           <img src="/images/arcade-machine.jpg" alt="Arcade Machine" className="w-full max-w-xs sm:max-w-sm" />
         </div>
