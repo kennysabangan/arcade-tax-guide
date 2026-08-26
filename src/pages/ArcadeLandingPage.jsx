@@ -248,9 +248,12 @@ const leadScore = computeLeadScore();
               <span className="block text-cream-warm">Real Revenue Business.</span>
             </h1>
 
-            <p className="text-cream-70 text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-lg landscape:text-lg max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl landscape:mb-2 leading-relaxed">
-              For high-income W2 earners, business owners, and Roth conversion taxpayers who need a 2026 bonus depreciation strategy that can create tax savings greater than the initial cash invested.
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 max-w-md sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
+              <img src="/images/arcade-machines.jpg" alt="Skill-based arcade gaming machines" className="w-48 sm:w-56 lg:w-64 rounded-lg shadow-lg flex-shrink-0" />
+              <p className="text-cream-70 text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-lg landscape:text-lg landscape:mb-2 leading-relaxed">
+                For high-income W2 earners, business owners, and Roth conversion taxpayers who need a 2026 bonus depreciation strategy that can create tax savings greater than the initial cash invested.
+              </p>
+            </div>
 
             <div className="mt-6 sm:mt-10 lg:mt-12 mb-6 sm:mb-10 lg:mb-14 landscape:mt-6 landscape:mb-6" style={{ flexBasis: 'auto' }}>
               <div className="mb-2 sm:mb-3 lg:mb-4 landscape:mb-2">
