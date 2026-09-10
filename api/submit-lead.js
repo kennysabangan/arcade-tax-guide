@@ -66,6 +66,8 @@ export default async function handler(req, res) {
     'bdtgroup': 'partner-BDTgroup',
     'savians': 'partner-Savians',
     'mapade': 'partner-Mapade',
+    'endurance': 'partner-Endurance',
+    'optimal': 'partner-Optimal',
   };
   const refNorm = (ref || '').toLowerCase();
   let tags = ['arcade-tax-lead'];
